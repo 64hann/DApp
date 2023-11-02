@@ -23,5 +23,7 @@ To transfer the token from one to another, the ```transferToken(address payable 
 the caller must input the correct amount of gwei. The token will be transferred from from to the caller of the function, and from receives the payment.
 
 
+To test the function, use the following IPFS hash value
 
+ipfs://QmYfTFjZ5RCi8fzGEBxudrgNRVsDNN9uTN7dXwZzkYL5E1
 
