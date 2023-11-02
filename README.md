@@ -20,7 +20,7 @@ In order for the function to be called successfully, the caller must input the c
 
 
 To transfer the token from one to another, the ```transferToken(address payable  from, uint256 tokenId)``` can be called, which transfers the NFT from from to the caller of the function. In order for this function to execute properly,
-the caller must input the correct amount of gwei. 
+the caller must input the correct amount of gwei. The token will be transferred from from to the caller of the function, and from receives the payment.
 
 
 
