@@ -1,5 +1,22 @@
 # DApp
 
+## Running the Frontend
+
+The React App is saved within the ```nfticket-frontend``` directory.
+
+### Dependencies
+
+Ensure you have ```npm``` installed.
+
+Install node packages ```npm install```
+
+
+### Running
+
+```npm start```
+Runs the app in the development mode.
+
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Smart Contract
 
