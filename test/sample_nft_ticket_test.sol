@@ -6,7 +6,6 @@ import "remix_tests.sol";
 import "remix_accounts.sol";
 import "../nft-contract-github/sample_nft_ticket.sol";
 
-// File name has to end with '_test.sol', this file can contain more than one testSuite contracts
 contract testSuite {
     Nfticket nfticket;
     address initialOwner;
@@ -43,7 +42,6 @@ contract testSuite {
         string memory uri = "http://testuri";
         uint256 mintPrice = nfticket.mintPrice();
 
-        // Payable functions in Solidity unit tests can be called with `.value()`
         try nfticket.safeMint{value: mintPrice}(initialOwner, uri) {
             // If minting succeeds, we want to check the resulting state
             uint256 tokenId = 0; // Assuming first minted token will have ID 0
