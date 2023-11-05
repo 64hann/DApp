@@ -11,28 +11,26 @@ const Homepage = () => {
       <br></br>
       <h3 style={{ margin: "10px" }}>New Events</h3>
 
-<div className="cardrow">
-<Col className="cardcol"> 
+      <div className="cardrow">
+        <Col className="cardcol">
           <EventCard />
         </Col>
-        <Col className="cardcol"> 
+        <Col className="cardcol">
           <EventCard />
         </Col>
-        <Col className="cardcol"> 
+        <Col className="cardcol">
           <EventCard />
         </Col>
-        <Col className="cardcol"> 
+        <Col className="cardcol">
           <EventCard />
         </Col>
-        <Col className="cardcol"> 
+        <Col className="cardcol">
           <EventCard />
         </Col>
-        <Col className="cardcol"> 
+        <Col className="cardcol">
           <EventCard />
         </Col>
-</div>
-        
-
+      </div>
     </div>
   )
 }

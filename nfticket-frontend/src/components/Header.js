@@ -11,7 +11,7 @@ import Col from "react-bootstrap/Col"
 const Header = () => {
   return (
     <Navbar
-    bg="primary"
+      bg="primary"
       data-bs-theme="dark"
       expand="lg"
       // className="bg-body-tertiary"
@@ -39,7 +39,7 @@ const Header = () => {
               <Button type="submit">Search</Button>
             </Col>
           </Row>
-        </Form> 
+        </Form>
         <Button>Log In</Button>
       </Container>
     </Navbar>

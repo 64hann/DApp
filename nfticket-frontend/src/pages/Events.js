@@ -7,25 +7,42 @@ const Events = () => {
   return (
     <div>
       <Header />
-      <h2 style={{margin: "10px"}}>Upcoming Events</h2>
-<Container>
-    <Row className="row">
-      <Col><EventCard /></Col>
-      <Col><EventCard /></Col>
-      <Col><EventCard /></Col>
-    </Row>
-    <Row>
-      <Col><EventCard /></Col>
-      <Col><EventCard /></Col>
-      <Col><EventCard /></Col>
-    </Row>
-    <Row>
-      <Col><EventCard /></Col>
-      <Col><EventCard /></Col>
-      <Col><EventCard /></Col>
-    </Row>
-
-</Container>
+      <h2 style={{ margin: "10px" }}>Upcoming Events</h2>
+      <Container>
+        <Row className="row">
+          <Col>
+            <EventCard />
+          </Col>
+          <Col>
+            <EventCard />
+          </Col>
+          <Col>
+            <EventCard />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <EventCard />
+          </Col>
+          <Col>
+            <EventCard />
+          </Col>
+          <Col>
+            <EventCard />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <EventCard />
+          </Col>
+          <Col>
+            <EventCard />
+          </Col>
+          <Col>
+            <EventCard />
+          </Col>
+        </Row>
+      </Container>
     </div>
   )
 }
