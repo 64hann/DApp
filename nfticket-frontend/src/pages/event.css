@@ -1,0 +1,17 @@
+.cardrow {
+  overflow: auto;
+  white-space: nowrap;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.cardrow::-webkit-scrollbar {
+  display: none;
+}
+
+.cardrow {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.cardcol {
+  display: inline-block;
+}
