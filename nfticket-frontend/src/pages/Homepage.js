@@ -5,6 +5,7 @@ import { EventCard } from "../components/EventCard"
 
 const Homepage = () => {
   return (
+    
     <div>
       <Header />
       <EventCarousell />
