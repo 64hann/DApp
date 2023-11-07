@@ -6,12 +6,14 @@ import { EventCard } from "../components/EventCard"
 const Homepage = () => {
   return (
     
-    <div>
+    <div style={{backgroundColor:"black"}} >
       <Header />
       <EventCarousell />
-      <br></br>
-      <h3 style={{ margin: "10px" }}>New Events</h3>
-
+      <div style={{height: "10px", backgroundColor:"black"}}></div>
+      <span>
+      <h3 style={{ padding: "10px", backgroundColor:"black", color:"white" }}>New Events</h3>
+      </span>
+      <span>
       <div className="cardrow">
         <Col className="cardcol">
           <EventCard />
@@ -32,6 +34,8 @@ const Homepage = () => {
           <EventCard />
         </Col>
       </div>
+      </span>
+      
     </div>
   )
 }

@@ -25,8 +25,8 @@ const EventCard = () => {
       <Card.Img
         style={cardImageStyle}
         variant="top"
-        // src="https://www.levistrauss.com/wp-content/uploads/2023/03/NewJeans_Hero.jpg"
-        src="https://ipfs.filebase.io/ipfs/QmchavCU2JPuLupWUR8ZJ6NdD1GZSJmNnaUj6LB1nGeFsp/Qma9Le1kRHunh2CqaGNmXQdwrBxS3bFj5BdF1P6axa1Xf1"
+        src="https://www.levistrauss.com/wp-content/uploads/2023/03/NewJeans_Hero.jpg"
+        // src="https://ipfs.filebase.io/ipfs/QmchavCU2JPuLupWUR8ZJ6NdD1GZSJmNnaUj6LB1nGeFsp/Qma9Le1kRHunh2CqaGNmXQdwrBxS3bFj5BdF1P6axa1Xf1"
       />
       <Card.Body>
         <Card.Text>17 November 2023 (Sunday)</Card.Text>

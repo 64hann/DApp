@@ -1,6 +1,7 @@
 .cardrow {
   overflow: auto;
   white-space: nowrap;
+  background-color: black;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

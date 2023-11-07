@@ -11,7 +11,7 @@ import Col from "react-bootstrap/Col"
 const Header = () => {
   return (
     <Navbar
-      bg="primary"
+      style={{backgroundColor:"black"}}
       data-bs-theme="dark"
       expand="lg"
       // className="bg-body-tertiary"
