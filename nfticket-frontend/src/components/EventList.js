@@ -1,10 +1,11 @@
+import React, { useEffect } from "react"
 import Card from "react-bootstrap/Card"
 import "./cards.css"
 import { useNavigate } from "react-router-dom"
 
 const cardImageStyle = {
-  borderTopLeftRadius: "15px",
-  borderTopRightRadius: "15px",
+  borderTopLeftRadius: "5px",
+  borderTopRightRadius: "5px",
   borderBottomLeftRadius: "0px",
   borderBottomRightRadius: "0px",
   width: "100%",
@@ -12,9 +13,9 @@ const cardImageStyle = {
   objectFit: "cover",
 }
 
-const EventCard = (props) => {
+const EventList = (props) => {
   const title = props.title
-  const imageURL = props.imageURL
+  const bannerURL = props.bannerURL
   const date = props.date
   const id = props.id
   const navigate = useNavigate()
@@ -27,21 +28,21 @@ const EventCard = (props) => {
 
   return (
     <Card
-      className="event-card"
-      style={{ borderRadius: "15px" }}
+      className="event-list"
       onClick={handleCardClick}
+      style={{ borderRadius: "5px" }}
     >
       <Card.Img
         style={cardImageStyle}
         variant="top"
-        src={imageURL}
+        src={bannerURL}
       />
       <Card.Body>
         <Card.Text>{date}</Card.Text>
-        <Card.Text><b>{title}</b></Card.Text>
+        <Card.Title>{title}</Card.Title>
       </Card.Body>
     </Card>
   )
 }
 
-export { EventCard }
+export { EventList }

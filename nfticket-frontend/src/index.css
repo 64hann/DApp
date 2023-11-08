@@ -5,6 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: black;
+  color-scheme: dark;
+
 }
 
 code {
@@ -12,3 +15,12 @@ code {
     monospace;
 }
 
+@font-face {
+  font-family: 'Lato';
+  src: local('Lato'), url(./fonts/Lato/Lato-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'charter';
+  src: local('charter'), url(./fonts/charter/ttf/Charter\ Bold.ttf) format('truetype');
+}

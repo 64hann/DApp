@@ -2,40 +2,37 @@ import { Header } from "../components/Header"
 import { EventCarousell } from "../components/Carousell"
 import { Col, Container, Row } from "react-bootstrap"
 import { EventCard } from "../components/EventCard"
+import eventsJSON from "../testEvents.json"
 
 const Homepage = () => {
   return (
-    
-    <div style={{backgroundColor:"black"}} >
+    <div>
       <Header />
-      <EventCarousell />
-      <div style={{height: "10px", backgroundColor:"black"}}></div>
-      <span>
-      <h3 style={{ padding: "10px", backgroundColor:"black", color:"white" }}>New Events</h3>
-      </span>
-      <span>
-      <div className="cardrow">
-        <Col className="cardcol">
-          <EventCard />
-        </Col>
-        <Col className="cardcol">
-          <EventCard />
-        </Col>
-        <Col className="cardcol">
-          <EventCard />
-        </Col>
-        <Col className="cardcol">
-          <EventCard />
-        </Col>
-        <Col className="cardcol">
-          <EventCard />
-        </Col>
-        <Col className="cardcol">
-          <EventCard />
-        </Col>
+      <div style={{ height: "10px" }}></div>
+      <div style={{ textAlign: "center" }}>
+        <EventCarousell />
       </div>
-      </span>
-      
+
+      <div style={{ paddingLeft: "30px" }}>
+        <div style={{ height: "10px" }}></div>
+        <h2
+          style={{ padding: "10px", color: "#ba3375", fontFamily: "charter" }}
+        >
+          New Events
+        </h2>
+        <div className="cardrow">
+          {eventsJSON.events.map((e) => 
+            <Col className="cardcol">
+              <EventCard
+                title={e.title}
+                date={e.date}
+                imageURL={e.imageURL}
+                id={e.id}
+              />
+            </Col>
+          )}
+        </div>
+      </div>
     </div>
   )
 }

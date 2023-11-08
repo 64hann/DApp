@@ -5,7 +5,7 @@ import Image from "react-bootstrap/Image"
 
 const EventCarousell = () => {
   return (
-    <Carousel style={{backgroundColor:"black"}} data-bs-theme="dark">
+    <Carousel data-bs-theme="dark">
       <Carousel.Item>
         {/* <ExampleCarouselImage text="First slide" /> */}
         <Container>

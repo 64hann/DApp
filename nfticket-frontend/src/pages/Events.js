@@ -1,47 +1,19 @@
 import { Col, Container, Row } from "react-bootstrap"
-import { EventCard } from "../components/EventCard"
 import { Header } from "../components/Header"
 import "./event.css"
+import { EventList } from "../components/EventList"
+import eventsJSON from "../testEvents.json"
+
 
 const Events = () => {
   return (
     <div>
       <Header />
-      <h2 style={{ margin: "10px" }}>Upcoming Events</h2>
-      <Container>
-        <Row className="row">
+      <h2 style={{ padding: "10px", color:"#ba3375"}}>Upcoming Events</h2>
+      <Container >
           <Col>
-            <EventCard />
+            {eventsJSON.events.map((e) => <EventList title={e.title} bannerURL={e.bannerURL} date={e.date} id={e.id}/>)}
           </Col>
-          <Col>
-            <EventCard />
-          </Col>
-          <Col>
-            <EventCard />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <EventCard />
-          </Col>
-          <Col>
-            <EventCard />
-          </Col>
-          <Col>
-            <EventCard />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <EventCard />
-          </Col>
-          <Col>
-            <EventCard />
-          </Col>
-          <Col>
-            <EventCard />
-          </Col>
-        </Row>
       </Container>
     </div>
   )
