@@ -1,10 +1,8 @@
-/* Imports and Style Definitions */
 import { useState, useEffect, useContext } from 'react'
 import { ViewContext } from '../context/ViewProvider'
 
 
 const TicketsOwned = () => {
-  /* Top Level Code */
   //To be implemented 
   const ownedTickets = ["hello!", "hi!"];
 
