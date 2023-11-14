@@ -16,12 +16,12 @@ const EventDetails = () => {
       </div>
       <div style={{ height: "10px" }}></div>
       <div style={{ marginLeft: "10px" }}>
-        <h3 style={{ padding: "10px", color: "#ba3375" }}>{event.title}</h3>
+        <h3 style={{ padding: "10px", color: "#ffffff" }}>{event.title}</h3>
         <p
           style={{
             paddingLeft: "10px",
             paddingRight: "10px",
-            color: "#ba3375",
+            color: "#ffffff",
           }}
         >
           {event.date} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{" "}
@@ -31,7 +31,7 @@ const EventDetails = () => {
           style={{
             paddingLeft: "10px",
             paddingRight: "10px",
-            color: "#ba3375",
+            color: "#ffffff",
           }}
         >
           {event.description}
