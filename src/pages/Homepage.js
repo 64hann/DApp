@@ -15,12 +15,10 @@ const Homepage = () => {
 
       <div style={{ paddingLeft: "30px" }}>
         <div style={{ height: "10px" }}></div>
-        <h2
-          style={{ padding: "10px", color: "#ba3375", fontFamily: "charter" }}
-        >
-          New Events
-        </h2>
+        
+
         <div className="cardrow">
+        <h3 style={{ paddingTop: "15px", color:"#ffffff", fontFamily:"tabela-regular"}}>NEW EVENTS</h3>
           {eventsJSON.events.map((e) => 
             <Col className="cardcol">
               <EventCard

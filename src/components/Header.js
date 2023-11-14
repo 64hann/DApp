@@ -26,7 +26,7 @@ const Header = () => {
 
   return (
     <Navbar 
-      style={{ backgroundColor: "black", fontFamily:"charter" }}
+      style={{ backgroundColor: "black", fontFamily:"tabela-bold" }}
       data-bs-theme="dark"
       expand="lg"    >
       <Container>

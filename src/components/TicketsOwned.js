@@ -11,7 +11,7 @@ const TicketsOwned = () => {
       <hr height="1" />
       { ownedTickets.length > 0
         ? <>
-            <div>You have {ownedTickets.length} ticket{ownedTickets.length > 1 ? 's' : ''}!</div>
+            <div style={{color:"white"}}>You have {ownedTickets.length} ticket{ownedTickets.length > 1 ? 's' : ''}!</div>
           </>
         : null
       }
