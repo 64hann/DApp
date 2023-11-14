@@ -9,7 +9,7 @@ import Col from "react-bootstrap/Col"
 import { useContext } from 'react'
 import { ViewContext } from '../context/ViewProvider'
 
-import ConnectWallet from "./connectWallet"
+import ConnectWallet from "./ConnectWallet"
 import InstallAlert from "./extras/InstallAlert"
 import DisplayAddress from "./extras/DisplayAddress"
 
