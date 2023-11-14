@@ -45,8 +45,11 @@
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "cypress": "^13.5.0",
+    "cypress-react-selector": "^3.0.0",
     "ethers": "^5.7.2",
     "hardhat": "^2.19.0",
+    "jest": "^27.5.1",
     "react-router-dom": "^6.18.0"
   }
 }

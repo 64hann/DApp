@@ -5,7 +5,6 @@ import { ViewContext } from '../context/ViewProvider'
 
 import InstallAlert from "../components/extras/InstallAlert"
 import DisplayAddress from "../components/extras/DisplayAddress"
-import ConnectWallet from "../components/ConnectWallet"
 import TicketsOwned from "../components/TicketsOwned"
 
 const Wallet = () => {
