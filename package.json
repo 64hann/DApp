@@ -1,5 +1,5 @@
 {
-  "name": "nfticket-frontend",
+  "name": "y",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -46,5 +46,12 @@
     "ethers": "^5.7.2",
     "hardhat": "^2.19.0",
     "react-router-dom": "^6.18.0"
-  }
+  },
+  "description": "## Running the Frontend",
+  "main": "hardhat.config.js",
+  "directories": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC"
 }
