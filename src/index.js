@@ -3,11 +3,14 @@ import ReactDOM from "react-dom/client"
 import App from "./App"
 import reportWebVitals from "./reportWebVitals"
 import "./index.css"
+import { ViewProvider } from "./context/ViewProvider"
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
   <React.StrictMode>
+    <ViewProvider>
       <App />
+    </ViewProvider>
   </React.StrictMode>
 )
 
