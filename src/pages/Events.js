@@ -2,8 +2,11 @@ import { Col, Container, Row } from "react-bootstrap"
 import { Header } from "../components/Header"
 import "./event.css"
 import { EventList } from "../components/EventList"
-import eventsJSON from "../testEvents.json"
+// import eventsJSON from "../testEvents.json"
+import { fetchIPFSData } from "../deployments/upload.js"
 
+
+const eventsJSON = await fetchIPFSData();
 const Events = () => {
   return (
     <div>
@@ -13,7 +16,6 @@ const Events = () => {
           style={{
             paddingTop: "15px",
             paddingLeft: "10px",
-
             color: "#ffffff",
             fontFamily: "tabela-regular",
           }}

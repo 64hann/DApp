@@ -2,8 +2,9 @@ import { Header } from "../components/Header"
 import { EventCarousell } from "../components/Carousell"
 import { Col, Container, Row } from "react-bootstrap"
 import { EventCard } from "../components/EventCard"
-import eventsJSON from "../testEvents.json"
-
+// import eventsJSON from "../testEvents.json"
+import { fetchIPFSData } from "../deployments/upload.js";
+const eventsJSON = await fetchIPFSData();
 const Homepage = () => {
   return (
     <div>

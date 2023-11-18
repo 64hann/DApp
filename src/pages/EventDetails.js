@@ -1,7 +1,10 @@
 import { Header } from "../components/Header";
 import { useParams } from "react-router-dom";
 import { Button, Image } from "react-bootstrap";
-import eventsJSON from "../testEvents.json";
+// import eventsJSON from "../testEvents.json";
+import { fetchIPFSData } from "../deployments/upload.js";
+
+const eventsJSON = await fetchIPFSData();
 
 const ethers = require("ethers");
 const contract = require("../artifacts/contracts/sample_nft_ticket.sol/Nfticket.json");
