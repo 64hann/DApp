@@ -4,9 +4,8 @@ import { HomepageTitle } from "../components/HomepageTitle"
 import { Col, Container, Row, Image } from "react-bootstrap"
 import { EventCard } from "../components/EventCard"
 // import eventsJSON from "../testEvents.json"
+import { PageBreak } from "../components/PageBreak";
 import { fetchIPFSData } from "../deployments/upload.js";
-import { PageBreak } from "../components/PageBreak"
-
 
 const eventsJSON = await fetchIPFSData();
 const Homepage = () => {
