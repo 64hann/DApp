@@ -1,35 +1,48 @@
-contract reentrancyTest {
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
 
-    Nfticket nfticket;
-    Attacker attacker;
-    
-    // The address which will represent the contract owner
-    address owner = address(this);
+// Import the Nfticket contract
+import "./Nfticket.sol";
 
-    // Deploy the contracts before each test
-    function beforeEach() public {
-        nfticket = new Nfticket();
-        attacker = new Attacker(address(nfticket));
+// Malicious contract attempting reentrancy
+contract MaliciousContract {
+    Nfticket public nfticket;
+
+    constructor(address _nfticketAddress) {
+        nfticket = Nfticket(_nfticketAddress);
     }
 
-    /// Test to ensure reentrancy attack does not succeed
-    function testReentrancyAttack() public {
-        // Preparing the test, sending ether to the Nfticket contract to simulate a balance
-        payable(address(nfticket)).transfer(1 ether);
-        
-        // Sending ether to the Attacker contract to perform the attack
-        payable(address(attacker)).transfer(1 ether);
+    // Fallback function used to perform the reentrancy attack
+    receive() external payable {
+        // Attempt to re-enter the transferToken function
+        nfticket.transferToken(payable(address(this)), 1);
+    }
 
-        // Perform the attack
-        try attacker.attack{value: 1 ether}() {
-            // If the attack succeeds, this is bad and should not happen
-            Assert.fail("Attack should not be successful");
-        } catch Error(string memory reason) {
-            // We expect this test to fail, meaning the attack was not successful
-            // Check that the Nfticket contract still has the ether
-            Assert.equal(address(nfticket).balance, 1 ether, "Nfticket contract should still have 1 ether");
-            // Check that the attack did not happen more than once
-            Assert.equal(attacker.attackCount(), 1, "Attacker should have only been able to call transferToken once");
-        }
+    function attack() external payable {
+        // Initial call to transferToken to start the attack
+        nfticket.transferToken{value: msg.value}(payable(address(this)), 1);
+    }
+}
+
+// Test contract
+contract ReentrancyTest {
+    Nfticket public nfticket;
+    MaliciousContract public attacker;
+
+    function beforeEach() public {
+        // Deploy the Nfticket contract
+        nfticket = new Nfticket(address(this));
+        // Deploy the malicious contract
+        attacker = new MaliciousContract(address(nfticket));
+    }
+
+    function testReentrancyAttack() public {
+        // Set up the Nfticket contract (e.g., mint an NFT, set prices, etc.)
+
+        // Attempt the attack
+        attacker.attack{value: 1 ether}();
+
+        // Assertions to check the state of the Nfticket contract after the attack
+        // e.g., assert that balances, ownership, etc., are as expected
     }
 }

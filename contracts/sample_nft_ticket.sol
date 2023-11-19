@@ -6,8 +6,9 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
-contract Nfticket is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
+contract Nfticket is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable, ReentrancyGuard {
     uint256 public mintPrice = 0 gwei;
     uint256 private _nextTokenId;
     uint256 public MAX_SUPPLY = 0;
@@ -46,10 +47,21 @@ contract Nfticket is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
         _setTokenURI(tokenId, uri);
     }
 
-    function transferToken(address payable  from, uint256 tokenId) public payable  {
-        require(msg.value == mintPrice, "Pls pay the correct amt");
+    //function transferToken(address payable  from, uint256 tokenId) public payable  {
+        //require(msg.value == mintPrice, "Pls pay the correct amt");
+        //from.transfer(msg.value);
+        //_safeTransfer(from, msg.sender, tokenId);
+    //}
+
+    // Revised transferToken function
+    function transferToken(address payable from, uint256 tokenId) public payable nonReentrant {
+        require(msg.value == mintPrice, "Please pay the correct amount");
+        
+        // First, transfer the NFT
+        _safeTransfer(from, msg.sender, tokenId, "");
+
+        // Then, transfer the Ether
         from.transfer(msg.value);
-        _safeTransfer(from, msg.sender, tokenId);
     }
 
     // The following functions are overrides required by Solidity.
