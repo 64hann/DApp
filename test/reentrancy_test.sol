@@ -37,12 +37,6 @@ contract ReentrancyTest {
     }
 
     function testReentrancyAttack() public {
-        // Set up the Nfticket contract (e.g., mint an NFT, set prices, etc.)
-
-        // Attempt the attack
         attacker.attack{value: 1 ether}();
-
-        // Assertions to check the state of the Nfticket contract after the attack
-        // e.g., assert that balances, ownership, etc., are as expected
     }
 }
