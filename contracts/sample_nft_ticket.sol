@@ -46,10 +46,21 @@ contract Nfticket is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
         _setTokenURI(tokenId, uri);
     }
 
-    function transferToken(address payable  from, uint256 tokenId) public payable  {
-        require(msg.value == mintPrice, "Pls pay the correct amt");
+    // function transferToken(address payable  from, uint256 tokenId) public payable  {
+    //     require(msg.value == mintPrice, "Pls pay the correct amt");
+    //     from.transfer(msg.value);
+    //     _safeTransfer(from, msg.sender, tokenId);
+    // }
+
+    // Revised transferToken function
+    function transferToken(address payable from, uint256 tokenId) public payable nonReentrant {
+        require(msg.value == mintPrice, "Please pay the correct amount");
+        
+        // First, transfer the NFT
+        _safeTransfer(from, msg.sender, tokenId, "");
+
+        // Then, transfer the Ether
         from.transfer(msg.value);
-        _safeTransfer(from, msg.sender, tokenId);
     }
 
     // The following functions are overrides required by Solidity.
