@@ -1,0 +1,89 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar {
+  background-color: black;
+  font-family: "sohne-buch", sans-serif;
+  height: 8vh;
+  font-size: 20px;
+}
+
+.nav-links {
+  padding-top: 7px;
+}
+
+.homepage-title {
+  color: white;
+  font-family: "sohne-buch", sans-serif;
+  text-align: center;
+  padding: 20px;
+  margin: 0;
+}
+
+.homepage-title .highlight {
+  font-weight: bold;
+  color: skyblue;
+}
+
+.event-card:hover {
+  transform: translate(0, -5px);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.event-card {
+  transition: 0.3s;
+  width: 20rem;
+  height: 22rem;
+  margin: 10px;
+  cursor: pointer;
+  background-color: #ffffff !important;
+}
+
+.event-list:hover {
+  transform: translate(0, -5px);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.event-list {
+  transition: 0.3s;
+  border-radius: 15px;
+  width: 80vw;
+  height: 22rem;
+  margin: 10px;
+  margin-top: 30px;
+  cursor: pointer;
+  background-color: #ffffff !important;
+}
+
+.nft-button {
+  color: black;
+  font-family: "sohne-buch", sans-serif;
+  background-color: white;
+  padding: 15px 30px;
+
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+}
+
+.nft-button:hover {
+  box-shadow: 4px 4px 4px skyblue;
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+.text {
+  color: white;
+  font-family: "sohne-buch", sans-serif;
+  font-size: 24px;
+  text-align: center;
+  padding: 10px 20px;
+  margin: 0 auto;
+  max-width: 1200px;
+  line-height: 1.6;
+}

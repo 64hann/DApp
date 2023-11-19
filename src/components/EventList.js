@@ -1,6 +1,5 @@
 import React, { useEffect } from "react"
 import Card from "react-bootstrap/Card"
-import "./cards.css"
 import { useNavigate } from "react-router-dom"
 
 const cardImageStyle = {
@@ -32,11 +31,7 @@ const EventList = (props) => {
       onClick={handleCardClick}
       style={{ borderRadius: "5px" }}
     >
-      <Card.Img
-        style={cardImageStyle}
-        variant="top"
-        src={bannerURL}
-      />
+      <Card.Img style={cardImageStyle} variant="top" src={bannerURL} />
       <Card.Body>
         <Card.Text>{date}</Card.Text>
         <Card.Title>{title}</Card.Title>
