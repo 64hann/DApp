@@ -1,3 +1,4 @@
+import { Landing } from "./pages/Landing"
 import { Homepage } from "./pages/Homepage"
 import { Events } from "./pages/Events"
 import { Wallet } from "./pages/Wallet"
@@ -10,7 +11,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Homepage />} />
+        <Route path="/" element={<Landing />} />
+        <Route path="/home" element={<Homepage />} />
         <Route path="/events" element={<Events />} />
         <Route path="/events/:title/:id" element={<EventDetails />} />
         <Route path="/tickets" element={<Wallet />} />

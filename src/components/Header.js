@@ -1,15 +1,9 @@
-import Container from "react-bootstrap/Container"
-import Nav from "react-bootstrap/Nav"
-import Navbar from "react-bootstrap/Navbar"
-import Form from "react-bootstrap/Form"
-import Button from "react-bootstrap/Button"
-import Row from "react-bootstrap/Row"
-import Col from "react-bootstrap/Col"
+import { Navbar, Nav, Image, Container } from "react-bootstrap"
 
 import { useContext } from "react"
 import { ViewContext } from "../context/ViewProvider"
 
-import ConnectWallet from "./connectWallet"
+import ConnectWallet from "./ConnectWallet"
 import InstallAlert from "./extras/InstallAlert"
 import DisplayAddress from "./extras/DisplayAddress"
 
@@ -25,42 +19,36 @@ const Header = () => {
   const ethVipHex = bigNumberify(ethVip)._hex
 
   return (
-    <Navbar
-      style={{ backgroundColor: "black", fontFamily: "tabela-bold" }}
-      data-bs-theme="dark"
-      expand="lg"
-    >
+    <Navbar className="navbar" data-bs-theme="dark" expand="lg">
       <Container>
-        <Navbar.Brand href="/">NFTicket</Navbar.Brand>
+        <Image
+          src={require("../images/nfticket.png")}
+          width="50"
+          height="50"
+          className="d-inline-block align-top" // Bootstrap class for alignment
+        />
+        <Navbar.Brand
+          style={{
+            fontSize: "30px",
+            paddingLeft: "10px",
+            paddingRight: "10px",
+          }}
+          href="/"
+        >
+          NFT<span style={{ fontFamily: "sohne-buch-light" }}>icket</span>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+          <Nav className="nav-links">
+            <Nav.Link href="/home">Home</Nav.Link>
             <Nav.Link href="/events">Events</Nav.Link>
             <Nav.Link href="/tickets">My Tickets</Nav.Link>
-            {/* <Nav.Link href="/about">About</Nav.Link> */}
           </Nav>
         </Navbar.Collapse>
-        <Form class="me-3">
-          <Row>
-            <Col xs="auto">
-              <Form.Control
-                type="text"
-                placeholder="Find Events"
-                className=" mr-sm-2"
-              />
-            </Col>
-            <Col xs="auto">
-              <Button class="me-3" type="submit">
-                Search
-              </Button>
-            </Col>
-          </Row>
-        </Form>
+
         {address !== "" ? (
           <DisplayAddress />
-        ) : // : address && chainId && chainId !== 4
-        //   ? <ConnectNetwork />
-        window.ethereum ? (
+        ) : window.ethereum ? (
           <ConnectWallet connect={actions.connect} />
         ) : (
           <InstallAlert />
