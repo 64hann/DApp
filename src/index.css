@@ -1,31 +1,50 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: black;
   color-scheme: dark;
-
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 @font-face {
-  font-family: 'tabela-bold';
-  src: local('Tabela'), url(./fonts/Tabela/tabelaSoft-Medium.ttf) format('truetype');
+  font-family: "tabela-bold";
+  src: local("Tabela"),
+    url(./fonts/Tabela/tabelaSoft-Medium.ttf) format("truetype");
 }
 
 @font-face {
-  font-family: 'tabela-regular';
-  src: local('Tabela'), url(./fonts/Tabela/tabelaSoft-Regular.ttf) format('truetype');
+  font-family: "tabela-regular";
+  src: local("Tabela"),
+    url(./fonts/Tabela/tabelaSoft-Regular.ttf) format("truetype");
 }
 
 @font-face {
-  font-family: 'tabela-light';
-  src: local('Tabela'), url(./fonts/Tabela/tabelaSoft-Light.ttf) format('truetype');
+  font-family: "tabela-light";
+  src: local("Tabela"),
+    url(./fonts/Tabela/tabelaSoft-Light.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "sohne-buch";
+  src: local("Sohne"), url(./fonts/Sohne/Söhne-Buch.otf) format("truetype");
+}
+
+@font-face {
+  font-family: "sohne-buch-bold";
+  src: local("Sohne"),
+    url(./fonts/Sohne/Söhne-Dreiviertelfett.otf) format("truetype");
+}
+
+@font-face {
+  font-family: "sohne-buch-light";
+  src: local("Sohne"),
+    url(./fonts/Sohne/Söhne-Extraleicht.otf) format("truetype");
 }

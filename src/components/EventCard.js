@@ -1,5 +1,4 @@
 import Card from "react-bootstrap/Card"
-import "./cards.css"
 import { useNavigate } from "react-router-dom"
 
 const cardImageStyle = {
@@ -31,14 +30,12 @@ const EventCard = (props) => {
       style={{ borderRadius: "15px" }}
       onClick={handleCardClick}
     >
-      <Card.Img
-        style={cardImageStyle}
-        variant="top"
-        src={imageURL}
-      />
+      <Card.Img style={cardImageStyle} variant="top" src={imageURL} />
       <Card.Body>
         <Card.Text>{date}</Card.Text>
-        <Card.Text><b>{title}</b></Card.Text>
+        <Card.Text>
+          <b>{title}</b>
+        </Card.Text>
       </Card.Body>
     </Card>
   )
