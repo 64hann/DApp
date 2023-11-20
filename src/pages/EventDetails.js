@@ -25,6 +25,7 @@ const EventDetails = () => {
   const event = eventsJSON.events[params.id]
   const USER_ADDRESS = sessionStorage.getItem("metamask-address")
 
+  //TODO: Move function to a separate file
   async function mint() {
     if (!USER_ADDRESS) {
       return alert("Please log in to MetaMask")

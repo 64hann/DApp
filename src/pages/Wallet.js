@@ -6,6 +6,7 @@ import { ViewContext } from "../context/ViewProvider"
 import InstallAlert from "../components/extras/InstallAlert"
 import DisplayAddress from "../components/extras/DisplayAddress"
 import TicketsOwned from "../components/TicketsOwned"
+import { Button } from "react-bootstrap"
 
 const Wallet = () => {
   const { user, actions, bigNumberify } = useContext(ViewContext)
@@ -28,6 +29,7 @@ const Wallet = () => {
         //   ? <div>Not Connected to Rinkeby ({chainId})</div>
         <TicketsOwned />
       )}
+      <Button>Sell Tickets</Button>
     </div>
   )
 }
