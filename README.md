@@ -78,3 +78,22 @@ the caller must input the correct amount of gwei. The token will be transferred 
 To test the function, use the following IPFS hash value
 
 ipfs://QmYfTFjZ5RCi8fzGEBxudrgNRVsDNN9uTN7dXwZzkYL5E1
+
+
+
+## Compiling and deploying smart contract
+
+
+To compile the smart contract, run 
+```
+npx hardhat compile
+```
+
+
+To deploy the smart contract, run 
+```
+npx hardhat run deployments/deploy.js --network sepolia
+
+```
+
+

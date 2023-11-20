@@ -1,6 +1,6 @@
 /** @type import('hardhat/config').HardhatUserConfig */
 require("@nomiclabs/hardhat-ethers");
-// require('../.env').config()
+// require('/.env').config()
 
 const PRIVATE_KEY = process.env.PRIVATE_KEY
 
