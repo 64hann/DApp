@@ -7,7 +7,10 @@ import eventsJSON from "../testEvents.json"
 import { SectionTitle } from "../components/Titles"
 import { Col, Row } from "react-bootstrap"
 import FilterSearchBar from "../components/InteractiveElements"
+// import eventsJSON from "../testEvents.json"
+import { fetchIPFSData } from "../deployments/upload.js"
 
+const eventsJSON = await fetchIPFSData()
 const Events = () => {
   const [data, setData] = useState(eventsJSON.events)
   const [filteredData, setFilteredData] = useState(eventsJSON.events)

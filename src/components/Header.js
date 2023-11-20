@@ -10,6 +10,7 @@ import DisplayAddress from "./extras/DisplayAddress"
 const Header = () => {
   const { user, actions, bigNumberify } = useContext(ViewContext)
   const { address } = user
+  sessionStorage.setItem("metamask-address", address)
   console.log(address)
 
   const ethGa = "0.01"
