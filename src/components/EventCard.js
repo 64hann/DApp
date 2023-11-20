@@ -1,3 +1,4 @@
+import { Col, Row } from "react-bootstrap"
 import Card from "react-bootstrap/Card"
 import { useNavigate } from "react-router-dom"
 
@@ -11,11 +12,7 @@ const cardImageStyle = {
   objectFit: "cover",
 }
 
-const EventCard = (props) => {
-  const title = props.title
-  const imageURL = props.imageURL
-  const date = props.date
-  const id = props.id
+const EventCard = ({ title, imageURL, date, id, artist }) => {
   const navigate = useNavigate()
 
   const handleCardClick = () => {
@@ -32,7 +29,14 @@ const EventCard = (props) => {
     >
       <Card.Img style={cardImageStyle} variant="top" src={imageURL} />
       <Card.Body>
-        <Card.Text>{date}</Card.Text>
+        <Card.Text>
+          <Row>
+            <Col>{date}</Col>
+            <Col style={{ textAlign: "right", fontWeight: "bold" }}>
+              {artist}
+            </Col>
+          </Row>
+        </Card.Text>
         <Card.Text>
           <b>{title}</b>
         </Card.Text>

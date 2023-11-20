@@ -1,11 +1,4 @@
-import Container from "react-bootstrap/Container"
-import Nav from "react-bootstrap/Nav"
-import Navbar from "react-bootstrap/Navbar"
-import Form from "react-bootstrap/Form"
-import Button from "react-bootstrap/Button"
-import Row from "react-bootstrap/Row"
-import Col from "react-bootstrap/Col"
-import { Image } from "react-bootstrap";
+import { Navbar, Nav, Image, Container } from "react-bootstrap"
 
 import { useContext } from "react"
 import { ViewContext } from "../context/ViewProvider"
@@ -15,23 +8,18 @@ import InstallAlert from "./extras/InstallAlert"
 import DisplayAddress from "./extras/DisplayAddress"
 
 const Header = () => {
-
   const { user, actions, bigNumberify } = useContext(ViewContext)
   const { address } = user
   sessionStorage.setItem("metamask-address", address)
   console.log(address)
 
-  const ethGa = '0.01'
-  const ethVip = '0.02'
+  const ethGa = "0.01"
+  const ethVip = "0.02"
   const ethGaHex = bigNumberify(ethGa)._hex
   const ethVipHex = bigNumberify(ethVip)._hex
 
   return (
-    <Navbar
-      style={{ backgroundColor: "black", fontFamily: "tabela-bold" }}
-      data-bs-theme="dark"
-      expand="lg"
-    >
+    <Navbar className="navbar" data-bs-theme="dark" expand="lg">
       <Container>
         <Image
           src={require("../images/nfticket.png")}
@@ -57,27 +45,10 @@ const Header = () => {
             <Nav.Link href="/tickets">My Tickets</Nav.Link>
           </Nav>
         </Navbar.Collapse>
-        <Form class="me-3">
-          <Row>
-            <Col xs="auto">
-              <Form.Control
-                type="text"
-                placeholder="Find Events"
-                className=" mr-sm-2"
-              />
-            </Col>
-            <Col xs="auto">
-              <Button class="me-3" type="submit">
-                Search
-              </Button>
-            </Col>
-          </Row>
-        </Form>
+
         {address !== "" ? (
           <DisplayAddress />
-        ) : // : address && chainId && chainId !== 4
-        //   ? <ConnectNetwork />
-        window.ethereum ? (
+        ) : window.ethereum ? (
           <ConnectWallet connect={actions.connect} />
         ) : (
           <InstallAlert />

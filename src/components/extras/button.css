@@ -1,16 +1,12 @@
 .theresa-button {
-  background-color: skyblue; /* Sky blue background */
-  color: black; /* Black text color */
-  font-family: "Sohne Buch", sans-serif; /* Sohne Buch font family */
+  background-color: skyblue;
+  color: black;
+  font-family: "sohne-buch", sans-serif;
   padding: 7px 14px; /* Padding around the text */
-  font-size: 18px;
+  font-size: 15px;
   border: none; /* No border */
   cursor: pointer; /* Changes the cursor to a pointer on hover */
   margin-top: 5px;
   transition: all 0.3s ease; /* Smooth transition for hover effect */
   border-radius: 5px; /* Rounded corners */
-}
-
-.theresa-button-button:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slight shadow effect on hover */
 }

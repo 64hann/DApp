@@ -1,33 +1,57 @@
-import { Col, Container, Row } from "react-bootstrap"
 import { Header } from "../components/Header"
+import React, { useState } from "react"
+
 import "./event.css"
 import { EventList } from "../components/EventList"
+import eventsJSON from "../testEvents.json"
+import { SectionTitle } from "../components/Titles"
+import { Col, Row } from "react-bootstrap"
+import FilterSearchBar from "../components/InteractiveElements"
 // import eventsJSON from "../testEvents.json"
 import { fetchIPFSData } from "../deployments/upload.js"
 
-
-const eventsJSON = await fetchIPFSData();
+const eventsJSON = await fetchIPFSData()
 const Events = () => {
+  const [data, setData] = useState(eventsJSON.events)
+  const [filteredData, setFilteredData] = useState(eventsJSON.events)
+
+  function handleFilter(searchTerm) {
+    const filtered = data.filter((item) => {
+      return (
+        item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.artist.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    })
+    setFilteredData(filtered)
+  }
+
   return (
     <div>
       <Header />
-      <div style={{alignItems:"center", paddingLeft:"10%", paddingRight:"10%"}}>
-        <h3
-          style={{
-            paddingTop: "15px",
-            paddingLeft: "10px",
-            color: "#ffffff",
-            fontFamily: "tabela-regular",
-          }}
-        >
-          Upcoming Events
-        </h3>
-        {eventsJSON.events.map((e) => (
+      <div
+        style={{
+          alignItems: "center",
+          paddingLeft: "10%",
+          paddingRight: "10%",
+        }}
+      >
+        <Row>
+          <Col>
+            {" "}
+            <SectionTitle text="Upcoming Events" />
+          </Col>
+          <Col style={{ textAlign: "right" }}>
+            <FilterSearchBar onFilter={handleFilter} />
+          </Col>
+        </Row>
+
+        {filteredData.map((e) => (
           <EventList
             title={e.title}
             bannerURL={e.bannerURL}
             date={e.date}
             id={e.id}
+            artist={e.artist}
           />
         ))}
       </div>

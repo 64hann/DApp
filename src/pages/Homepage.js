@@ -1,13 +1,13 @@
 import { Header } from "../components/Header"
-import { EventCarousell } from "../components/Carousell"
-import { HomepageTitle } from "../components/HomepageTitle"
-import { Col, Container, Row, Image } from "react-bootstrap"
+import { EventCarousell } from "../components/InteractiveElements"
+import { PageBreak } from "../components/Titles"
+import { Col } from "react-bootstrap"
 import { EventCard } from "../components/EventCard"
 // import eventsJSON from "../testEvents.json"
-import { PageBreak } from "../components/PageBreak";
-import { fetchIPFSData } from "../deployments/upload.js";
+import { PageBreak } from "../components/PageBreak"
+import { fetchIPFSData } from "../deployments/upload.js"
 
-const eventsJSON = await fetchIPFSData();
+const eventsJSON = await fetchIPFSData()
 const Homepage = () => {
   return (
     <div>
@@ -36,6 +36,7 @@ const Homepage = () => {
                 date={e.date}
                 imageURL={e.imageURL}
                 id={e.id}
+                artist={e.artist}
               />
             </Col>
           ))}
