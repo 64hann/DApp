@@ -3,7 +3,6 @@ import React, { useState } from "react"
 
 import "./event.css"
 import { EventList } from "../components/EventList"
-import eventsJSON from "../testEvents.json"
 import { SectionTitle } from "../components/Titles"
 import { Col, Row } from "react-bootstrap"
 import FilterSearchBar from "../components/InteractiveElements"

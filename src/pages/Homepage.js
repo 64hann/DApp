@@ -4,7 +4,6 @@ import { PageBreak } from "../components/Titles"
 import { Col } from "react-bootstrap"
 import { EventCard } from "../components/EventCard"
 // import eventsJSON from "../testEvents.json"
-import { PageBreak } from "../components/PageBreak"
 import { fetchIPFSData } from "../deployments/upload.js"
 
 const eventsJSON = await fetchIPFSData()
