@@ -34,6 +34,7 @@ const EventDetails = () => {
   // const USER_ADDRESS = sessionStorage.getItem("metamask-address")
   const { user } = useContext(ViewContext)
   const { address } = user
+  var tokenId = null;
 
   //TODO: Move function to a separate file
   async function mint() {
@@ -41,11 +42,11 @@ const EventDetails = () => {
       return alert("Please log in to MetaMask")
     }
     try {
-      await nft_contract.safeMint(USER_ADDRESS, CID, options);
-
+      const tx = await nft_contract.safeMint(USER_ADDRESS, CID, options);
+      await tx.wait();
       var ticketsOwned = await nft_contract.getAddressInfo(USER_ADDRESS);
       console.log(ticketsOwned);
-      const tokenId = await ticketsOwned[ticketsOwned.length - 1]
+      tokenId = await ticketsOwned[ticketsOwned.length - 1]
         .toNumber()
         .toString();
       console.log(tokenId);
