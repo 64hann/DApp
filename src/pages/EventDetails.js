@@ -31,6 +31,30 @@ const EventDetails = () => {
     }
     try {
       await nft_contract.safeMint(USER_ADDRESS, CID, options)
+
+      //////////////////////// add nft?
+      try {
+        // 'wasAdded' is a boolean. Like any RPC method, an error can be thrown.
+        const wasAdded = await ethereum.request({
+          method: "wallet_watchAsset",
+          params: {
+            type: "ERC721",
+            options: {
+              address: "0xE7ee2F4695a5BD4D28634255F7a082755f0F39F5", // The address of the token.
+              tokenId: "11",
+            },
+          },
+        })
+
+        if (wasAdded) {
+          console.log("User successfully added the token!")
+        } else {
+          console.log("User did not add the token.")
+        }
+      } catch (error) {
+        console.log(error)
+      }
+      ////////////////////////
     } catch (error) {
       console.error(error)
       return alert("Transaction failed. Please try again")
