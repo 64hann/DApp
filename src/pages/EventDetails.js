@@ -4,6 +4,9 @@ import { Button, Image } from "react-bootstrap"
 // import eventsJSON from "../testEvents.json";
 import { fetchIPFSData } from "../deployments/upload.js"
 
+import { useContext } from "react"
+import { ViewContext } from "../context/ViewProvider"
+
 const eventsJSON = await fetchIPFSData()
 
 const ethers = require("ethers")
@@ -23,15 +26,17 @@ const options = {
 const EventDetails = () => {
   const params = useParams()
   const event = eventsJSON.events[params.id]
-  const USER_ADDRESS = sessionStorage.getItem("metamask-address")
+  // const USER_ADDRESS = sessionStorage.getItem("metamask-address")
+  const { user } = useContext(ViewContext)
+  const { address } = user
 
   //TODO: Move function to a separate file
   async function mint() {
-    if (!USER_ADDRESS) {
+    if (!address) {
       return alert("Please log in to MetaMask")
     }
     try {
-      await nft_contract.safeMint(USER_ADDRESS, CID, options)
+      await nft_contract.safeMint(address, CID, options)
 
       //////////////////////// add nft?
       try {
