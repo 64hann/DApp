@@ -1,5 +1,6 @@
 import { Header } from "../components/Header"
 import { useParams } from "react-router-dom"
+import { PageBreak } from "../components/Titles"
 import { Button, Image } from "react-bootstrap"
 import eventsJSON from "../testEvents.json"
 
@@ -10,10 +11,12 @@ const EventDetails = () => {
   return (
     <div>
       <Header />
-      <div style={{ height: "10px" }}></div>
+      <PageBreak height="10px" />
+
       <div style={{ textAlign: "center" }}>
         <Image src={event.bannerURL} fluid />
       </div>
+
       <div style={{ height: "10px" }}></div>
       <div style={{ marginLeft: "10px" }}>
         <h3 style={{ padding: "10px", color: "#ffffff" }}>{event.title}</h3>
