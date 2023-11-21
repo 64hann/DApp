@@ -3,7 +3,6 @@ import { EventCarousell } from "../components/InteractiveElements"
 import { PageBreak } from "../components/Titles"
 import { Col } from "react-bootstrap"
 import { EventCard } from "../components/EventCard"
-// import eventsJSON from "../testEvents.json"
 import { fetchIPFSData } from "../deployments/upload.js"
 
 const eventsJSON = await fetchIPFSData()
@@ -26,10 +25,10 @@ const Homepage = () => {
               fontFamily: "tabela-regular",
             }}
           >
-            NEW EVENTS
+            New Events
           </h3>
           {eventsJSON.events.map((e) => (
-            <Col className="cardcol">
+            <Col className="cardcol" key={`event-${e.id}`}>
               <EventCard
                 title={e.title}
                 date={e.date}

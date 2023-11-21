@@ -17,12 +17,12 @@ const CID = "ipfs://QmYfTFjZ5RCi8fzGEBxudrgNRVsDNN9uTN7dXwZzkYL5E1"
 const { ethereum } = window
 const provider = new ethers.providers.Web3Provider(ethereum)
 const signer = provider.getSigner()
+
 export const nft_contract = new ethers.Contract(
   CONTRACT_ADDRESS,
   contract.abi,
   signer
 )
-export const USER_ADDRESS = sessionStorage.getItem("metamask-address")
 
 const options = {
   value: ethers.utils.parseEther("0.0000000000000005"),
@@ -42,18 +42,16 @@ const EventDetails = () => {
       return alert("Please log in to MetaMask")
     }
     try {
-      const tx = await nft_contract.safeMint(USER_ADDRESS, CID, options)
+      const tx = await nft_contract.safeMint(address, CID, options)
       await tx.wait()
-      var ticketsOwned = await nft_contract.getAddressInfo(USER_ADDRESS)
+      var ticketsOwned = await nft_contract.getAddressInfo(address)
       console.log(ticketsOwned)
       tokenId = await ticketsOwned[ticketsOwned.length - 1]
         .toNumber()
         .toString()
       console.log(tokenId)
       if (tokenId != null && tokenId != undefined) {
-        //////////////////////// add nft?
         try {
-          // 'wasAdded' is a boolean. Like any RPC method, an error can be thrown.
           const wasAdded = await ethereum.request({
             method: "wallet_watchAsset",
             params: {
@@ -73,9 +71,9 @@ const EventDetails = () => {
         } catch (error) {
           console.log(error)
         }
-        ////////////////////////
       }
     } catch (error) {
+      //TODO: Better Error Handling
       console.error(error)
       return alert("Transaction failed. Please try again")
     }

@@ -29,14 +29,11 @@ const EventCard = ({ title, imageURL, date, id, artist }) => {
     >
       <Card.Img style={cardImageStyle} variant="top" src={imageURL} />
       <Card.Body>
-        <Card.Text>
-          <Row>
-            <Col>{date}</Col>
-            <Col style={{ textAlign: "right", fontWeight: "bold" }}>
-              {artist}
-            </Col>
-          </Row>
-        </Card.Text>
+        <Row>
+          <Col>{date}</Col>
+          <Col style={{ textAlign: "right", fontWeight: "bold" }}>{artist}</Col>
+        </Row>
+        <div style={{ height: "15px" }}></div>
         <Card.Text>
           <b>{title}</b>
         </Card.Text>

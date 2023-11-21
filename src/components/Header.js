@@ -4,28 +4,20 @@ import { useContext } from "react"
 import { ViewContext } from "../context/ViewProvider"
 
 import ConnectWallet from "./ConnectWallet"
-import InstallAlert from "./extras/InstallAlert"
-import DisplayAddress from "./extras/DisplayAddress"
+import InstallAlert from "./InstallAlert"
 
 const Header = () => {
-  const { user, actions, bigNumberify } = useContext(ViewContext)
+  const { user, actions } = useContext(ViewContext)
   const { address } = user
-  sessionStorage.setItem("metamask-address", address)
-  console.log(address)
-
-  const ethGa = "0.01"
-  const ethVip = "0.02"
-  const ethGaHex = bigNumberify(ethGa)._hex
-  const ethVipHex = bigNumberify(ethVip)._hex
 
   return (
-    <Navbar className="navbar" data-bs-theme="dark" expand="lg">
+    <Navbar className="navbar" data-bs-theme="dark">
       <Container>
         <Image
           src={require("../images/nfticket.png")}
           width="50"
           height="50"
-          className="d-inline-block align-top" // Bootstrap class for alignment
+          className="d-inline-block align-top"
         />
         <Navbar.Brand
           style={{
@@ -41,15 +33,26 @@ const Header = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="nav-links">
             <Nav.Link href="/home">Home</Nav.Link>
-            <Nav.Link href="/events">Events</Nav.Link>
+            <Nav.Link href="/events">Events</Nav.Link>{" "}
+            <Nav.Link href="/marketplace">Marketplace</Nav.Link>
             <Nav.Link href="/tickets">My Tickets</Nav.Link>
           </Nav>
         </Navbar.Collapse>
 
         {address !== "" ? (
-          <DisplayAddress />
+          <ConnectWallet
+            connect={() => {
+              console.log(sessionStorage.getItem("metamask-address", address))
+            }}
+            text="Logged In"
+            loggedIn={true}
+          />
         ) : window.ethereum ? (
-          <ConnectWallet connect={actions.connect} />
+          <ConnectWallet
+            connect={actions.connect}
+            text="Connect Wallet"
+            loggedIn={false}
+          />
         ) : (
           <InstallAlert />
         )}

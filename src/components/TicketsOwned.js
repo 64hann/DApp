@@ -1,19 +1,20 @@
-import { useState, useEffect, useContext } from "react";
-import { ViewContext } from "../context/ViewProvider";
-import { nft_contract, USER_ADDRESS } from "../pages/EventDetails";
+import { useState, useEffect, useContext } from "react"
+import { ViewContext } from "../context/ViewProvider"
+import { nft_contract } from "../pages/EventDetails"
 
 const TicketsOwned = () => {
-  const [ownedTickets, setOwnedTickets] = useState([]);
+  const [ownedTickets, setOwnedTickets] = useState([])
+  const { user } = useContext(ViewContext)
+  const { address } = user
 
   useEffect(() => {
     async function fetchTickets() {
-      var tickets = await nft_contract.getAddressInfo(USER_ADDRESS);
-      tickets = tickets.map((ticket) => ticket.toNumber());
-      setOwnedTickets(tickets);
+      var tickets = await nft_contract.getAddressInfo(address)
+      tickets = tickets.map((ticket) => ticket.toNumber())
+      setOwnedTickets(tickets)
     }
-    fetchTickets();
-  }, []);
-
+    fetchTickets()
+  }, [])
 
   return (
     <div>
@@ -32,7 +33,7 @@ const TicketsOwned = () => {
         </>
       ) : null}
     </div>
-  );
-};
+  )
+}
 
-export default TicketsOwned;
+export default TicketsOwned

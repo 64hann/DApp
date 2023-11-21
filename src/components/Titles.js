@@ -15,4 +15,8 @@ const SectionTitle = ({ text }) => {
   return <h3 className="section-title">{text}</h3>
 }
 
-export { HomepageTitle, PageBreak, SectionTitle }
+const SectionDescription = ({ text }) => {
+  return <p className="section-description">{text}</p>
+}
+
+export { HomepageTitle, PageBreak, SectionTitle, SectionDescription }
