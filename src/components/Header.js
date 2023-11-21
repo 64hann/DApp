@@ -5,7 +5,6 @@ import { ViewContext } from "../context/ViewProvider"
 
 import ConnectWallet from "./ConnectWallet"
 import InstallAlert from "./extras/InstallAlert"
-import DisplayAddress from "./extras/DisplayAddress"
 
 const Header = () => {
   const { user, actions, bigNumberify } = useContext(ViewContext)
@@ -47,9 +46,9 @@ const Header = () => {
         </Navbar.Collapse>
 
         {address !== "" ? (
-          <DisplayAddress />
+          <ConnectWallet connect={() => {}} text="Logged In" loggedIn={true} />
         ) : window.ethereum ? (
-          <ConnectWallet connect={actions.connect} />
+          <ConnectWallet connect={actions.connect} text="Connect Wallet" />
         ) : (
           <InstallAlert />
         )}

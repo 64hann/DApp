@@ -94,3 +94,28 @@
   max-width: 1200px;
   line-height: 1.6;
 }
+
+.connect-wallet-button {
+  background-color: skyblue;
+  color: black;
+  font-family: "sohne-buch", sans-serif;
+  padding: 7px 14px;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  margin-top: 5px;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+}
+
+.logged-in-button {
+  background-color: white;
+  color: black;
+  font-family: "sohne-buch", sans-serif;
+  padding: 7px 14px;
+  font-size: 15px;
+  border: none;
+  margin-top: 5px;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+}

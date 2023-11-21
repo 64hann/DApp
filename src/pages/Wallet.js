@@ -3,8 +3,6 @@ import { Header } from "../components/Header"
 import { useContext } from "react"
 import { ViewContext } from "../context/ViewProvider"
 
-import InstallAlert from "../components/extras/InstallAlert"
-import DisplayAddress from "../components/extras/DisplayAddress"
 import TicketsOwned from "../components/TicketsOwned"
 import { Button } from "react-bootstrap"
 
