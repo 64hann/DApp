@@ -1,10 +1,15 @@
+import "bootstrap/dist/css/bootstrap.min.css"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+
+//CSS
+import "./App.css"
+import "./components/components.css"
+
+//Pages
 import { Landing } from "./pages/Landing"
 import { Homepage } from "./pages/Homepage"
 import { Events } from "./pages/Events"
 import { Wallet } from "./pages/Wallet"
-import "bootstrap/dist/css/bootstrap.min.css"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import "./App.css"
 import { EventDetails } from "./pages/EventDetails"
 
 function App() {

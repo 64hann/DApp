@@ -1,8 +1,7 @@
 import { Header } from "../components/Header"
-import { HomepageTitle } from "../components/HomepageTitle"
+import { HomepageTitle, PageBreak } from "../components/Titles"
 import { Col, Container, Row, Image } from "react-bootstrap"
-import { NFTButton } from "../components/NFTButton"
-import { PageBreak } from "../components/PageBreak"
+import { NFTButton } from "../components/InteractiveElements"
 import { useNavigate } from "react-router-dom"
 
 const Landing = () => {

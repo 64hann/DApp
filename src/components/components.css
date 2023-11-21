@@ -28,9 +28,16 @@
   color: skyblue;
 }
 
+.section-title {
+  padding-top: 15px;
+  padding-left: 10px;
+  color: #ffffff;
+  font-family: "sohne-buch", sans-serif;
+}
+
 .event-card:hover {
   transform: translate(0, -5px);
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  box-shadow: 0px 8px 24px skyblue;
 }
 
 .event-card {
@@ -40,11 +47,6 @@
   margin: 10px;
   cursor: pointer;
   background-color: #ffffff !important;
-}
-
-.event-list:hover {
-  transform: translate(0, -5px);
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .event-list {
@@ -58,11 +60,16 @@
   background-color: #ffffff !important;
 }
 
+.event-list:hover {
+  transform: translate(0, -5px);
+  box-shadow: 0px 8px 24px skyblue;
+}
+
 .nft-button {
   color: black;
   font-family: "sohne-buch", sans-serif;
   background-color: white;
-  padding: 15px 30px;
+  padding: 10px 20px;
 
   text-align: center;
   border: none;

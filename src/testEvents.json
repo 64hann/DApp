@@ -23,11 +23,11 @@
     {
       "id": 1,
 
-      "title": "The Weeknd After Hours Til Dawn Tour",
+      "title": "After Hours Til Dawn Tour",
       "artist": "The Weeknd",
       "description": "Prepare to be transported to a mesmerizing spectacle as The Weeknd embarks on his highly anticipated After Hours Til Dawn Tour. This global odyssey will showcase his captivating blend of soulful R&B, electrifying synth-pop, and dark undertones, all while immersing fans in his cinematic world. Expect a theatrical production that will ignite the senses and leave you breathless as The Weeknd performs anthems from his critically acclaimed albums After Hours and Dawn FM, as well as fan favorites from his extensive discography.",
       "imageURL": "https://media-cldnry.s-nbcnews.com/image/upload/newscms/2021_47/1808560/the-weeknd-kb-square-211123.jpg",
-      "bannerURL": "https://boundless.utoronto.ca/wp-content/uploads/the-weeknd-banner-v5-light.jpg",
+      "bannerURL": "https://americansongwriter.com/wp-content/uploads/2022/01/TheWeeknd.jpg",
       "date": "August 24, 2024",
       "venue": "Soldier Field",
       "ticketCategories": {
@@ -51,6 +51,90 @@
       "bannerURL": "https://i.pinimg.com/736x/dd/5b/82/dd5b823409b3ded2cb21cea28f36605a.jpg",
       "date": "November 17, 2023",
       "venue": "Staples Center, Los Angeles, CA",
+      "ticketCategories": {
+        "cat1": {
+          "price": "",
+          "count": ""
+        },
+        "cat2": {
+          "price": "",
+          "count": ""
+        }
+      }
+    },
+    {
+      "id": 3,
+
+      "title": "PERMISSION TO DANCE ON STAGE",
+      "artist": "BTS",
+      "description": "BTS, the global K-pop sensation, is bringing their PERMISSION TO DANCE ON STAGE - LA tour to SoFi Stadium! This highly anticipated concert will feature all of BTS's greatest hits, as well as some new surprises. Fans can expect an unforgettable night of music, dance, and pyrotechnics.",
+      "imageURL": "https://i.tribune.com.pk/media/images/2138241-bts-1579149856/2138241-bts-1579149856.jpg",
+      "bannerURL": "https://www.researchgate.net/publication/341767690/figure/fig10/AS:897035251236873@1590881278901/Banner-of-the-BTS-World-Official-Twitter-account.png",
+      "date": "November 27, 2023",
+      "venue": "SoFi Stadium, Inglewood, CA",
+      "ticketCategories": {
+        "cat1": {
+          "price": "",
+          "count": ""
+        },
+        "cat2": {
+          "price": "",
+          "count": ""
+        }
+      }
+    },
+    {
+      "id": 4,
+
+      "title": "Happier Than Ever, The World Tour",
+      "artist": "Billie Eilish",
+      "description": "Billie Eilish, the Grammy Award-winning singer-songwriter, is bringing her Happier Than Ever, The World Tour to Singapore! This tour will support her latest album, Happier Than Ever, and will feature a mix of new and old songs. Fans can expect a visually stunning and emotionally charged performance.",
+      "imageURL": "https://m.media-amazon.com/images/I/71FkcLfMcML._AC_UF1000,1000_QL80_.jpg",
+      "bannerURL": "https://pbs.twimg.com/media/Ez_XnxqX0AUiAun.jpg:large",
+      "date": "January 15, 2024",
+      "venue": "National Stadium, Singapore Sports Hub",
+      "ticketCategories": {
+        "cat1": {
+          "price": "",
+          "count": ""
+        },
+        "cat2": {
+          "price": "",
+          "count": ""
+        }
+      }
+    },
+    {
+      "id": 5,
+
+      "title": "Music of the Spheres World Tour",
+      "artist": "Coldplay",
+      "description": "Coldplay, the Grammy Award-winning British rock band, is bringing their Music of the Spheres World Tour to Singapore! This tour will support their latest album, Music of the Spheres, and will feature a mix of new and old songs. Fans can expect a spectacular production with a focus on sustainability.",
+      "imageURL": "https://static.dezeen.com/uploads/2021/10/coldplay-net-zero-world-tour-climeworks-news_dezeen_1704_sq.jpg",
+      "bannerURL": "https://www.sap.com/dam/application/shared/photos/generic/coldplay-banner.jpg/_jcr_content/renditions/coldplay-banner_photo_3840_1044.jpg.adapt.1920_522.false.false.false.false.jpg/1634139851725.jpg",
+      "date": "March 18, 2024",
+      "venue": "National Stadium, Singapore Sports Hub",
+      "ticketCategories": {
+        "cat1": {
+          "price": "",
+          "count": ""
+        },
+        "cat2": {
+          "price": "",
+          "count": ""
+        }
+      }
+    },
+    {
+      "id": 6,
+
+      "title": "Ed Sheeran - + - = ÷ x Tour",
+      "artist": "Ed Sheeran",
+      "description": "Ed Sheeran, the Grammy Award-winning British singer-songwriter, is bringing his + - = ÷ x Tour to Singapore! This tour will support his latest album, =, and will feature a mix of new and old songs. Fans can expect an intimate and acoustic performance.",
+      "imageURL": "https://pbs.twimg.com/media/FqJ6EYRaUAAP6LZ?format=jpg&name=large",
+      "bannerURL": "https://d2c5khjoq3u5bj.cloudfront.net/content/assets/15071297483758-ed-sheeran-banner-2017.jpg",
+      "date": "February 16, 2024",
+      "venue": "National Stadium, Singapore Sports Hub",
       "ticketCategories": {
         "cat1": {
           "price": "",
