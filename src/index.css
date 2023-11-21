@@ -34,17 +34,17 @@ code {
 
 @font-face {
   font-family: "sohne-buch";
-  src: local("Sohne"), url(./fonts/Sohne/Söhne-Buch.otf) format("truetype");
+  src: local("Sohne"), url(./fonts/Sohne/Söhne-Buch.otf) format("truetype");
 }
 
 @font-face {
   font-family: "sohne-buch-bold";
   src: local("Sohne"),
-    url(./fonts/Sohne/Söhne-Dreiviertelfett.otf) format("truetype");
+    url(./fonts/Sohne/Söhne-Dreiviertelfett.otf) format("truetype");
 }
 
 @font-face {
   font-family: "sohne-buch-light";
   src: local("Sohne"),
-    url(./fonts/Sohne/Söhne-Extraleicht.otf) format("truetype");
+    url(./fonts/Sohne/Söhne-Extraleicht.otf) format("truetype");
 }
