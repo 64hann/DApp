@@ -4,18 +4,11 @@ import { useContext } from "react"
 import { ViewContext } from "../context/ViewProvider"
 
 import ConnectWallet from "./ConnectWallet"
-import InstallAlert from "./extras/InstallAlert"
+import InstallAlert from "./InstallAlert"
 
 const Header = () => {
   const { user, actions } = useContext(ViewContext)
   const { address } = user
-  console.log(address)
-  sessionStorage.setItem("metamask-address", address)
-
-  function handleConnectWallet() {
-    sessionStorage.setItem("metamask-address", address)
-    actions.connect()
-  }
 
   return (
     <Navbar className="navbar" data-bs-theme="dark">
@@ -55,7 +48,7 @@ const Header = () => {
           />
         ) : window.ethereum ? (
           <ConnectWallet
-            connect={handleConnectWallet}
+            connect={actions.connect}
             text="Connect Wallet"
             loggedIn={false}
           />

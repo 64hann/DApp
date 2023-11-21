@@ -5,7 +5,7 @@ import "./event.css"
 import { EventList } from "../components/EventList"
 import { SectionTitle } from "../components/Titles"
 import { Col, Row } from "react-bootstrap"
-import FilterSearchBar from "../components/InteractiveElements"
+import { FilterSearchBar } from "../components/InteractiveElements"
 // import eventsJSON from "../testEvents.json"
 import { fetchIPFSData } from "../deployments/upload.js"
 

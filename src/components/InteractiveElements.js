@@ -69,6 +69,4 @@ const FilterSearchBar = ({ onFilter }) => {
   )
 }
 
-export default FilterSearchBar
-
-export { NFTButton, EventCarousell }
+export { NFTButton, EventCarousell, FilterSearchBar }
