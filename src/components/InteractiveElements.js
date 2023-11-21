@@ -1,5 +1,14 @@
 import React, { useState } from "react"
-import { Form, FormControl, Carousel, Image, Container } from "react-bootstrap"
+import {
+  Form,
+  FormControl,
+  InputGroup,
+  Carousel,
+  Image,
+  Container,
+} from "react-bootstrap"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faSearch } from "@fortawesome/free-solid-svg-icons"
 
 const NFTButton = ({ text, onClick }) => {
   return (
@@ -54,17 +63,23 @@ const FilterSearchBar = ({ onFilter }) => {
   return (
     <Form
       className="d-flex justify-content-end"
-      style={{ paddingTop: "15px", textAlign: "right" }}
+      style={{
+        paddingTop: "15px",
+        textAlign: "right",
+      }}
+      data-bs-theme="dark"
     >
-      <FormControl
-        type="search"
-        placeholder="Search"
-        className="me-2"
-        aria-label="Search"
-        value={searchTerm}
-        onChange={handleSearchChange}
-        style={{ width: "50%" }}
-      />
+      <InputGroup style={{ width: "60%", fontFamily: "sohne-buch" }}>
+        <InputGroup.Text>
+          <FontAwesomeIcon icon={faSearch} spin />
+        </InputGroup.Text>
+        <FormControl
+          type="search"
+          className="me-2"
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
+      </InputGroup>
     </Form>
   )
 }

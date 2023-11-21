@@ -35,6 +35,12 @@
   font-family: "sohne-buch", sans-serif;
 }
 
+.section-description {
+  padding-left: 10px;
+  color: #ffffff;
+  font-family: "sohne-buch", sans-serif;
+}
+
 .event-card:hover {
   transform: translate(0, -5px);
   box-shadow: 0px 8px 24px skyblue;

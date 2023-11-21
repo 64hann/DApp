@@ -12,7 +12,8 @@ import { Homepage } from "./pages/Homepage"
 import { Events } from "./pages/Events"
 import { Wallet } from "./pages/Wallet"
 import { EventDetails } from "./pages/EventDetails"
-import { MobileError } from "./pages/MobileError"
+import { Marketplace } from "./pages/Marketplace"
+import { MobileError, NotFoundPage } from "./pages/Errors"
 
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
@@ -42,6 +43,8 @@ function App() {
         <Route path="/events" element={<Events />} />
         <Route path="/events/:title/:id" element={<EventDetails />} />
         <Route path="/tickets" element={<Wallet />} />
+        <Route path="/marketplace" element={<Marketplace />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   )
