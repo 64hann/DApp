@@ -7,24 +7,24 @@ import ConnectWallet from "./ConnectWallet"
 import InstallAlert from "./extras/InstallAlert"
 
 const Header = () => {
-  const { user, actions, bigNumberify } = useContext(ViewContext)
+  const { user, actions } = useContext(ViewContext)
   const { address } = user
-  sessionStorage.setItem("metamask-address", address)
   console.log(address)
+  sessionStorage.setItem("metamask-address", address)
 
-  const ethGa = "0.01"
-  const ethVip = "0.02"
-  const ethGaHex = bigNumberify(ethGa)._hex
-  const ethVipHex = bigNumberify(ethVip)._hex
+  function handleConnectWallet() {
+    sessionStorage.setItem("metamask-address", address)
+    actions.connect()
+  }
 
   return (
-    <Navbar className="navbar" data-bs-theme="dark" expand="lg">
+    <Navbar className="navbar" data-bs-theme="dark">
       <Container>
         <Image
           src={require("../images/nfticket.png")}
           width="50"
           height="50"
-          className="d-inline-block align-top" // Bootstrap class for alignment
+          className="d-inline-block align-top"
         />
         <Navbar.Brand
           style={{
@@ -46,9 +46,19 @@ const Header = () => {
         </Navbar.Collapse>
 
         {address !== "" ? (
-          <ConnectWallet connect={() => {}} text="Logged In" loggedIn={true} />
+          <ConnectWallet
+            connect={() => {
+              console.log(sessionStorage.getItem("metamask-address", address))
+            }}
+            text="Logged In"
+            loggedIn={true}
+          />
         ) : window.ethereum ? (
-          <ConnectWallet connect={actions.connect} text="Connect Wallet" />
+          <ConnectWallet
+            connect={handleConnectWallet}
+            text="Connect Wallet"
+            loggedIn={false}
+          />
         ) : (
           <InstallAlert />
         )}

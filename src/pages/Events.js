@@ -46,6 +46,7 @@ const Events = () => {
 
         {filteredData.map((e) => (
           <EventList
+            key={`event-${e.id}`}
             title={e.title}
             bannerURL={e.bannerURL}
             date={e.date}

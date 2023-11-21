@@ -17,6 +17,7 @@ const CID = "ipfs://QmYfTFjZ5RCi8fzGEBxudrgNRVsDNN9uTN7dXwZzkYL5E1"
 const { ethereum } = window
 const provider = new ethers.providers.Web3Provider(ethereum)
 const signer = provider.getSigner()
+
 export const nft_contract = new ethers.Contract(
   CONTRACT_ADDRESS,
   contract.abi,
@@ -38,7 +39,7 @@ const EventDetails = () => {
 
   //TODO: Move function to a separate file
   async function mint() {
-    if (!address) {
+    if (!address || USER_ADDRESS) {
       return alert("Please log in to MetaMask")
     }
     try {
