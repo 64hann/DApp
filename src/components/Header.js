@@ -15,27 +15,35 @@ const Header = () => {
       <Container>
         <Image
           src={require("../images/nfticket.png")}
-          width="50"
-          height="50"
+          width="100"
+          height="100"
           className="d-inline-block align-top"
         />
         <Navbar.Brand
           style={{
-            fontSize: "30px",
-            paddingLeft: "10px",
+            fontSize: "25px",
             paddingRight: "10px",
           }}
           href="/"
         >
-          NFT<span style={{ fontFamily: "sohne-buch-light" }}>icket</span>
+          NFT
+          <span style={{ fontFamily: "sohne-buch-light" }}>icket</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="nav-links">
-            <Nav.Link href="/home">Home</Nav.Link>
-            <Nav.Link href="/events">Events</Nav.Link>{" "}
-            <Nav.Link href="/marketplace">Marketplace</Nav.Link>
-            <Nav.Link href="/tickets">My Tickets</Nav.Link>
+            <Nav.Link style={{ fontWeight: "bold" }} href="/home">
+              Home
+            </Nav.Link>
+            <Nav.Link style={{ fontWeight: "bold" }} href="/events">
+              Events
+            </Nav.Link>{" "}
+            <Nav.Link style={{ fontWeight: "bold" }} href="/marketplace">
+              Marketplace
+            </Nav.Link>
+            <Nav.Link style={{ fontWeight: "bold" }} href="/tickets">
+              My Tickets
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
 

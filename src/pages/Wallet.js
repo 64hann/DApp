@@ -4,6 +4,7 @@ import { useContext } from "react"
 import { ViewContext } from "../context/ViewProvider"
 
 import TicketsOwned from "../components/TicketsOwned"
+import { SectionTitle } from "../components/Titles"
 
 const Wallet = () => {
   const { user, actions, bigNumberify } = useContext(ViewContext)
@@ -18,16 +19,19 @@ const Wallet = () => {
   return (
     <div>
       <Header />
-      {/* Tickets Owned Display */}
-      {!address ? (
-        <h3 style={{ color: "white", paddingLeft: "30px" }}>
-          Please Connect to MetaMask to view your tickets!
-        </h3>
-      ) : (
-        // : chainId && (chainId !== 4)
-        //   ? <div>Not Connected to Rinkeby ({chainId})</div>
-        <TicketsOwned />
-      )}
+      <div
+        style={{
+          alignItems: "center",
+          paddingLeft: "10%",
+          paddingRight: "10%",
+        }}
+      >
+        {!address ? (
+          <SectionTitle text="Please connect to MetaMask to view your tickets!" />
+        ) : (
+          <TicketsOwned />
+        )}
+      </div>
     </div>
   )
 }

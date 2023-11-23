@@ -12,7 +12,8 @@
 }
 
 .nav-links {
-  padding-top: 7px;
+  padding-top: 5px;
+  font-family: "sohne-buch-light";
 }
 
 .homepage-title {
@@ -136,8 +137,8 @@
 
 .accordion {
   --bs-accordion-btn-color: white;
-	--bs-accordion-btn-bg: black;
-	--bs-accordion-active-color: white;
-	--bs-accordion-active-bg: black;
+  --bs-accordion-btn-bg: black;
+  --bs-accordion-active-color: white;
+  --bs-accordion-active-bg: black;
   cursor: pointer;
 }
