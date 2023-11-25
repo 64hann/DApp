@@ -24,7 +24,7 @@ export const nft_contract = new ethers.Contract(
   signer
 )
 
-const options = {
+export const options = {
   value: ethers.utils.parseEther("0.0000000000000005"),
   gasLimit: 500000,
 }

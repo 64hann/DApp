@@ -57,27 +57,21 @@ const removeFromSale = function (req, res) {
   AWS.config.credentials = GUEST_USER_CREDS;
   AWS.config.update({ region: "ap-southeast-2" });
   const docClient = new AWS.DynamoDB.DocumentClient();
-
-  const { id } = req.body;
   const params = {
     TableName: TABLE_NAME,
     Key: {
-      id: id,
+      tokenID: req["title"] + ";" + req["ticketno"],
     },
   };
   docClient.delete(params, function (err, data) {
     if (err) {
       console.log(err);
-      res.send({
-        success: false,
-        message: "Error: Server error",
-      });
     } else {
       console.log(data);
-      res.send({
-        success: true,
-        message: "Item deleted successfully",
-      });
+      // res.send({
+      //   success: true,
+      //   message: "Item deleted successfully",
+      // });
     }
   });
 };
