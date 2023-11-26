@@ -37,9 +37,10 @@ const putForSale = async function (req, res) {
   var params = {
     TableName: TABLE_NAME,
     Item: { 
-        tokenID: req['title'] + ";" + req['ticketno'],
+        tokenID: req['id'],
         title : req['title'],
         ticketno : req['ticketno'],
+        address : req['address'],
      },
   };
   await docClient.put(params, function (err, data) {
@@ -54,26 +55,25 @@ const putForSale = async function (req, res) {
 };
 
 const removeFromSale = function (req, res) {
+  return new Promise((resolve, reject) => {
   AWS.config.credentials = GUEST_USER_CREDS;
   AWS.config.update({ region: "ap-southeast-2" });
   const docClient = new AWS.DynamoDB.DocumentClient();
   const params = {
     TableName: TABLE_NAME,
     Key: {
-      tokenID: req["title"] + ";" + req["ticketno"],
+      tokenID: req["tokenID"],
     },
   };
   docClient.delete(params, function (err, data) {
     if (err) {
       console.log(err);
+      reject(err)
     } else {
       console.log(data);
-      // res.send({
-      //   success: true,
-      //   message: "Item deleted successfully",
-      // });
+      resolve(data)
     }
   });
-};
+})};
 
 module.exports = { getForSale, putForSale, removeFromSale };

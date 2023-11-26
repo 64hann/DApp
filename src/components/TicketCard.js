@@ -1,8 +1,10 @@
 import { Col, Row, Button, Accordion } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./components.css";
 import { putForSale } from "../database/aws";
+import { ViewContext } from "../context/ViewProvider";
 
 const cardImageStyle = {
   borderRadius: "2px",
@@ -25,6 +27,8 @@ export const Heading = ({ title }) => {
 };
 
 const TicketCard = ({ ticketno, title, imageURL, date, id, artist, venue }) => {
+  const { user } = useContext(ViewContext);
+  const { address } = user;
   return (
     <Accordion.Body>
       <Card
@@ -72,8 +76,10 @@ const TicketCard = ({ ticketno, title, imageURL, date, id, artist, venue }) => {
                 style={{ backgroundColor: "black" }}
                 onClick={() => {
                   putForSale({
-                    title : title,
-                    ticketno : ticketno
+                    title: title,
+                    ticketno: ticketno,
+                    address: address,
+                    id: ticketno + address + title,
                   });
                 }}
               >
