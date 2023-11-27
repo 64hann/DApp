@@ -1,21 +1,20 @@
-import { useState, useEffect, useContext } from "react";
-import { Button } from "react-bootstrap";
-import { Header } from "../components/Header";
-import { SectionDescription, SectionTitle } from "../components/Titles";
-import { getForSale, removeFromSale } from "../database/aws";
-import { nft_contract, options } from "./EventDetails";
-import { ViewContext } from "../context/ViewProvider";
-
+import { useState, useEffect, useContext } from "react"
+import { Button } from "react-bootstrap"
+import { Header } from "../components/Header"
+import { SectionDescription, SectionTitle } from "../components/Titles"
+import { getForSale, removeFromSale } from "../database/aws"
+import { nft_contract, options } from "./EventDetails"
+import { ViewContext } from "../context/ViewProvider"
 
 const Marketplace = () => {
   const [ticketsForSale, setTicketsForSale] = useState([])
   useEffect(() => {
     async function fetchTicketsForSale() {
-      const tickets = await getForSale();
-      setTicketsForSale(tickets);
+      const tickets = await getForSale()
+      setTicketsForSale(tickets)
     }
-    fetchTicketsForSale();
-  }, []);
+    fetchTicketsForSale()
+  }, [])
 
   async function sellTicket(ticket) {
     try {
@@ -23,13 +22,13 @@ const Marketplace = () => {
         ticket["address"],
         ticket["ticketno"],
         options
-      );
-      await tx.wait();
-      await removeFromSale(ticket);
-      return alert("Transaction successful!");
+      )
+      await tx.wait()
+      await removeFromSale(ticket)
+      return alert("Transaction successful!")
     } catch (err) {
-      console.log(err);
-      return alert("Transaction failed. Please try again");
+      console.log(err)
+      return alert("Transaction failed. Please try again")
     }
   }
   return (
@@ -46,11 +45,12 @@ const Marketplace = () => {
         <SectionDescription text="Explore our user-listed NFT ticket marketplace where each purchase is worry-free, backed by the assurance of blockchain verification." />
         {ticketsForSale.map((ticket, index) => (
           <div key={index}>
-            Ticket ID: {ticket["title"]}, {ticket["ticketno"]}, {ticket["address"]}
+            Ticket ID: {ticket["title"]}, {ticket["ticketno"]},{" "}
+            {ticket["address"]}
             <Button
               variant="primary"
               onClick={() => {
-                sellTicket(ticket);
+                sellTicket(ticket)
               }}
             >
               Buy
@@ -59,7 +59,7 @@ const Marketplace = () => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export { Marketplace };
+export { Marketplace }
