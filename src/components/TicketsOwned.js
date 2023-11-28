@@ -5,6 +5,8 @@ import { fetchIPFSData } from "../deployments/upload"
 import { Col, Accordion } from "react-bootstrap"
 import { TicketCard, Heading } from "./TicketCard"
 import { PageBreak, SectionDescription, SectionTitle } from "./Titles"
+import { getForSale, removeFromSale, putForSale } from "../database/aws"
+
 import "./components.css"
 const eventsJSON = await fetchIPFSData()
 const numberOfEvents = await eventsJSON.events.length
@@ -19,6 +21,24 @@ const TicketsOwned = () => {
   const { user } = useContext(ViewContext)
   const { address } = user
 
+  const [ticketsForSale, setTicketsForSale] = useState([])
+  const [update, setUpdate] = useState(true)
+
+  function handleList(title, ticketno, address) {
+    putForSale({
+      title: title,
+      ticketno: ticketno,
+      address: address,
+      id: ticketno + address + title,
+    })
+    setUpdate(!update)
+  }
+
+  function handleUnlist(title, ticketno, address) {
+    removeFromSale({ tokenID: ticketno + address + title })
+    setUpdate(!update)
+  }
+
   useEffect(() => {
     async function fetchTickets() {
       var ticketCounter = 0
@@ -28,10 +48,18 @@ const TicketsOwned = () => {
         ticketCounter += tickets.length
         ownedTickets[i] = tickets
       }
+
       setTotalTickets(ticketCounter)
     }
     fetchTickets()
-  }, [])
+
+    async function fetchTicketsForSale() {
+      var tickets = await getForSale()
+      setTicketsForSale(tickets.map((ticket) => ticket.ticketno))
+      console.log(tickets.map((ticket) => ticket.ticketno))
+    }
+    fetchTicketsForSale()
+  }, [update])
 
   return (
     <div style={{ paddingLeft: "30px", paddingRight: "30px" }}>
@@ -43,7 +71,7 @@ const TicketsOwned = () => {
               totalTickets > 1 ? "s" : ""
             } in total!`}
           />
-          <Accordion class="accordion" style={{ fontWeight: "bold" }}>
+          <Accordion className="accordion" style={{ fontWeight: "bold" }}>
             {ownedTickets.map((e, id) => (
               <>
                 <PageBreak height="30px" />
@@ -62,6 +90,9 @@ const TicketsOwned = () => {
                         id={eventsJSON.events[id].id}
                         artist={eventsJSON.events[id].artist}
                         venue={eventsJSON.events[id].venue}
+                        isListed={ticketsForSale.includes(t)}
+                        handleList={handleList}
+                        handleUnlist={handleUnlist}
                       />
                     </Col>
                   ))}
