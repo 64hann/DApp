@@ -7,14 +7,9 @@ import TicketsOwned from "../components/TicketsOwned"
 import { SectionTitle } from "../components/Titles"
 
 const Wallet = () => {
-  const { user, actions, bigNumberify } = useContext(ViewContext)
+  const { user, actions } = useContext(ViewContext)
   const { address } = user
   console.log(address)
-
-  const ethGa = "0.01"
-  const ethVip = "0.02"
-  const ethGaHex = bigNumberify(ethGa)._hex
-  const ethVipHex = bigNumberify(ethVip)._hex
 
   return (
     <div>

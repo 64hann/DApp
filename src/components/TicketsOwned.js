@@ -8,6 +8,7 @@ import { PageBreak, SectionDescription, SectionTitle } from "./Titles"
 import { getForSale, removeFromSale, putForSale } from "../database/aws"
 
 import "./components.css"
+
 const eventsJSON = await fetchIPFSData()
 const numberOfEvents = await eventsJSON.events.length
 
@@ -24,12 +25,14 @@ const TicketsOwned = () => {
   const [ticketsForSale, setTicketsForSale] = useState([])
   const [update, setUpdate] = useState(true)
 
-  function handleList(title, ticketno, address) {
+  function handleList(title, ticketno, address, date, venue) {
     putForSale({
       title: title,
       ticketno: ticketno,
       address: address,
       id: ticketno + address + title,
+      date: date,
+      venue: venue,
     })
     setUpdate(!update)
   }

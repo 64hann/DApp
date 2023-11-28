@@ -9,14 +9,6 @@ import { ethers } from 'ethers'
 
 export const ViewContext = createContext(initialState)
 
-/* Num Format Utilities */
-// Get ETH as small number ("0.01" => "10000000000000000")
-export const bigNumberify = (amt) => ethers.utils.parseEther(amt)
-
-// Get ETH as small number ("10000000000000000" => "0.01")
-export const smolNumberify = (amt, decimals = 18) => 
- parseFloat(ethers.utils.formatUnits(amt, decimals))
-
 export const ViewProvider = ({ children }) => {
   /* Top Level Code */
   const [state, dispatch] = useImmerReducer(reducer, initialState)
@@ -103,9 +95,7 @@ export const ViewProvider = ({ children }) => {
         user,
         name,
         chainId,
-        actions: { connect },
-        bigNumberify,
-        smolNumberify
+        actions: { connect }
       }}
     >
       {children}

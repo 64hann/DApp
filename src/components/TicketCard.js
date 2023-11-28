@@ -86,7 +86,7 @@ const TicketCard = ({
             ) : (
               <Button
                 style={{ backgroundColor: "black" }}
-                onClick={() => handleList(title, ticketno, address)}
+                onClick={() => handleList(title, ticketno, address, date, venue)}
               >
                 List Ticket
               </Button>
