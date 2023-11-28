@@ -58,10 +58,9 @@
 
 .ticket-card {
   transition: 0.3s;
-  width: 70rem;
-  height: 14rem;
-  /* cursor: pointer; */
-  background-color: #ffffff !important;
+  aspect-ratio: 16/4;
+  max-height: 17rem;
+  background-color: #faf9f6 !important;
 }
 
 .event-list {
@@ -141,4 +140,10 @@
   --bs-accordion-active-color: white;
   --bs-accordion-active-bg: black;
   cursor: pointer;
+}
+
+.acc-body {
+  align-items: center !important;
+  align-content: center !important;
+  text-align: center;
 }

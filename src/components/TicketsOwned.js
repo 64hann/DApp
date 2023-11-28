@@ -81,12 +81,12 @@ const TicketsOwned = () => {
                 >
                   <Heading title={eventsJSON.events[id].title} />
                   {e.map((t, idx) => (
-                    <Col className="cardcol">
+                    <Col className="acc-body">
                       <TicketCard
                         ticketno={t}
                         title={eventsJSON.events[id].title}
                         date={eventsJSON.events[id].date}
-                        imageURL={eventsJSON.events[id].bannerURL}
+                        imageURL={eventsJSON.events[id].imageURL}
                         id={eventsJSON.events[id].id}
                         artist={eventsJSON.events[id].artist}
                         venue={eventsJSON.events[id].venue}
