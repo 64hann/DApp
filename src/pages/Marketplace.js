@@ -14,8 +14,8 @@ const eventsJSON = await fetchIPFSData()
 const cardImageStyle = {
   borderTopLeftRadius: "5px",
   borderTopRightRadius: "5px",
-  borderBottomLeftRadius: "0px",
-  borderBottomRightRadius: "0px",
+  borderBottomLeftRadius: "5px",
+  borderBottomRightRadius: "5px",
   width: "20rem",
   height: "9.8rem",
   objectFit: "cover",
@@ -93,6 +93,7 @@ const Marketplace = () => {
             {ticketsForSale.map((t, i) => (
               <>
                 <Card
+                  eventkey={i}
                   className="marketplace-card"
                   style={{
                     borderRadius: "5px",

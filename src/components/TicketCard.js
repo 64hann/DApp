@@ -1,10 +1,13 @@
 import { Col, Row, Button, Accordion, Image } from "react-bootstrap"
+import QRCode from "react-qr-code"
 import Card from "react-bootstrap/Card"
 import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import "./components.css"
 import { putForSale, removeFromSale } from "../database/aws"
 import { ViewContext } from "../context/ViewProvider"
+import { useState } from "react"
+import Popup from "reactjs-popup"
 
 const cardImageStyle = {
   width: "50%",
@@ -35,6 +38,7 @@ const TicketCard = ({
   isListed,
   handleUnlist,
   handleList,
+  redeemable,
 }) => {
   const { user } = useContext(ViewContext)
   const { address } = user
@@ -91,6 +95,31 @@ const TicketCard = ({
                 List Ticket
               </Button>
             )}
+            <br></br>
+            {redeemable ? (
+              <Popup trigger={
+                <Button style={{ marginTop: "2rem" }}>Redeem Ticket</Button>}
+                position="top center"
+              >
+                <Card style={{
+                  textAlign: "center",
+                  width: "30rem",
+                  height: "25rem"
+                  }}
+                >
+                  <Card.Title style={{ marginTop:"10px" }}>Welcome to <b>{title}</b>!</Card.Title>
+                  <Card.Body>
+                    <QRCode
+                      value={ticketno}
+                      size={256}
+                      style={{ height: "auto", maxWidth: "60%", width: "60%" }}
+                      viewBox={`0 0 256 256`}
+                    />
+                    <Card.Text style={{ marginTop:"10px" }}>Scan to redeem your ticket!</Card.Text>
+                  </Card.Body>
+                </Card>
+              </Popup>
+            ) : null}
           </Col>
           <Col style={{ alignItems: "flex-end" }}>
             <Image

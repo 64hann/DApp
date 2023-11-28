@@ -96,6 +96,7 @@ const TicketsOwned = () => {
                         isListed={ticketsForSale.includes(t)}
                         handleList={handleList}
                         handleUnlist={handleUnlist}
+                        redeemable={true}
                       />
                     </Col>
                   ))}
