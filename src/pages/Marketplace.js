@@ -5,6 +5,7 @@ import { SectionDescription, SectionTitle } from "../components/Titles";
 import { getForSale, removeFromSale } from "../database/aws";
 import { nft_contract, options } from "./EventDetails";
 import { States } from "./EventDetails";
+import { ViewContext } from "../context/ViewProvider";
 import Popup from "../components/Popup.js";
 import { fetchIPFSData } from "../deployments/upload"
 
@@ -93,15 +94,25 @@ const Marketplace = () => {
               <>
                 <Card
                   className="marketplace-card"
-                  style={{ borderRadius: "5px", marginBottom: "10px", height: "10rem", whiteSpace:"nowrap" }}
+                  style={{
+                    borderRadius: "5px",
+                    marginBottom: "10px",
+                    height: "10rem",
+                    whiteSpace: "nowrap",
+                  }}
                 >
                   <Row>
-                    <Card.Img style={cardImageStyle} src={require("../images/block.jpeg")}/>
+                    <Card.Img
+                      style={cardImageStyle}
+                      src={require("../images/block.jpeg")}
+                    />
                     <Col>
                       <Card.Body>
                         <Card.Title>
                           <Row>
-                            <Col><b>{t.title}</b></Col>
+                            <Col>
+                              <b>{t.title}</b>
+                            </Col>
                           </Row>
                         </Card.Title>
                         <Card.Text>
@@ -109,14 +120,16 @@ const Marketplace = () => {
                             <Col>{eventsJSON.events[i].date}</Col>
                             <Col
                               style={{
-                                textAlign: "center", display:"inline-block"
+                                textAlign: "center",
+                                display: "inline-block",
                               }}
                             >
                               {eventsJSON.events[i].venue}
                             </Col>
                             <Col
                               style={{
-                                textAlign: "right", marginRight: "10px"
+                                textAlign: "right",
+                                marginRight: "10px",
                               }}
                             >
                               <b>Ticket ID:</b> {t.ticketno}
@@ -126,19 +139,23 @@ const Marketplace = () => {
                         <Row style={{ marginTop: "25px" }}>
                           <Col
                             style={{
-                              display:"inline-block", alignItems:"center"
+                              display: "inline-block",
+                              alignItems: "center",
                             }}
                           >
                             <b>Sold by: </b> {t.address}
                           </Col>
                           <Col
                             style={{
-                              textAlign: "right"
+                              textAlign: "right",
                             }}
                           >
                             {tickets.includes(t.tokenID) ? (
                               <Button
-                                style={{ backgroundColor: "black", marginRight: "20px" }}
+                                style={{
+                                  backgroundColor: "black",
+                                  marginRight: "20px",
+                                }}
                                 onClick={() => {
                                   sellTicket(t);
                                 }}
@@ -148,17 +165,16 @@ const Marketplace = () => {
                             ) : (
                               <Button>Sold</Button>
                             )}
-                            
                           </Col>
                         </Row>
                       </Card.Body>
                     </Col>
                   </Row>
                 </Card>
+                <Popup show={showPopup} handleClose={openPopUp} state={state} />
               </>
             ))}
           </>
-
         ) : (
           <>
             <div style={{ color: "white" }}>
