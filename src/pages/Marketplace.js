@@ -1,10 +1,11 @@
-import { useState, useEffect, useContext } from "react"
-import { Button, Row, Col, Card } from "react-bootstrap"
-import { Header } from "../components/Header"
-import { SectionDescription, SectionTitle } from "../components/Titles"
-import { getForSale, removeFromSale } from "../database/aws"
-import { nft_contract, options } from "./EventDetails"
-import { ViewContext } from "../context/ViewProvider"
+import { useState, useEffect, useContext } from "react";
+import { Button, Row, Col, Card } from "react-bootstrap";
+import { Header } from "../components/Header";
+import { SectionDescription, SectionTitle } from "../components/Titles";
+import { getForSale, removeFromSale } from "../database/aws";
+import { nft_contract, options } from "./EventDetails";
+import { States } from "./EventDetails";
+import Popup from "../components/Popup.js";
 import { fetchIPFSData } from "../deployments/upload"
 
 const eventsJSON = await fetchIPFSData()
@@ -22,7 +23,13 @@ const cardImageStyle = {
 const Marketplace = () => {
   const { user } = useContext(ViewContext)
   const { address } = user
-  const [ticketsForSale, setTicketsForSale] = useState([])
+  const [ticketsForSale, setTicketsForSale] = useState([]);
+  const [state, setState] = useState(States);
+  const [showPopup, setShowPopup] = useState(false);
+
+  const openPopUp = () => {
+    setShowPopup(!showPopup);
+  };
   const [tickets, setTickets] = useState([])
   const [sold, setSold] = useState(false)
 
@@ -51,18 +58,21 @@ const Marketplace = () => {
 
   async function sellTicket(t) {
     try {
+      setShowPopup(true);
+      setState({ ...States, Loading: true });
       const tx = await nft_contract.transferToken(
         t.address,
         t.ticketno,
         options
-      )
-      await tx.wait()
+      );
+      await tx.wait();
       await removeFromSale(t)
-      setSold(true)
-      return alert("Transaction successful!")
+      setSold(true);
+      setState({ ...States, Loading: false, isError: false });
+      // return alert("Transaction successful!");
     } catch (err) {
-      console.log(err)
-      return alert("Transaction failed. Please try again")
+      console.log(err);
+      setState({ ...States, Loading: false, isError: true });
     }
   }
   return (
@@ -158,7 +168,7 @@ const Marketplace = () => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export { Marketplace }
+export { Marketplace };
