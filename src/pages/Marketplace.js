@@ -1,14 +1,13 @@
 import { useState, useEffect, useContext } from "react"
-import { Button, Row, Col, Card } from "react-bootstrap";
+import { Button, Row, Col, Card } from "react-bootstrap"
 import { Header } from "../components/Header"
 import { SectionDescription, SectionTitle } from "../components/Titles"
 import { getForSale, removeFromSale } from "../database/aws"
 import { nft_contract, options } from "./EventDetails"
 import { ViewContext } from "../context/ViewProvider"
-import { fetchIPFSData } from "../deployments/upload";
+import { fetchIPFSData } from "../deployments/upload"
 
 const eventsJSON = await fetchIPFSData()
-const numberOfEvents = await eventsJSON.events.length
 
 const cardImageStyle = {
   borderTopLeftRadius: "5px",
@@ -16,7 +15,7 @@ const cardImageStyle = {
   borderBottomLeftRadius: "0px",
   borderBottomRightRadius: "0px",
   width: "20rem",
-  height: "10rem",
+  height: "9.8rem",
   objectFit: "cover",
 }
 
@@ -29,18 +28,18 @@ const Marketplace = () => {
 
   useEffect(() => {
     async function fetchTicketsForSale() {
-      const tickets = await getForSale()
-      setTickets(tickets)
+      var ticketsList = await getForSale()
+      setTickets(await ticketsList.map((ticket) => ticket.tokenID))
       var addedIn = false
-      for (var i=0; i<tickets.length; i++) {
-        if (address !== tickets[i].address) {
+      for (var i=0; i<ticketsList.length; i++) {
+        if (address !== ticketsList[i].address) {
           for (var j=0; j<ticketsForSale.length; j++) {
-            if (tickets[i].tokenID === ticketsForSale[j].tokenID) {
+            if (ticketsList[i].tokenID === ticketsForSale[j].tokenID) {
               addedIn = true
             }
           }
           if (addedIn === false) {
-            ticketsForSale.push(tickets[i])
+            ticketsForSale.push(ticketsList[i])
           }
           addedIn = false
         }
@@ -48,17 +47,18 @@ const Marketplace = () => {
       console.log(ticketsForSale)
     }
     fetchTicketsForSale()
-  }, [sold])
+  }, [sold, address])
 
-  async function sellTicket(ticket) {
+  async function sellTicket(t) {
     try {
       const tx = await nft_contract.transferToken(
-        ticket.address,
-        ticket.ticketno,
+        t.address,
+        t.ticketno,
         options
       )
       await tx.wait()
-      await removeFromSale(ticket)
+      await removeFromSale(t)
+      setSold(true)
       return alert("Transaction successful!")
     } catch (err) {
       console.log(err)
@@ -76,15 +76,17 @@ const Marketplace = () => {
         }}
       >
         <SectionTitle text="Marketplace" />
-        <SectionDescription text="Before someone sends me a ss and says the img dont load, i'll add the image of the event from the eventsjson when we deploy a smart contract for each event" />
         <SectionDescription text="Explore our user-listed NFT ticket marketplace where each purchase is worry-free, backed by the assurance of blockchain verification." />
         {ticketsForSale.length > 0 ? (
           <>
             {ticketsForSale.map((t, i) => (
               <>
-                <Card style={{ borderRadius: "5px", marginBottom: "10px", height: "10rem", whiteSpace:"nowrap" }}>
+                <Card
+                  className="marketplace-card"
+                  style={{ borderRadius: "5px", marginBottom: "10px", height: "10rem", whiteSpace:"nowrap" }}
+                >
                   <Row>
-                    <Card.Img style={cardImageStyle} variant="top" src={t.imageURL}/>
+                    <Card.Img style={cardImageStyle} src={require("../images/block.jpeg")}/>
                     <Col>
                       <Card.Body>
                         <Card.Title>
@@ -124,15 +126,19 @@ const Marketplace = () => {
                               textAlign: "right"
                             }}
                           >
-                            <Button
-                              variant="primary"
-                              style={{ backgroundColor: "black", marginRight: "20px" }}
-                              onClick={() => {
-                                sellTicket(t, ticketsForSale);
-                              }}
-                            >
-                              Buy
-                            </Button>
+                            {tickets.includes(t.tokenID) ? (
+                              <Button
+                                style={{ backgroundColor: "black", marginRight: "20px" }}
+                                onClick={() => {
+                                  sellTicket(t);
+                                }}
+                              >
+                                Buy
+                              </Button>
+                            ) : (
+                              <Button>Sold</Button>
+                            )}
+                            
                           </Col>
                         </Row>
                       </Card.Body>
@@ -143,7 +149,13 @@ const Marketplace = () => {
             ))}
           </>
 
-        ) : null}
+        ) : (
+          <>
+            <div style={{ color: "white" }}>
+              You have no tickets! Go buy some!
+            </div>
+          </>
+        )}
       </div>
     </div>
   )
