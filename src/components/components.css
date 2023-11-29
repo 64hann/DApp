@@ -58,10 +58,9 @@
 
 .ticket-card {
   transition: 0.3s;
-  width: 70rem;
-  height: 14rem;
-  /* cursor: pointer; */
-  background-color: #ffffff !important;
+  aspect-ratio: 16/4;
+  max-height: 17rem;
+  background-color: #faf9f6 !important;
 }
 
 .event-list {
@@ -141,4 +140,63 @@
   --bs-accordion-active-color: white;
   --bs-accordion-active-bg: black;
   cursor: pointer;
+}
+
+.acc-body {
+  align-items: center !important;
+  align-content: center !important;
+  text-align: center;
+}
+
+/* Popup.css */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-main {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 40%; /* Adjust the width as needed */
+  max-width: 600px; /* Maximum width */
+  max-height: 80%; /* Maximum height */
+  overflow: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.display-block {
+  justify-content: center;
+  align-items: center;
+} 
+
+.display-none {
+  display: none;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; ;
+  align-items: center;
+}
+
+.close-button {
+  padding: 10px 10px;
+  background-color: #518bad; /* Background color */
+  color: white; /* Text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px; /* Font size */
+  font-weight: bold; /* Font weight */
+  transition: background-color 0.3s ease; /* Smooth transition on hover */
 }
