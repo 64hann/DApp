@@ -1,11 +1,10 @@
-import { createContext, useEffect, useCallback } from 'react'
-import { initialState } from './initialState.js'
-import { reducer } from '../reducers'
+import { createContext, useEffect, useCallback } from "react"
+import { initialState } from "./initialState.js"
+import { reducer } from "../reducers"
 
 /* Additional Imports */
-import { useImmerReducer } from 'use-immer'
-import { ethers } from 'ethers'
-
+import { useImmerReducer } from "use-immer"
+import { ethers } from "ethers"
 
 export const ViewContext = createContext(initialState)
 
@@ -14,8 +13,8 @@ export const ViewContext = createContext(initialState)
 export const bigNumberify = (amt) => ethers.utils.parseEther(amt)
 
 // Get ETH as small number ("10000000000000000" => "0.01")
-export const smolNumberify = (amt, decimals = 18) => 
- parseFloat(ethers.utils.formatUnits(amt, decimals))
+export const smolNumberify = (amt, decimals = 18) =>
+  parseFloat(ethers.utils.formatUnits(amt, decimals))
 
 export const ViewProvider = ({ children }) => {
   /* Top Level Code */
@@ -28,12 +27,12 @@ export const ViewProvider = ({ children }) => {
         const connectedAccount = {
           address: accounts[0],
         }
-        dispatch({ type: 'SET_ACCOUNT', payload: connectedAccount })
+        dispatch({ type: "SET_ACCOUNT", payload: connectedAccount })
       } catch (e) {
         console.error(e)
       }
     } else {
-      dispatch({ type: 'SET_ACCOUNT', payload: initialState.user })
+      dispatch({ type: "SET_ACCOUNT", payload: initialState.user })
     }
   }, [])
 
@@ -44,16 +43,18 @@ export const ViewProvider = ({ children }) => {
       if (provider) {
         const signer = await provider.getSigner()
         const { name, chainId } = await provider.getNetwork()
-        const accounts = await window.ethereum.request({ method: 'eth_accounts' })
+        const accounts = await window.ethereum.request({
+          method: "eth_accounts",
+        })
         setAccount(accounts)
         dispatch({
-          type: 'CONNECTED_PROVIDER',
+          type: "CONNECTED_PROVIDER",
           payload: {
             provider,
             signer,
             chainId,
-            name
-          }
+            name,
+          },
         })
       }
     } catch (e) {
@@ -65,26 +66,27 @@ export const ViewProvider = ({ children }) => {
     /* connectUser Effect */
     if (window.ethereum) {
       connectUser()
-      window.ethereum.on('accountsChanged', () => {
+      window.ethereum.on("accountsChanged", () => {
         connectUser()
       })
-      window.ethereum.on('chainChanged', () => {
+      window.ethereum.on("chainChanged", () => {
         connectUser()
       })
-      window.ethereum.on('disconnect', () => {
-        dispatch({ type: 'SET_ACCOUNT', payload: initialState.user })
+      window.ethereum.on("disconnect", () => {
+        dispatch({ type: "SET_ACCOUNT", payload: initialState.user })
       })
     }
   }, [])
 
   /* Destructure State */
-  const { isConnected, signer, name, chainId, provider, user } = state;
-
+  const { isConnected, signer, name, chainId, provider, user } = state
 
   /* connect function */
   const connect = async () => {
     try {
-      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
+      const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      })
       setAccount(accounts)
     } catch (e) {
       console.error(e)
@@ -92,7 +94,7 @@ export const ViewProvider = ({ children }) => {
   }
 
   return (
-    <ViewContext.Provider 
+    <ViewContext.Provider
       value={{
         /* Provider State Values */
         state,
@@ -105,7 +107,7 @@ export const ViewProvider = ({ children }) => {
         chainId,
         actions: { connect },
         bigNumberify,
-        smolNumberify
+        smolNumberify,
       }}
     >
       {children}

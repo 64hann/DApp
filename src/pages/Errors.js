@@ -21,6 +21,7 @@ const MobileError = () => {
 
       <h1>Mobile Access Not Supported</h1>
       <p>Sorry, this application does not support mobile devices.</p>
+      <p>Please use NFTicket on Desktop.</p>
     </div>
   )
 }

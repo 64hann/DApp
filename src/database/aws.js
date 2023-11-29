@@ -41,6 +41,8 @@ const putForSale = async function (req, res) {
         title : req['title'],
         ticketno : req['ticketno'],
         address : req['address'],
+        date : req["date"],
+        venue : req["venue"],
      },
   };
   await docClient.put(params, function (err, data) {

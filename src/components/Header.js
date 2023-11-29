@@ -48,13 +48,7 @@ const Header = () => {
         </Navbar.Collapse>
 
         {address !== "" ? (
-          <ConnectWallet
-            connect={() => {
-              console.log(sessionStorage.getItem("metamask-address", address))
-            }}
-            text="Logged In"
-            loggedIn={true}
-          />
+          <ConnectWallet connect={() => {}} text="Logged In" loggedIn={true} />
         ) : window.ethereum ? (
           <ConnectWallet
             connect={actions.connect}
