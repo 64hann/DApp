@@ -11,15 +11,14 @@ import Popup from "../components/Popup.js";
 import InstallAlert from "../components/InstallAlert.js";
 
 if (!window.ethereum) {
-  InstallAlert()
+  InstallAlert();
 }
-
 
 const eventsJSON = await fetchIPFSData();
 
 const ethers = require("ethers");
-const contract = require("../artifacts/contracts/sample_nft_ticket.sol/Nftickets.json");
-const CONTRACT_ADDRESS = "0x94adc27d2c58aCa144FB21ec99cFed2c9147bee5";
+const contract = require("../artifacts/contracts/Nfticket.sol/Nfticket.json");
+const CONTRACT_ADDRESS = "0x37D6f533B19bB53683bDA0696476dF0043428075";
 const CID = "ipfs://QmYfTFjZ5RCi8fzGEBxudrgNRVsDNN9uTN7dXwZzkYL5E1";
 const { ethereum } = window;
 const provider = new ethers.providers.Web3Provider(ethereum);
@@ -71,45 +70,48 @@ const EventDetails = () => {
     try {
       setShowPopup(true);
       setState({ ...States, Loading: true });
-
-      const tx = await nft_contract.safeMint(address, CID, options);
+      // TODO: Replace 3rd parameter with no of tickets user wants to buy and 4th parameter with correct ether value
+      const tx = await nft_contract.safeMint(address, CID, 2, {
+        value: ethers.utils.parseEther("0.000000000000001"),
+        gasLimit: 500000,
+      });
       await tx.wait();
-      var ticketsOwned = await nft_contract.getAddressInfo(address);
-      console.log(ticketsOwned);
-      tokenId = await ticketsOwned[ticketsOwned.length - 1]
-        .toNumber()
-        .toString();
-      console.log(tokenId);
-      if (tokenId != null && tokenId != undefined) {
-        try {
-          const wasAdded = await ethereum.request({
-            method: "wallet_watchAsset",
-            params: {
-              type: "ERC721",
-              options: {
-                address: CONTRACT_ADDRESS,
-                tokenId: tokenId, // The identifier of the asset to be added.
-              },
-            },
-          });
+      setState({ ...States, Loading: false, isError: false });
+      // var ticketsOwned = await nft_contract.getAddressInfo(address);
+      // console.log(ticketsOwned);
+      // tokenId = await ticketsOwned[ticketsOwned.length - 1]
+      //   .toNumber()
+      //   .toString();
+      // console.log(tokenId);
+      // if (tokenId != null && tokenId != undefined) {
+      //   try {
+      //     const wasAdded = await ethereum.request({
+      //       method: "wallet_watchAsset",
+      //       params: {
+      //         type: "ERC721",
+      //         options: {
+      //           address: CONTRACT_ADDRESS,
+      //           tokenId: tokenId, // The identifier of the asset to be added.
+      //         },
+      //       },
+      //     });
 
-          if (wasAdded) {
-            console.log("User successfully added the token!");
-          } else {
-            console.log("User did not add the token.");
-          }
-          setState({ ...States, Loading: false, isError: false });
-        } catch (error) {
-          console.log(error);
-          setState({ ...States, Loading: false, isError: true });
-        }
-      }
+      //     if (wasAdded) {
+      //       console.log("User successfully added the token!");
+      //     } else {
+      //       console.log("User did not add the token.");
+      //     }
+      //     setState({ ...States, Loading: false, isError: false });
     } catch (error) {
-      //TODO: Better Error Handling
-      console.error(error);
+      console.log(error);
       setState({ ...States, Loading: false, isError: true });
-      // return alert("Transaction failed. Please try again");
     }
+    //   }
+    // } catch (error) {
+    //   //TODO: Better Error Handling
+    //   console.error(error);
+    //   setState({ ...States, Loading: false, isError: true });
+    //   // return alert("Transaction failed. Please try again");
   }
   return (
     <div>

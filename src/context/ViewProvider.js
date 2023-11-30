@@ -1,5 +1,5 @@
 import { createContext, useEffect, useCallback } from 'react'
-import { initialState } from './InitialState.js'
+import { initialState } from './initialState.js'
 import { reducer } from '../reducers'
 
 /* Additional Imports */

@@ -1,29 +1,29 @@
-import { useState, useEffect, useContext } from "react"
-import { ViewContext } from "../context/ViewProvider"
-import { nft_contract } from "../pages/EventDetails"
-import { fetchIPFSData } from "../deployments/upload"
-import { Col, Accordion } from "react-bootstrap"
-import { TicketCard, Heading } from "./TicketCard"
-import { PageBreak, SectionDescription, SectionTitle } from "./Titles"
-import { getForSale, removeFromSale, putForSale } from "../database/aws"
+import { useState, useEffect, useContext } from "react";
+import { ViewContext } from "../context/ViewProvider";
+import { nft_contract } from "../pages/EventDetails";
+import { fetchIPFSData } from "../deployments/upload";
+import { Col, Accordion } from "react-bootstrap";
+import { TicketCard, Heading } from "./TicketCard";
+import { PageBreak, SectionDescription, SectionTitle } from "./Titles";
+import { getForSale, removeFromSale, putForSale } from "../database/aws";
 
-import "./components.css"
+import "./components.css";
 
-const eventsJSON = await fetchIPFSData()
-const numberOfEvents = await eventsJSON.events.length
+const eventsJSON = await fetchIPFSData();
+const numberOfEvents = await eventsJSON.events.length;
 
 const TicketsOwned = () => {
   const [ownedTickets, setOwnedTickets] = useState(
     Array.from({ length: numberOfEvents }, (v) =>
       Array.from({ length: 6 }, (v) => null)
     )
-  )
-  const [totalTickets, setTotalTickets] = useState(0)
-  const { user } = useContext(ViewContext)
-  const { address } = user
+  );
+  const [totalTickets, setTotalTickets] = useState(0);
+  const { user } = useContext(ViewContext);
+  const { address } = user;
 
-  const [ticketsForSale, setTicketsForSale] = useState([])
-  const [update, setUpdate] = useState(true)
+  const [ticketsForSale, setTicketsForSale] = useState([]);
+  const [update, setUpdate] = useState(true);
 
   function handleList(title, ticketno, address, date, venue) {
     putForSale({
@@ -33,41 +33,41 @@ const TicketsOwned = () => {
       id: ticketno + address + title,
       date: date,
       venue: venue,
-    })
-    setUpdate(!update)
+    });
+    setUpdate(!update);
   }
 
   function handleUnlist(title, ticketno, address) {
-    removeFromSale({ tokenID: ticketno + address + title })
-    setUpdate(!update)
+    removeFromSale({ tokenID: ticketno + address + title });
+    setUpdate(!update);
   }
 
   useEffect(() => {
     async function fetchTickets() {
-      var ticketCounter = 0
-      var tickets = await nft_contract.getAddressInfo(address)
-      tickets = await tickets.map((ticket) => ticket.toNumber())
-      ticketCounter += tickets.length
+      var ticketCounter = 0;
+      var tickets = await nft_contract.getTicketsOwned(address);
+
+      tickets = await tickets.map((ticket) => ticket.toNumber());
+      console.log("getTicketsOwned", tickets);
+      ticketCounter += tickets.length;
 
       // Hard code just one event first
-      ownedTickets[0] = tickets
+      ownedTickets[0] = tickets;
+      console.log(ownedTickets)
 
-      for (var i=0;i < 20; i++) {
-        var owner = await nft_contract.ownerOf(i)
-        console.log(owner, i)
-      }
-      setTotalTickets(ticketCounter)
+      setTotalTickets(ticketCounter);
+      // setOwnedTickets(tickets)
+      // console.log(ownedTickets)
     }
-    fetchTickets()
-
+    fetchTickets();
 
     async function fetchTicketsForSale() {
-      var tickets = await getForSale()
-      setTicketsForSale(tickets.map((ticket) => ticket.ticketno))
+      var tickets = await getForSale();
+      setTicketsForSale(tickets.map((ticket) => ticket.ticketno));
       console.log(tickets.map((ticket) => ticket.ticketno))
     }
-    fetchTicketsForSale()
-  }, [update])
+    fetchTicketsForSale();
+  }, [update]);
 
   return (
     <div style={{ paddingLeft: "30px", paddingRight: "30px" }}>
@@ -106,9 +106,9 @@ const TicketsOwned = () => {
                           />
                         </Col>
                       ))}
-                    </Accordion.Item> 
+                    </Accordion.Item>
                   </>
-                ) : null} 
+                ) : null}
               </>
             ))}
           </Accordion>
@@ -121,7 +121,7 @@ const TicketsOwned = () => {
         </>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default TicketsOwned
+export default TicketsOwned;
