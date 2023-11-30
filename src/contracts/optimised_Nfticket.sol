@@ -5,19 +5,19 @@ pragma solidity ^0.8.20;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract Nftickets is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable, ReentrancyGuard {
+contract Nfticket is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable, ReentrancyGuard {
 
     struct addressInfo {
         uint256 minted;
         uint[] listOfTokens;
 
     }
-    uint256 public mintPrice = 0 wei;
+    uint256 public mintPrice;
     uint256 private _nextTokenId;
-    uint256 public MAX_SUPPLY = 0;
+    uint256 public MAX_SUPPLY;
     mapping(address => addressInfo) public mintedWallets;
     bool public isMintEnabled;
     // New tokens will be automatically assigned an incremental id.
@@ -31,16 +31,13 @@ contract Nftickets is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable, Reent
         ERC721("nfticket", "NTK")
         Ownable(initialOwner)
     {}
-
     receive() external payable {}
 
     fallback() external payable {}
 
     function transferAll() external onlyOwner {
-        address payable ownerAddress = payable(this.owner());
-        address payable contractAddress = payable(address(this));
         require(contractAddress.balance > 0, "No balance left");
-        ownerAddress.transfer(contractAddress.balance);
+        payable(this.owner()).transfer(payable(address(this)).balance);
     }
 
     function toggleMintEnabled() external onlyOwner {
@@ -57,12 +54,12 @@ contract Nftickets is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable, Reent
         return  mintedWallets[addr].listOfTokens;
     }
 
-        // Function to find and remove an element
+    // Function to find and remove an element
     function removeToken(address from, uint tokenId) private  {
-        for (uint i = 0; i < mintedWallets[from].listOfTokens.length; i++) {
+        for (uint256 i = 0; i < mintedWallets[from].listOfTokens.length; i++) {
             if (mintedWallets[from].listOfTokens[i] == tokenId) {
                 // Shift elements to the left to overwrite the element to be removed
-                for (uint j = i; j < mintedWallets[from].listOfTokens.length - 1; j++) {
+                for (uint256 j = i; j < mintedWallets[from].listOfTokens.length - 1; j++) {
                     mintedWallets[from].listOfTokens[j] = mintedWallets[from].listOfTokens[j + 1];
                 }
                 // Remove the last element (which is a duplicate now)
@@ -72,12 +69,12 @@ contract Nftickets is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable, Reent
         }
     }
 
-
     function safeMint(address to, string memory uri) public payable returns (uint256)  {
         uint256 tokenId = _nextTokenId++;
         require(tokenId < MAX_SUPPLY, "All available NFTs have been minted");
         require(mintedWallets[to].minted < 6, "Maximum mint reached for user");
         require(msg.value == mintPrice, "Wrong value");
+
 
         mintedWallets[to].minted++;
         mintedWallets[to].listOfTokens.push(tokenId);
@@ -96,9 +93,11 @@ contract Nftickets is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable, Reent
     // }
 
     // Revised transferToken function
-    function transferToken(address payable from, uint256 tokenId) public payable nonReentrant returns (uint256) {
+    function transferToken(address payable from, uint256 tokenId) public payable returns (uint256) {
         require(msg.value == mintPrice, "Please pay the correct amount");
         
+
+
         // First, transfer the NFT
         _safeTransfer(from, msg.sender, tokenId, "");
 
@@ -114,6 +113,8 @@ contract Nftickets is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable, Reent
 
     }
 
+
+    
     // The following functions are overrides required by Solidity.
 
     function _update(address to, uint256 tokenId, address auth)

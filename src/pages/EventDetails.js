@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { Button, Image } from "react-bootstrap";
 
 import { fetchIPFSData } from "../deployments/upload.js";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { ViewContext } from "../context/ViewProvider";
 import Popup from "../components/Popup.js";
 
@@ -36,15 +36,25 @@ export const States = {
 const EventDetails = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [state, setState] = useState(States);
+  const [mintPrice, setMintPrice] = useState(null);
 
   const openPopUp = () => {
     setShowPopup(!showPopup);
   };
+
   const params = useParams();
   const event = eventsJSON.events[params.id];
   const { user } = useContext(ViewContext);
   const { address } = user;
   var tokenId = null;
+  // const mintPrice = nft_contract.mintPrice();
+  useEffect(() => {
+    async function fetchMintPrice() {
+      const price = await nft_contract.mintPrice();
+      setMintPrice(price.toString());
+    }
+    fetchMintPrice();
+  }, []);
 
   //TODO: Move function to a separate file
   async function mint() {
@@ -125,9 +135,11 @@ const EventDetails = () => {
         >
           {event.description}
         </p>
+        <p>{mintPrice}</p>
         <Button style={{ marginLeft: "10px" }} onClick={mint}>
           BUY TICKETS
         </Button>
+
         <Popup show={showPopup} handleClose={openPopUp} state={state} />
       </div>
     </div>
