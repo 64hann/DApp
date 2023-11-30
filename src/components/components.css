@@ -60,7 +60,7 @@
   transition: 0.3s;
   aspect-ratio: 16/4;
   max-height: 17rem;
-  background-color: #faf9f6 !important;
+  background-color: #ffffff !important;
 }
 
 .event-list {
@@ -95,6 +95,26 @@
 .nft-button:hover {
   box-shadow: 4px 4px 4px skyblue;
   transform: scale(1.1);
+  transition: 0.3s;
+}
+
+.mint-button {
+  color: black;
+  font-family: "sohne-buch", sans-serif;
+  background-color: skyblue;
+  padding: 7.5px 15px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+  margin-left: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.mint-button:hover {
+  transform: scale(1.05);
   transition: 0.3s;
 }
 

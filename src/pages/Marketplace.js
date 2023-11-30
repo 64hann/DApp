@@ -105,7 +105,7 @@ const Marketplace = () => {
                   <Row>
                     <Card.Img
                       style={cardImageStyle}
-                      src={require("../images/block.jpeg")}
+                      src={require("../components/assets/block.jpeg")}
                     />
                     <Col>
                       <Card.Body>

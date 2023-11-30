@@ -12,7 +12,7 @@ const Landing = () => {
     let path = `/home`
     navigate(path)
   }
-  
+
   return (
     <div>
       {window.ethereum ? (
@@ -25,7 +25,7 @@ const Landing = () => {
                 <HomepageTitle />
               </Col>
               <Col>
-                <Image src={require("../images/block.jpeg")} fluid />
+                <Image src={require("../components/assets/block.jpeg")} fluid />
               </Col>
             </Row>
           </Container>
@@ -36,11 +36,14 @@ const Landing = () => {
           </p>
           <PageBreak height="10vh" />
           <div className="container">
-            <NFTButton text="Start Minting Now" onClick={handleStartMintingNow} />
+            <NFTButton
+              text="Start Minting Now"
+              onClick={handleStartMintingNow}
+            />
           </div>
         </div>
       ) : (
-        <InstallAlert/>
+        <InstallAlert />
       )}
     </div>
   )

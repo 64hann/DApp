@@ -18,6 +18,14 @@ const NFTButton = ({ text, onClick }) => {
   )
 }
 
+const MintButton = ({ text, onClick }) => {
+  return (
+    <button className="mint-button" onClick={onClick}>
+      {text}
+    </button>
+  )
+}
+
 const EventCarousell = () => {
   return (
     <Carousel data-bs-theme="dark">
@@ -69,9 +77,14 @@ const FilterSearchBar = ({ onFilter }) => {
       }}
       data-bs-theme="dark"
     >
-      <InputGroup style={{ width: "60%", fontFamily: "sohne-buch" }}>
+      <InputGroup
+        style={{
+          width: "60%",
+          fontFamily: "sohne-buch",
+        }}
+      >
         <InputGroup.Text>
-          <FontAwesomeIcon icon={faSearch} spin />
+          <FontAwesomeIcon icon={faSearch} />
         </InputGroup.Text>
         <FormControl
           type="search"
@@ -84,4 +97,4 @@ const FilterSearchBar = ({ onFilter }) => {
   )
 }
 
-export { NFTButton, EventCarousell, FilterSearchBar }
+export { NFTButton, EventCarousell, FilterSearchBar, MintButton }

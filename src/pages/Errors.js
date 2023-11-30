@@ -15,7 +15,7 @@ const MobileError = () => {
     >
       <img
         style={{ maxWidth: "100%", height: "auto" }}
-        src={require("../images/nfticket.png")}
+        src={require("../components/assets/nfticket.png")}
         alt="nfticket"
       ></img>
 
@@ -41,7 +41,7 @@ const NotFoundPage = () => {
     >
       <img
         style={{ maxWidth: "100%", height: "auto" }}
-        src={require("../images/nfticket.png")}
+        src={require("../components/assets/nfticket.png")}
         alt="nfticket"
       ></img>
       <h1>404 - Page Not Found</h1>

@@ -44,7 +44,16 @@ const TicketCard = ({
       <Card className="ticket-card">
         <Row>
           <Col>
-            <Image src={imageURL} fluid />
+            <Card.Img
+              src={imageURL}
+              style={{
+                maxHeight: "17rem",
+                width: "auto",
+                objectFit: "cover",
+                padding: "10px",
+              }}
+              fluid
+            />
           </Col>
           <Col>
             <Card.Title
@@ -62,6 +71,7 @@ const TicketCard = ({
                 {venue}
               </Col>
               <Col
+                className="d-flex flex-grow-1"
                 style={{
                   textAlign: "right",
                   fontWeight: "bold",
@@ -94,37 +104,16 @@ const TicketCard = ({
                 List Ticket
               </Button>
             )}
-            <br></br>
-            {redeemable ? (
-              <Popup
-                trigger={
-                  <Button style={{ marginTop: "2rem" }}>Redeem Ticket</Button>
-                }
-                position="top center"
-              >
-                <Card
-                  style={{
-                    textAlign: "center",
-                    width: "30rem",
-                    height: "25rem",
-                  }}
-                >
-                  <Card.Title style={{ marginTop: "10px" }}>
-                    Welcome to <b>{title}</b>!
-                  </Card.Title>
-                  <Card.Body>
-                    <Card.Text style={{ marginTop: "10px" }}>
-                      Scan to redeem your ticket!
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Popup>
-            ) : null}
           </Col>
           <Col style={{ alignItems: "flex-end" }}>
-            <Image
-              style={{ maxHeight: "20rem" }}
-              src={require("../images/barcode.png")}
+            <Card.Img
+              style={{
+                maxHeight: "17rem",
+                width: "auto",
+                objectFit: "cover",
+                padding: "10px",
+              }}
+              src={require("../components/assets/qr-code.png")}
               fluid
             />
           </Col>

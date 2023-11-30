@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 //CSS
 import "./App.css"
 import "./components/components.css"
+import "bootstrap/dist/css/bootstrap.min.css"
 
 //Pages
 import { Landing } from "./pages/Landing"

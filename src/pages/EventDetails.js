@@ -1,12 +1,13 @@
 import { Header } from "../components/Header"
 import { PageBreak } from "../components/Titles.js"
 import { useParams } from "react-router-dom"
-import { Button, Image, Form } from "react-bootstrap"
+import { Image, Form } from "react-bootstrap"
 
 import { fetchIPFSData } from "../deployments/upload.js"
 import { useState, useContext, useEffect } from "react"
 import { ViewContext } from "../context/ViewProvider"
 import Popup from "../components/Popup.js"
+import { MintButton } from "../components/InteractiveElements.js"
 
 const eventsJSON = await fetchIPFSData()
 
@@ -84,7 +85,7 @@ const EventDetails = () => {
   return (
     <div>
       <Header />
-      <PageBreak height="10px" />
+      <PageBreak height="16px" />
 
       <div style={{ textAlign: "center" }}>
         <Image src={event.bannerURL} fluid />
@@ -119,7 +120,7 @@ const EventDetails = () => {
             color: "#ffffff",
           }}
         >
-          {mintPrice} SepEth / Ticket
+          {mintPrice} Eth / Ticket
         </p>
         <p
           style={{
@@ -153,12 +154,15 @@ const EventDetails = () => {
             max={6}
           />
         </Form>
-        <Button
-          style={{ marginLeft: "10px", marginTop: "20px" }}
+        <MintButton
+          style={{
+            marginLeft: "10px",
+            marginTop: "20px",
+            marginBottom: "20px",
+          }}
           onClick={mint}
-        >
-          Mint Tickets
-        </Button>
+          text="Mint Tickets"
+        />
 
         <Popup show={showPopup} handleClose={openPopUp} state={state} />
       </div>
