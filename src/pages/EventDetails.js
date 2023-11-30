@@ -8,6 +8,13 @@ import { useState, useContext } from "react";
 import { ViewContext } from "../context/ViewProvider";
 import Popup from "../components/Popup.js";
 
+import InstallAlert from "../components/InstallAlert.js";
+
+if (!window.ethereum) {
+  InstallAlert()
+}
+
+
 const eventsJSON = await fetchIPFSData();
 
 const ethers = require("ethers");
