@@ -50,11 +50,17 @@ const TicketsOwned = () => {
         tickets = await tickets.map((ticket) => ticket.toNumber())
         ticketCounter += tickets.length
         ownedTickets[i] = tickets
+
+        for (var i=0;i < 20; i++) {
+          var owner = await nft_contract.ownerOf(i)
+          console.log(owner, i)
+        }
       }
 
       setTotalTickets(ticketCounter)
     }
     fetchTickets()
+
 
     async function fetchTicketsForSale() {
       var tickets = await getForSale()
