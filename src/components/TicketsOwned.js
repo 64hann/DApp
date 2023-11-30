@@ -1,10 +1,12 @@
 import { useState, useEffect, useContext } from "react"
+
+import { Col, Accordion } from "react-bootstrap"
 import { ViewContext } from "../context/ViewProvider"
 import { nft_contract } from "../pages/EventDetails"
-import { fetchIPFSData } from "../deployments/upload"
-import { Col, Accordion } from "react-bootstrap"
 import { TicketCard, Heading } from "./TicketCard"
 import { PageBreak, SectionDescription, SectionTitle } from "./Titles"
+
+import { fetchIPFSData } from "../deployments/upload"
 import { getForSale, removeFromSale, putForSale } from "../database/aws"
 
 import "./components.css"
@@ -54,6 +56,7 @@ const TicketsOwned = () => {
 
       setTotalTickets(ticketCounter)
     }
+
     fetchTickets()
 
     async function fetchTicketsForSale() {
@@ -61,6 +64,7 @@ const TicketsOwned = () => {
       setTicketsForSale(tickets.map((ticket) => ticket.ticketno))
       console.log(tickets.map((ticket) => ticket.ticketno))
     }
+
     fetchTicketsForSale()
   }, [update])
 

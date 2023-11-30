@@ -1,15 +1,18 @@
 import { Header } from "../components/Header"
 
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { ViewContext } from "../context/ViewProvider"
 
 import TicketsOwned from "../components/TicketsOwned"
 import { SectionTitle } from "../components/Titles"
 
 const Wallet = () => {
-  const { user, actions } = useContext(ViewContext)
+  const { user } = useContext(ViewContext)
   const { address } = user
-  console.log(address)
+
+  // if (isLoading) {
+  //   return <div style={{ color: "white" }}>ppp</div>
+  // }
 
   return (
     <div>

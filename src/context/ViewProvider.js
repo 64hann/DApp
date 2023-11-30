@@ -46,6 +46,7 @@ export const ViewProvider = ({ children }) => {
         const accounts = await window.ethereum.request({
           method: "eth_accounts",
         })
+
         setAccount(accounts)
         dispatch({
           type: "CONNECTED_PROVIDER",
@@ -108,6 +109,7 @@ export const ViewProvider = ({ children }) => {
         actions: { connect },
         bigNumberify,
         smolNumberify,
+        isLoading,
       }}
     >
       {children}

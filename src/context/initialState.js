@@ -5,10 +5,10 @@ export const initialState = {
   provider: null,
   signer: null,
   user: {
-    address: '',
-    balance: 0
+    address: "",
+    balance: 0,
   },
   feedback: {
-    error: ''
-  }
+    error: "",
+  },
 }
