@@ -82,4 +82,18 @@ contract testSuite {
             Assert.equal(reason, "Ether sent is not correct", "Failed with unexpected reason.");
         }
     }
+
+    /// Test overflow/underflow attack on mint price
+    function testOverflowUnderflowAttack() public {
+        uint256 maxUint = uint256(-1);
+        nfticket.setmintPrice(maxUint);
+        Assert.equal(nfticket.mintPrice(), maxUint, "Mint price should be set to maximum uint value");
+
+        // Attempt to mint with maximum uint value as mint price
+        try nfticket.safeMint{value: maxUint}(initialOwner, "http://testuri") {
+            Assert.ok(false, "safeMint should fail due to overflow/underflow attack");
+        } catch Error(string memory reason) {
+            Assert.equal(reason, "SafeMath: addition overflow", "Failed with unexpected reason.");
+        }
+    }
 }
