@@ -1,5 +1,4 @@
 import { Col, Row, Button, Accordion, Image } from "react-bootstrap"
-import QRCode from "react-qr-code"
 import Card from "react-bootstrap/Card"
 import { useContext } from "react"
 import "./components.css"
@@ -114,12 +113,6 @@ const TicketCard = ({
                     Welcome to <b>{title}</b>!
                   </Card.Title>
                   <Card.Body>
-                    <QRCode
-                      value={ticketno}
-                      size={256}
-                      style={{ height: "auto", maxWidth: "60%", width: "60%" }}
-                      viewBox={`0 0 256 256`}
-                    />
                     <Card.Text style={{ marginTop: "10px" }}>
                       Scan to redeem your ticket!
                     </Card.Text>

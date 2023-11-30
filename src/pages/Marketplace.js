@@ -1,12 +1,12 @@
-import { useState, useEffect, useContext } from "react";
-import { Button, Row, Col, Card } from "react-bootstrap";
-import { Header } from "../components/Header";
-import { SectionDescription, SectionTitle } from "../components/Titles";
-import { getForSale, removeFromSale } from "../database/aws";
-import { nft_contract, options } from "./EventDetails";
-import { States } from "./EventDetails";
-import { ViewContext } from "../context/ViewProvider";
-import Popup from "../components/Popup.js";
+import { useState, useEffect, useContext } from "react"
+import { Button, Row, Col, Card } from "react-bootstrap"
+import { Header } from "../components/Header"
+import { SectionDescription, SectionTitle } from "../components/Titles"
+import { getForSale, removeFromSale } from "../database/aws"
+import { nft_contract, options } from "./EventDetails"
+import { States } from "./EventDetails"
+import { ViewContext } from "../context/ViewProvider"
+import Popup from "../components/Popup.js"
 import { fetchIPFSData } from "../deployments/upload"
 
 const eventsJSON = await fetchIPFSData()
@@ -24,13 +24,13 @@ const cardImageStyle = {
 const Marketplace = () => {
   const { user } = useContext(ViewContext)
   const { address } = user
-  const [ticketsForSale, setTicketsForSale] = useState([]);
-  const [state, setState] = useState(States);
-  const [showPopup, setShowPopup] = useState(false);
+  const [ticketsForSale, setTicketsForSale] = useState([])
+  const [state, setState] = useState(States)
+  const [showPopup, setShowPopup] = useState(false)
 
   const openPopUp = () => {
-    setShowPopup(!showPopup);
-  };
+    setShowPopup(!showPopup)
+  }
   const [tickets, setTickets] = useState([])
   const [sold, setSold] = useState(false)
 
@@ -39,9 +39,9 @@ const Marketplace = () => {
       var ticketsList = await getForSale()
       setTickets(await ticketsList.map((ticket) => ticket.tokenID))
       var addedIn = false
-      for (var i=0; i<ticketsList.length; i++) {
+      for (var i = 0; i < ticketsList.length; i++) {
         if (address !== ticketsList[i].address) {
-          for (var j=0; j<ticketsForSale.length; j++) {
+          for (var j = 0; j < ticketsForSale.length; j++) {
             if (ticketsList[i].tokenID === ticketsForSale[j].tokenID) {
               addedIn = true
             }
@@ -59,21 +59,21 @@ const Marketplace = () => {
 
   async function sellTicket(t) {
     try {
-      setShowPopup(true);
-      setState({ ...States, Loading: true });
+      setShowPopup(true)
+      setState({ ...States, Loading: true })
       const tx = await nft_contract.transferToken(
         t.address,
         t.ticketno,
         options
-      );
-      await tx.wait();
+      )
+      await tx.wait()
       await removeFromSale(t)
-      setSold(true);
-      setState({ ...States, Loading: false, isError: false });
+      setSold(true)
+      setState({ ...States, Loading: false, isError: false })
       // return alert("Transaction successful!");
     } catch (err) {
-      console.log(err);
-      setState({ ...States, Loading: false, isError: true });
+      console.log(err)
+      setState({ ...States, Loading: false, isError: true })
     }
   }
   return (
@@ -158,7 +158,7 @@ const Marketplace = () => {
                                   marginRight: "20px",
                                 }}
                                 onClick={() => {
-                                  sellTicket(t);
+                                  sellTicket(t)
                                 }}
                               >
                                 Buy
@@ -185,7 +185,7 @@ const Marketplace = () => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export { Marketplace };
+export { Marketplace }

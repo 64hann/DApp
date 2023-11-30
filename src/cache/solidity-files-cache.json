@@ -720,10 +720,10 @@
       ],
       "artifacts": []
     },
-    "/Users/weiguanghan/Documents/GitHub/DApp/src/contracts/sample_nft_ticket.sol": {
-      "lastModificationDate": 1700479670114,
-      "contentHash": "a57040644791b2bcf1fc47e72ddb548d",
-      "sourceName": "contracts/sample_nft_ticket.sol",
+    "/Users/weiguanghan/Documents/GitHub/DApp/src/contracts/Nfticket.sol": {
+      "lastModificationDate": 1701346982020,
+      "contentHash": "7e6e552503246ac173cf5eaf1b45992d",
+      "sourceName": "contracts/Nfticket.sol",
       "solcConfig": {
         "version": "0.8.20",
         "settings": {
@@ -759,7 +759,7 @@
         "^0.8.20"
       ],
       "artifacts": [
-        "Nftickets"
+        "Nfticket"
       ]
     }
   }

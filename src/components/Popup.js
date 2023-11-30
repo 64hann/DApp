@@ -9,11 +9,12 @@ const Popup = ({ handleClose, show, state }) => {
   let content
   let style = { width: "200px", height: "200px" }
   const showHideClassName = show ? "modal display-block" : "modal display-none"
+
   if (state.Loading == true) {
     content = (
       <div className="content">
         <img src={loadingGIF} alt="Loading GIF" style={style} />
-        <text>Loading...</text>
+        <p>Loading...</p>
       </div>
     )
   } else {
@@ -21,14 +22,14 @@ const Popup = ({ handleClose, show, state }) => {
       content = (
         <div className="content">
           <img src={failPNG} alt="Fail PNG" style={style} />
-          <text>Transaction failed. Please try again. </text>
+          <p>Transaction failed. Please try again. </p>
         </div>
       )
     } else {
       content = (
         <div className="content">
           <img src={successPNG} alt="Success PNG" style={style} />
-          <text>Transaction success! </text>
+          <p>Transaction success! </p>
         </div>
       )
     }

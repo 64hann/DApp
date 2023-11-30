@@ -7,12 +7,12 @@
 const API_URL =
   "https://eth-sepolia.g.alchemy.com/v2/ZJxoD3Na-6bb1-ZjWP6A5tuZHmF-W1cu";
 
-const PRIVATE_KEY = "INSERT_PRIVATE_KEY_HERE";
-const CONTRACT_ADDRESS = "0x94adc27d2c58aCa144FB21ec99cFed2c9147bee5";
+const PRIVATE_KEY = 'USE YOUR PRIVATE KEY HERE';
+const contract = require("../artifacts/contracts/Nfticket.sol/Nfticket.json");
+const CONTRACT_ADDRESS = "0x37D6f533B19bB53683bDA0696476dF0043428075";
 const CID = "ipfs://QmYfTFjZ5RCi8fzGEBxudrgNRVsDNN9uTN7dXwZzkYL5E1";
 
 //  import the ABI
-const contract = require("../artifacts/contracts/sample_nft_ticket.sol/Nftickets.json");
 
 // console.log(JSON.stringify(contract.abi));
 

@@ -10,10 +10,6 @@ const Wallet = () => {
   const { user } = useContext(ViewContext)
   const { address } = user
 
-  // if (isLoading) {
-  //   return <div style={{ color: "white" }}>ppp</div>
-  // }
-
   return (
     <div>
       <Header />

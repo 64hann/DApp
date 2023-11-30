@@ -109,7 +109,6 @@ export const ViewProvider = ({ children }) => {
         actions: { connect },
         bigNumberify,
         smolNumberify,
-        isLoading,
       }}
     >
       {children}

@@ -2,7 +2,7 @@
 require("@nomiclabs/hardhat-ethers");
 // require('/.env').config()
 
-const PRIVATE_KEY = process.env.PRIVATE_KEY
+const PRIVATE_KEY = 'USE YOUR PRIVATE KEY HERE'
 
 module.exports = {
   solidity: "0.8.20",

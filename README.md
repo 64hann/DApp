@@ -84,7 +84,7 @@ ipfs://QmYfTFjZ5RCi8fzGEBxudrgNRVsDNN9uTN7dXwZzkYL5E1
 ## Compiling and deploying smart contract
 
 
-To compile the smart contract, run 
+To compile the smart contract, run (Make sure that node modules and hardhat.config.js are in the same directory)
 ```
 npx hardhat compile
 ```
