@@ -1,16 +1,14 @@
-// require("dotenv").config(
-//   //{ path: "../.env" }
-//   );
+require("dotenv").config();
 // const API_URL = process.env.API_URL;
 // const PRIVATE_KEY = process.env.PRIVATE_KEY;
 // const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS;
-const API_URL =
-  "https://eth-sepolia.g.alchemy.com/v2/ZJxoD3Na-6bb1-ZjWP6A5tuZHmF-W1cu";
+const API_URL = process.env.API_URL;
 
-const PRIVATE_KEY = 'USE YOUR PRIVATE KEY HERE';
+const PRIVATE_KEY = process.env.PRIVATE_KEY;
+
 const contract = require("../artifacts/contracts/Nfticket.sol/Nfticket.json");
-const CONTRACT_ADDRESS = "0x37D6f533B19bB53683bDA0696476dF0043428075";
-const CID = "ipfs://QmYfTFjZ5RCi8fzGEBxudrgNRVsDNN9uTN7dXwZzkYL5E1";
+const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS;
+const CID = process.env.CID;
 
 //  import the ABI
 
@@ -20,6 +18,8 @@ const CID = "ipfs://QmYfTFjZ5RCi8fzGEBxudrgNRVsDNN9uTN7dXwZzkYL5E1";
 
 // const { ethers } = require("hardhat");
 const ethers = require("ethers");
+// console.log(PRIVATE_KEY);
+// console.log(API_URL);
 
 //Provider - node provider
 const alchemyProvider = new ethers.providers.JsonRpcProvider(API_URL);

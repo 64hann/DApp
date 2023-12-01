@@ -1,14 +1,15 @@
 /** @type import('hardhat/config').HardhatUserConfig */
 require("@nomiclabs/hardhat-ethers");
-// require('/.env').config()
+require("dotenv").config();
 
-const PRIVATE_KEY = 'USE YOUR PRIVATE KEY HERE'
+const PRIVATE_KEY = process.env.PRIVATE_KEY;
+const URL = process.env.API_URL;
 
 module.exports = {
   solidity: "0.8.20",
   networks: {
     sepolia: {
-      url: "https://eth-sepolia.g.alchemy.com/v2/ZJxoD3Na-6bb1-ZjWP6A5tuZHmF-W1cu",
+      url: URL,
       accounts: 
         [`0x${PRIVATE_KEY}`],
     },

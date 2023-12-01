@@ -103,4 +103,8 @@ npx hardhat run deployments/deploy.js --network sepolia
 
 ```
 
+To enable mint, set mintPrice and set MaxSupply of tickets, run 
 
+```
+node deployments/interact.js
+```
