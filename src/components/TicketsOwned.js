@@ -44,23 +44,37 @@ const TicketsOwned = () => {
 
   useEffect(() => {
     async function fetchTickets() {
+      //   for (var i = 0; i < eventsJSON.events.length; i++) {
+      //     var tickets = await nft_contract.getAddressInfo(address)
+      //     tickets = await tickets.map((ticket) => ticket.toNumber())
+      //     ticketCounter += tickets.length
+      //     ownedTickets[i] = tickets
+      //   }
+
       var ticketCounter = 0
-      for (var i = 0; i < eventsJSON.events.length; i++) {
-        var tickets = await nft_contract.getAddressInfo(address)
-        tickets = await tickets.map((ticket) => ticket.toNumber())
-        ticketCounter += tickets.length
-        ownedTickets[i] = tickets
-      }
+      var tickets = await nft_contract.getTicketsOwned(address)
+
+      tickets = await tickets.map((ticket) => ticket.toNumber())
+      console.log(tickets)
+      ticketCounter += tickets.length
+
+      // Hard code just one event first
+      ownedTickets[0] = tickets
+      // console.log(ownedTickets)
 
       setTotalTickets(ticketCounter)
+      // setOwnedTickets(tickets)
+      // console.log(ownedTickets)
     }
+
     fetchTickets()
 
     async function fetchTicketsForSale() {
       var tickets = await getForSale()
       setTicketsForSale(tickets.map((ticket) => ticket.ticketno))
-      console.log(tickets.map((ticket) => ticket.ticketno))
+      // console.log(tickets.map((ticket) => ticket.ticketno))
     }
+
     fetchTicketsForSale()
   }, [update])
 
@@ -75,41 +89,42 @@ const TicketsOwned = () => {
             } in total!`}
           />
           <Accordion className="accordion" style={{ fontWeight: "bold" }}>
-            {ownedTickets.map((e, id) => (
+            {ownedTickets.map((event, id) => (
               <>
-                <PageBreak height="30px" />
-                <Accordion.Item
-                  eventKey={id}
-                  style={{ backgroundColor: "black" }}
-                >
-                  <Heading title={eventsJSON.events[id].title} />
-                  {e.map((t, idx) => (
-                    <Col className="acc-body">
-                      <TicketCard
-                        ticketno={t}
-                        title={eventsJSON.events[id].title}
-                        date={eventsJSON.events[id].date}
-                        imageURL={eventsJSON.events[id].imageURL}
-                        id={eventsJSON.events[id].id}
-                        artist={eventsJSON.events[id].artist}
-                        venue={eventsJSON.events[id].venue}
-                        isListed={ticketsForSale.includes(t)}
-                        handleList={handleList}
-                        handleUnlist={handleUnlist}
-                        redeemable={true}
-                      />
-                    </Col>
-                  ))}
-                </Accordion.Item>
+                {event[0] ? (
+                  <>
+                    <PageBreak height="30px" />
+                    <Accordion.Item
+                      eventKey={id}
+                      style={{ backgroundColor: "black" }}
+                    >
+                      <Heading title={eventsJSON.events[id].title} />
+                      {event.map((ticket, idx) => (
+                        <Col className="acc-body" eventkey={idx}>
+                          <TicketCard
+                            ticketno={ticket}
+                            title={eventsJSON.events[id].title}
+                            date={eventsJSON.events[id].date}
+                            imageURL={eventsJSON.events[id].imageURL}
+                            id={eventsJSON.events[id].id}
+                            artist={eventsJSON.events[id].artist}
+                            venue={eventsJSON.events[id].venue}
+                            isListed={ticketsForSale.includes(ticket)}
+                            handleList={handleList}
+                            handleUnlist={handleUnlist}
+                          />
+                        </Col>
+                      ))}
+                    </Accordion.Item>
+                  </>
+                ) : null}
               </>
             ))}
           </Accordion>
         </>
       ) : (
         <>
-          <div style={{ color: "white" }}>
-            You have no tickets! Go buy some!
-          </div>
+          <SectionDescription text="You have no tickets! Go buy some!" />
         </>
       )}
     </div>

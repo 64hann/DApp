@@ -1,19 +1,15 @@
 import { Col, Row, Button, Accordion, Image } from "react-bootstrap"
-import QRCode from "react-qr-code"
 import Card from "react-bootstrap/Card"
 import { useContext } from "react"
-import { useNavigate } from "react-router-dom"
 import "./components.css"
-import { putForSale, removeFromSale } from "../database/aws"
 import { ViewContext } from "../context/ViewProvider"
-import { useState } from "react"
-import Popup from "reactjs-popup"
 
-const cardImageStyle = {
-  width: "50%",
-  height: "14rem",
-  objectFit: "cover",
-}
+
+// const cardImageStyle = {
+//   width: "50%",
+//   height: "14rem",
+//   objectFit: "cover",
+// }
 
 export const Heading = ({ title }) => {
   return (
@@ -47,7 +43,16 @@ const TicketCard = ({
       <Card className="ticket-card">
         <Row>
           <Col>
-            <Image src={imageURL} fluid />
+            <Card.Img
+              src={imageURL}
+              style={{
+                maxHeight: "17rem",
+                width: "auto",
+                objectFit: "cover",
+                padding: "10px",
+              }}
+              fluid
+            />
           </Col>
           <Col>
             <Card.Title
@@ -65,6 +70,7 @@ const TicketCard = ({
                 {venue}
               </Col>
               <Col
+                className="d-flex flex-grow-1"
                 style={{
                   textAlign: "right",
                   fontWeight: "bold",
@@ -90,41 +96,23 @@ const TicketCard = ({
             ) : (
               <Button
                 style={{ backgroundColor: "black" }}
-                onClick={() => handleList(title, ticketno, address, date, venue)}
+                onClick={() =>
+                  handleList(title, ticketno, address, date, venue)
+                }
               >
                 List Ticket
               </Button>
             )}
-            <br></br>
-            {redeemable ? (
-              <Popup trigger={
-                <Button style={{ marginTop: "2rem" }}>Redeem Ticket</Button>}
-                position="top center"
-              >
-                <Card style={{
-                  textAlign: "center",
-                  width: "30rem",
-                  height: "25rem"
-                  }}
-                >
-                  <Card.Title style={{ marginTop:"10px" }}>Welcome to <b>{title}</b>!</Card.Title>
-                  <Card.Body>
-                    <QRCode
-                      value={ticketno}
-                      size={256}
-                      style={{ height: "auto", maxWidth: "60%", width: "60%" }}
-                      viewBox={`0 0 256 256`}
-                    />
-                    <Card.Text style={{ marginTop:"10px" }}>Scan to redeem your ticket!</Card.Text>
-                  </Card.Body>
-                </Card>
-              </Popup>
-            ) : null}
           </Col>
           <Col style={{ alignItems: "flex-end" }}>
-            <Image
-              style={{ maxHeight: "20rem" }}
-              src={require("../images/barcode.png")}
+            <Card.Img
+              style={{
+                maxHeight: "17rem",
+                width: "auto",
+                objectFit: "cover",
+                padding: "10px",
+              }}
+              src={require("../components/assets/qr-code.png")}
               fluid
             />
           </Col>

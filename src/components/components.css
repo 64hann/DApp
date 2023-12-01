@@ -60,7 +60,7 @@
   transition: 0.3s;
   aspect-ratio: 16/4;
   max-height: 17rem;
-  background-color: #faf9f6 !important;
+  background-color: #ffffff !important;
 }
 
 .event-list {
@@ -95,6 +95,26 @@
 .nft-button:hover {
   box-shadow: 4px 4px 4px skyblue;
   transform: scale(1.1);
+  transition: 0.3s;
+}
+
+.mint-button {
+  color: black;
+  font-family: "sohne-buch", sans-serif;
+  background-color: skyblue;
+  padding: 7.5px 15px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+  margin-left: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.mint-button:hover {
+  transform: scale(1.05);
   transition: 0.3s;
 }
 
@@ -164,9 +184,12 @@
   background-color: white;
   padding: 20px;
   border-radius: 8px;
-  width: 40%; /* Adjust the width as needed */
-  max-width: 600px; /* Maximum width */
-  max-height: 80%; /* Maximum height */
+  width: 40vw;
+  /* border: 1px solid black; */
+  box-shadow: 0px 8px 24px skyblue;
+
+  max-width: 600px;
+  max-height: 80%;
   overflow: auto;
   position: absolute;
   top: 50%;
@@ -177,7 +200,7 @@
 .display-block {
   justify-content: center;
   align-items: center;
-} 
+}
 
 .display-none {
   display: none;
@@ -185,8 +208,10 @@
 .content {
   display: flex;
   flex-direction: column;
-  justify-content: space-between; ;
+  justify-content: space-between;
   align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .close-button {

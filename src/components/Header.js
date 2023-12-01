@@ -14,7 +14,7 @@ const Header = () => {
     <Navbar className="navbar" data-bs-theme="dark">
       <Container>
         <Image
-          src={require("../images/nfticket.png")}
+          src={require("./assets/nfticket.png")}
           width="100"
           height="100"
           className="d-inline-block align-top"
