@@ -75,14 +75,21 @@ In order for the function to be called successfully, the caller must input the c
 To transfer the token from one to another, the `transferToken(address payable  from, uint256 tokenId)` can be called, which transfers the NFT from from to the caller of the function. In order for this function to execute properly,
 the caller must input the correct amount of gwei. The token will be transferred from from to the caller of the function, and from receives the payment.
 
-To test the function, use the following IPFS hash value
-
-ipfs://QmYfTFjZ5RCi8fzGEBxudrgNRVsDNN9uTN7dXwZzkYL5E1
 
 
 
 ## Compiling and deploying smart contract
 
+In order to run the following, create a .env file in `/src` directory
+
+```
+PRIVATE_KEY=YOUR_PRIVATE_KEY
+USER_ADDRESS=YOUR_USER_ADDRESS
+API_URL=ALCHEMY_API_URL
+CONTRACT_ADDRESS=YOUR_CONTRACT_ADDRESS
+CID=ipfs://YOUR_CID
+
+```
 
 To compile the smart contract, run (Make sure that node modules and hardhat.config.js are in the same directory)
 ```
