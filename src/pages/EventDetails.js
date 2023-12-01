@@ -68,8 +68,8 @@ const EventDetails = () => {
       setShowPopup(true)
       setState({ ...States, Loading: true })
       const tx = await nft_contract.safeMint(address, CID, numberOfTickets, {
-        value: ethers.utils.parseEther(
-          (mintPrice * numberOfTickets).toString()
+        value: ethers.utils.parseUnits(
+          (mintPrice * numberOfTickets).toString(),  0
         ),
         gasLimit: 500000,
       })
