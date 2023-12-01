@@ -4,7 +4,6 @@ import { useContext } from "react"
 import "./components.css"
 import { ViewContext } from "../context/ViewProvider"
 
-import Popup from "reactjs-popup"
 
 // const cardImageStyle = {
 //   width: "50%",
