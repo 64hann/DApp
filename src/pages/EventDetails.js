@@ -73,7 +73,7 @@ const EventDetails = () => {
           (mintPrice * numberOfTickets).toString(),
           0
         ),
-        gasLimit: 500000,
+        gasLimit: 500000*numberOfTickets,
       });
       await tx.wait();
       setState({ ...States, Loading: false, isError: false });
