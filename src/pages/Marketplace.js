@@ -13,11 +13,7 @@ import {
   EVENTS_JSON_2,
 } from "../constants/constants";
 
-const eventsJSON = [
-  ...EVENTS_JSON_0["events"],
-  ...EVENTS_JSON_1["events"],
-  ...EVENTS_JSON_2["events"],
-];
+
 
 const cardImageStyle = {
   borderTopLeftRadius: "5px",
