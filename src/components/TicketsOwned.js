@@ -4,7 +4,7 @@ import { nft_contract } from "../pages/EventDetails"
 import { Col, Accordion } from "react-bootstrap"
 import { TicketCard, Heading } from "./TicketCard"
 import { PageBreak, SectionDescription, SectionTitle } from "./Titles"
-import { getForSale, removeFromSale, putForSale } from "../database/aws"
+import { getForSale, removeFromSale, putForSale } from "../database/dynamo/aws"
 import "./components.css"
 import { EVENTS_JSON } from "../constants/constants"
 
