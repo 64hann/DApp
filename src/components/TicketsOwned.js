@@ -1,15 +1,14 @@
 import { useState, useEffect, useContext } from "react"
 import { ViewContext } from "../context/ViewProvider"
 import { nft_contract } from "../pages/EventDetails"
-import { fetchIPFSData } from "../deployments/upload"
 import { Col, Accordion } from "react-bootstrap"
 import { TicketCard, Heading } from "./TicketCard"
 import { PageBreak, SectionDescription, SectionTitle } from "./Titles"
 import { getForSale, removeFromSale, putForSale } from "../database/aws"
-
 import "./components.css"
+import { EVENTS_JSON } from "../constants/constants"
 
-const eventsJSON = await fetchIPFSData()
+const eventsJSON = EVENTS_JSON
 const numberOfEvents = await eventsJSON.events.length
 
 const TicketsOwned = () => {

@@ -7,9 +7,10 @@ import { nft_contract, options } from "./EventDetails"
 import { States } from "./EventDetails"
 import { ViewContext } from "../context/ViewProvider"
 import Popup from "../components/Popup.js"
-import { fetchIPFSData } from "../deployments/upload"
+import { EVENTS_JSON } from "../constants/constants.js"
 
-const eventsJSON = await fetchIPFSData()
+
+const eventsJSON = EVENTS_JSON
 
 const cardImageStyle = {
   borderTopLeftRadius: "5px",

@@ -1,23 +1,22 @@
-import { Header } from "../components/Header"
-import { PageBreak } from "../components/Titles.js"
-import { useParams } from "react-router-dom"
-import { Image, Form } from "react-bootstrap"
+import { Header } from "../components/Header";
+import { PageBreak } from "../components/Titles.js";
+import { useParams } from "react-router-dom";
+import { Image, Form } from "react-bootstrap";
+import { useState, useContext, useEffect } from "react";
+import { ViewContext } from "../context/ViewProvider";
+import Popup from "../components/Popup.js";
+import { MintButton } from "../components/InteractiveElements.js";
+import {CONTRACT_ADDRESS,CID, EVENTS_JSON} from "../constants/constants.js"
 
-import { fetchIPFSData } from "../deployments/upload.js"
-import { useState, useContext, useEffect } from "react"
-import { ViewContext } from "../context/ViewProvider"
-import Popup from "../components/Popup.js"
-import { MintButton } from "../components/InteractiveElements.js"
+const eventsJSON = EVENTS_JSON;
 
-const eventsJSON = await fetchIPFSData()
-
-const ethers = require("ethers")
-const contract = require("../artifacts/contracts/Nfticket.sol/Nfticket.json")
-const CONTRACT_ADDRESS = "0x37D6f533B19bB53683bDA0696476dF0043428075"
-const CID = "ipfs://QmYfTFjZ5RCi8fzGEBxudrgNRVsDNN9uTN7dXwZzkYL5E1"
-const { ethereum } = window
-const provider = new ethers.providers.Web3Provider(ethereum)
-const signer = provider.getSigner()
+const ethers = require("ethers");
+const contract = require("../artifacts/contracts/Nfticket.sol/Nfticket.json");
+// const CONTRACT_ADDRESS = "0x37D6f533B19bB53683bDA0696476dF0043428075";
+// const CID = "ipfs://QmYfTFjZ5RCi8fzGEBxudrgNRVsDNN9uTN7dXwZzkYL5E1";
+const { ethereum } = window;
+const provider = new ethers.providers.Web3Provider(ethereum);
+const signer = provider.getSigner();
 
 export const nft_contract = new ethers.Contract(
   CONTRACT_ADDRESS,

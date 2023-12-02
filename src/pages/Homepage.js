@@ -3,9 +3,9 @@ import { EventCarousell } from "../components/InteractiveElements"
 import { PageBreak } from "../components/Titles"
 import { Col } from "react-bootstrap"
 import { EventCard } from "../components/EventCard"
-import { fetchIPFSData } from "../deployments/upload.js"
+import { EVENTS_JSON } from "../constants/constants.js"
 
-const eventsJSON = await fetchIPFSData()
+const eventsJSON = EVENTS_JSON
 const Homepage = () => {
   return (
     <div>
