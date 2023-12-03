@@ -46,4 +46,15 @@ contract TestNfticket {
         (bool success,) = address(nfticket).call(abi.encodeWithSignature("sellToken(uint256)", 1));
         Assert.ok(!success, "Selling a non-owned token should fail");
     }
+
+    function testMintingWithIncorrectValue() public {
+        nfticket.setmintPrice(1 ether);
+        nfticket.setMaxSupply(10);
+        nfticket.toggleMintEnabled();
+        string memory uri = "http://testuri";
+
+        // Attempt to mint with less ether than required
+        (bool success,) = address(nfticket).call{value: 0.5 ether}(abi.encodeWithSignature("safeMint(address,string,uint256)", address(this), uri, 1));
+        Assert.ok(true, "Minting should fail when incorrect value is sent.");
+    }
 }
