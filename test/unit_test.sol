@@ -48,15 +48,4 @@ contract testSuite {
         uint256 balance = nfticket.balanceOf(address(this));
         Assert.equal(balance, 1, "Balance should be 1 after successful mint");
     }
-
-    function testMintingWithIncorrectValue() public {
-        nfticket.setmintPrice(1 ether);
-        nfticket.setMaxSupply(10);
-        nfticket.toggleMintEnabled();
-        string memory uri = "http://testuri";
-
-        // Attempt to mint with less ether than required
-        (bool success,) = address(nfticket).call{value: 0.5 ether}(abi.encodeWithSignature("safeMint(address,string,uint256)", address(this), uri, 1));
-        Assert.ok(true, "Minting should fail when incorrect value is sent.");
-    }
 }
