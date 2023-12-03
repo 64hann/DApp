@@ -30,6 +30,12 @@ contract Nfticket is
         Ownable(initialOwner)
     {}
 
+
+    modifier gasThrottle(uint numOfTickets) {
+        require(tx.gasprice < (500000000000*numOfTickets), "Exceeded gas price Limit");
+        _;
+    }
+
     receive() external payable {}
 
     fallback() external payable {}
@@ -66,7 +72,7 @@ contract Nfticket is
         address to,
         string calldata uri,
         uint256 noOfTickets
-    ) public payable nonReentrant {
+    ) gasThrottle(noOfTickets) public payable  nonReentrant {
         for (uint256 i; i < noOfTickets; i++) {
             uint256 tokenId = _nextTokenId++;
             require(isMintEnabled == true, "Minting has not been enabled!");
