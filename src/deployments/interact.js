@@ -53,6 +53,10 @@ async function main() {
   await enableMint();
   var isMintEnabledAfter = await nft_contract.isMintEnabled();
   console.log(`IsMintEnabled: ${isMintEnabledAfter}`);
+  // await setMaxSupply(100);
+  // var supply = await nft_contract.MAX_SUPPLY();
+  // console.log(`TotalSupply: ${supply}`);
+  // await setMintPrice(500);
   var mintPrice = await nft_contract.mintPrice();
   console.log(`MintPrice: ${mintPrice}`);
 }

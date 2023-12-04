@@ -1,11 +1,11 @@
-import { useState, useEffect, useContext } from "react"
-import { ViewContext } from "../context/ViewProvider"
-import { nft_contract } from "../pages/EventDetails"
-import { Col, Accordion } from "react-bootstrap"
-import { TicketCard, Heading } from "./TicketCard"
-import { PageBreak, SectionDescription, SectionTitle } from "./Titles"
-import { getForSale, removeFromSale, putForSale } from "../database/dynamo/aws"
-import "./components.css"
+import { useState, useEffect, useContext } from "react";
+import { ViewContext } from "../context/ViewProvider";
+import { listOfContracts, nft_contract } from "../pages/EventDetails";
+import { Col, Accordion } from "react-bootstrap";
+import { TicketCard, Heading } from "./TicketCard";
+import { PageBreak, SectionDescription, SectionTitle } from "./Titles";
+import { getForSale, removeFromSale, putForSale } from "../database/dynamo/aws";
+import "./components.css";
 import {
   EVENTS_JSON_0,
   EVENTS_JSON_1,
