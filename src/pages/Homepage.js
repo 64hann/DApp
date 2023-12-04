@@ -3,9 +3,17 @@ import { EventCarousell } from "../components/InteractiveElements"
 import { PageBreak } from "../components/Titles"
 import { Col } from "react-bootstrap"
 import { EventCard } from "../components/EventCard"
-import { EVENTS_JSON } from "../constants/constants.js"
+import {
+  EVENTS_JSON_0,
+  EVENTS_JSON_1,
+  EVENTS_JSON_2,
+} from "../constants/constants";
 
-const eventsJSON = EVENTS_JSON
+const eventsJSON = [
+  ...EVENTS_JSON_0["events"],
+  ...EVENTS_JSON_1["events"],
+  ...EVENTS_JSON_2["events"],
+];
 const Homepage = () => {
   return (
     <div>
@@ -27,7 +35,7 @@ const Homepage = () => {
           >
             New Events
           </h3>
-          {eventsJSON.events.map((e) => (
+          {eventsJSON.map((e) => (
             <Col className="cardcol" key={`event-${e.id}`}>
               <EventCard
                 title={e.title}

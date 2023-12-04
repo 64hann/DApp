@@ -6,10 +6,18 @@ import { TicketCard, Heading } from "./TicketCard"
 import { PageBreak, SectionDescription, SectionTitle } from "./Titles"
 import { getForSale, removeFromSale, putForSale } from "../database/dynamo/aws"
 import "./components.css"
-import { EVENTS_JSON } from "../constants/constants"
+import {
+  EVENTS_JSON_0,
+  EVENTS_JSON_1,
+  EVENTS_JSON_2,
+} from "../constants/constants";
 
-const eventsJSON = EVENTS_JSON
-const numberOfEvents = await eventsJSON.events.length
+const eventsJSON = [
+  ...EVENTS_JSON_0["events"],
+  ...EVENTS_JSON_1["events"],
+  ...EVENTS_JSON_2["events"],
+];
+const numberOfEvents = await eventsJSON.length
 
 const TicketsOwned = () => {
   const [ownedTickets, setOwnedTickets] = useState(
@@ -97,17 +105,17 @@ const TicketsOwned = () => {
                       eventKey={id}
                       style={{ backgroundColor: "black" }}
                     >
-                      <Heading title={eventsJSON.events[id].title} />
+                      <Heading title={eventsJSON[id].title} />
                       {event.map((ticket, idx) => (
                         <Col className="acc-body" eventkey={idx}>
                           <TicketCard
                             ticketno={ticket}
-                            title={eventsJSON.events[id].title}
-                            date={eventsJSON.events[id].date}
-                            imageURL={eventsJSON.events[id].imageURL}
-                            id={eventsJSON.events[id].id}
-                            artist={eventsJSON.events[id].artist}
-                            venue={eventsJSON.events[id].venue}
+                            title={eventsJSON[id].title}
+                            date={eventsJSON[id].date}
+                            imageURL={eventsJSON[id].imageURL}
+                            id={eventsJSON[id].id}
+                            artist={eventsJSON[id].artist}
+                            venue={eventsJSON[id].venue}
                             isListed={ticketsForSale.includes(ticket)}
                             handleList={handleList}
                             handleUnlist={handleUnlist}

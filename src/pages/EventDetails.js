@@ -1,14 +1,25 @@
-import { Header } from "../components/Header";
-import { PageBreak } from "../components/Titles.js";
-import { useParams } from "react-router-dom";
-import { Image, Form } from "react-bootstrap";
-import { useState, useContext, useEffect } from "react";
-import { ViewContext } from "../context/ViewProvider";
-import Popup from "../components/Popup.js";
-import { MintButton } from "../components/InteractiveElements.js";
-import {CONTRACT_ADDRESS,CID, EVENTS_JSON} from "../constants/constants.js"
+import { Header } from "../components/Header"
+import { PageBreak } from "../components/Titles.js"
+import { useParams } from "react-router-dom"
+import { Image, Form } from "react-bootstrap"
+import { useState, useContext, useEffect } from "react"
+import { ViewContext } from "../context/ViewProvider"
+import Popup from "../components/Popup.js"
+import { MintButton } from "../components/InteractiveElements.js"
+import { CONTRACT_ADDRESS_0, CID_0, EVENTS_JSON } from "../constants/constants.js";
+import { fetchIPFSData } from "../database/IPFS/upload.js"
 
-const eventsJSON = EVENTS_JSON;
+import {
+  EVENTS_JSON_0,
+  EVENTS_JSON_1,
+  EVENTS_JSON_2,
+} from "../constants/constants";
+
+const eventsJSON = [
+  ...EVENTS_JSON_0["events"],
+  ...EVENTS_JSON_1["events"],
+  ...EVENTS_JSON_2["events"],
+];
 
 const ethers = require("ethers");
 const contract = require("../artifacts/contracts/Nfticket.sol/Nfticket.json");
@@ -19,7 +30,7 @@ const provider = new ethers.providers.Web3Provider(ethereum);
 const signer = provider.getSigner();
 
 export const nft_contract = new ethers.Contract(
-  CONTRACT_ADDRESS,
+  CONTRACT_ADDRESS_0,
   contract.abi,
   signer
 )
@@ -33,6 +44,7 @@ export const States = {
   isError: false,
 }
 
+
 const EventDetails = () => {
   const [showPopup, setShowPopup] = useState(false)
   const [state, setState] = useState(States)
@@ -44,7 +56,7 @@ const EventDetails = () => {
   }
 
   const params = useParams()
-  const event = eventsJSON.events[params.id]
+  const event = eventsJSON[params.id]
   const { user } = useContext(ViewContext)
   const { address } = user
   var tokenId = null

@@ -7,10 +7,17 @@ import { nft_contract, options } from "./EventDetails"
 import { States } from "./EventDetails"
 import { ViewContext } from "../context/ViewProvider"
 import Popup from "../components/Popup.js"
-import { EVENTS_JSON } from "../constants/constants.js"
+import {
+  EVENTS_JSON_0,
+  EVENTS_JSON_1,
+  EVENTS_JSON_2,
+} from "../constants/constants";
 
-
-const eventsJSON = EVENTS_JSON
+const eventsJSON = [
+  ...EVENTS_JSON_0["events"],
+  ...EVENTS_JSON_1["events"],
+  ...EVENTS_JSON_2["events"],
+];
 
 const cardImageStyle = {
   borderTopLeftRadius: "5px",
@@ -119,7 +126,7 @@ const Marketplace = () => {
                         </Card.Title>
                         <Card.Text>
                           <Row style={{ marginTop: "15px" }}>
-                            <Col>{eventsJSON.events[i].date}</Col>
+                            <Col>{eventsJSON[i].date}</Col>
                             <Col
                               style={{
                                 textAlign: "center",
