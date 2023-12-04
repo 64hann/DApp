@@ -1,0 +1,14 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "title": "After Hours Til Dawn Tour",
+      "artist": "The Weeknd",
+      "description": "Prepare to be transported to a mesmerizing spectacle as The Weeknd embarks on his highly anticipated After Hours Til Dawn Tour. This global odyssey will showcase his captivating blend of soulful R&B, electrifying synth-pop, and dark undertones, all while immersing fans in his cinematic world. Expect a theatrical production that will ignite the senses and leave you breathless as The Weeknd performs anthems from his critically acclaimed albums After Hours and Dawn FM, as well as fan favorites from his extensive discography.",
+      "imageURL": "https://media-cldnry.s-nbcnews.com/image/upload/newscms/2021_47/1808560/the-weeknd-kb-square-211123.jpg",
+      "bannerURL": "https://americansongwriter.com/wp-content/uploads/2022/01/TheWeeknd.jpg",
+      "date": "August 24, 2024",
+      "venue": "Soldier Field"
+    }
+  ]
+}
