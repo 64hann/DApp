@@ -1,0 +1,14 @@
+{
+  "events": [
+    {
+      "id": 2,
+      "title": "NewJeans - Get Up Tour",
+      "artist": "NewJeans",
+      "description": "Get ready to get up and dance with NewJeans! The rising K-pop girl group is bringing their energetic and infectious music to your city. Fans can expect to hear all of their favorite hits, including Hype Boy, Cookie, OMG, and ASAP.",
+      "imageURL": "https://www.levistrauss.com/wp-content/uploads/2023/03/NewJeans_Hero.jpg",
+      "bannerURL": "https://i.pinimg.com/736x/dd/5b/82/dd5b823409b3ded2cb21cea28f36605a.jpg",
+      "date": "November 17, 2024",
+      "venue": "Staples Center, Los Angeles, CA"
+    }
+  ]
+}

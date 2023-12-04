@@ -1,85 +1,85 @@
-import { Header } from "../components/Header";
-import { PageBreak } from "../components/Titles.js";
-import { useParams } from "react-router-dom";
-import { Image, Form } from "react-bootstrap";
+import { Header } from "../components/Header"
+import { PageBreak } from "../components/Titles.js"
+import { useParams } from "react-router-dom"
+import { Image, Form } from "react-bootstrap"
 
-import { fetchIPFSData } from "../deployments/upload.js";
-import { useState, useContext, useEffect } from "react";
-import { ViewContext } from "../context/ViewProvider";
-import Popup from "../components/Popup.js";
-import { MintButton } from "../components/InteractiveElements.js";
+import { fetchIPFSData } from "../deployments/upload.js"
+import { useState, useContext, useEffect } from "react"
+import { ViewContext } from "../context/ViewProvider"
+import Popup from "../components/Popup.js"
+import { MintButton } from "../components/InteractiveElements.js"
 
-const eventsJSON = await fetchIPFSData();
+const eventsJSON = await fetchIPFSData()
 
-const ethers = require("ethers");
-const contract = require("../artifacts/contracts/Nfticket.sol/Nfticket.json");
-const CONTRACT_ADDRESS = "0x37D6f533B19bB53683bDA0696476dF0043428075";
-const CID = "ipfs://QmYfTFjZ5RCi8fzGEBxudrgNRVsDNN9uTN7dXwZzkYL5E1";
-const { ethereum } = window;
-const provider = new ethers.providers.Web3Provider(ethereum);
-const signer = provider.getSigner();
+const ethers = require("ethers")
+const contract = require("../artifacts/contracts/Nfticket.sol/Nfticket.json")
+const CONTRACT_ADDRESS = "0x37D6f533B19bB53683bDA0696476dF0043428075"
+const CID = "ipfs://QmYfTFjZ5RCi8fzGEBxudrgNRVsDNN9uTN7dXwZzkYL5E1"
+const { ethereum } = window
+const provider = new ethers.providers.Web3Provider(ethereum)
+const signer = provider.getSigner()
 
 export const nft_contract = new ethers.Contract(
   CONTRACT_ADDRESS,
   contract.abi,
   signer
-);
+)
 
 export const options = {
   value: ethers.utils.parseEther("0.0000000000000005"),
   gasLimit: 500000,
-};
+}
 export const States = {
   Loading: false,
   isError: false,
-};
+}
 
 const EventDetails = () => {
-  const [showPopup, setShowPopup] = useState(false);
-  const [state, setState] = useState(States);
-  const [mintPrice, setMintPrice] = useState(null);
-  const [numberOfTickets, setNumberOfTickets] = useState(1);
+  const [showPopup, setShowPopup] = useState(false)
+  const [state, setState] = useState(States)
+  const [mintPrice, setMintPrice] = useState(null)
+  const [numberOfTickets, setNumberOfTickets] = useState(1)
 
   const openPopUp = () => {
-    setShowPopup(!showPopup);
-  };
+    setShowPopup(!showPopup)
+  }
 
-  const params = useParams();
-  const event = eventsJSON.events[params.id];
-  const { user } = useContext(ViewContext);
-  const { address } = user;
-  var tokenId = null;
+  const params = useParams()
+  const event = eventsJSON.events[params.id]
+  const { user } = useContext(ViewContext)
+  const { address } = user
+  var tokenId = null
   useEffect(() => {
     async function fetchMintPrice() {
-      const price = await nft_contract.mintPrice();
-      setMintPrice(price.toString());
+      const price = await nft_contract.mintPrice()
+      setMintPrice(price.toString())
     }
-    fetchMintPrice();
-  }, []);
+    fetchMintPrice()
+  }, [])
 
   const handleNumberChange = (e) => {
-    setNumberOfTickets(e.target.value);
-  };
+    setNumberOfTickets(e.target.value)
+  }
 
   async function mint() {
     if (!address) {
-      return alert("Please log in to MetaMask");
+      return alert("Please log in to MetaMask")
     }
     try {
-      setShowPopup(true);
-      setState({ ...States, Loading: true });
+      setShowPopup(true)
+      setState({ ...States, Loading: true })
       const tx = await nft_contract.safeMint(address, CID, numberOfTickets, {
         value: ethers.utils.parseUnits(
           (mintPrice * numberOfTickets).toString(),
           0
         ),
-        gasLimit: 500000*numberOfTickets,
-      });
-      await tx.wait();
-      setState({ ...States, Loading: false, isError: false });
+        gasLimit: 500000 * numberOfTickets,
+      })
+      await tx.wait()
+      setState({ ...States, Loading: false, isError: false })
     } catch (error) {
-      console.log(error);
-      setState({ ...States, Loading: false, isError: true });
+      console.log(error)
+      setState({ ...States, Loading: false, isError: true })
     }
   }
 
@@ -168,7 +168,7 @@ const EventDetails = () => {
         <Popup show={showPopup} handleClose={openPopUp} state={state} />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export { EventDetails };
+export { EventDetails }
