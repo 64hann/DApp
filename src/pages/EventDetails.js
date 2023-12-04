@@ -12,6 +12,7 @@ import {
   CID_0,
   CID_1,
   CID_2,
+  CONTRACT_ADDRESS_2,
 } from "../constants/constants.js";
 
 import {
@@ -36,6 +37,7 @@ const signer = provider.getSigner();
 export const listOfContracts = [
   new ethers.Contract(CONTRACT_ADDRESS_0, contract.abi, signer),
   new ethers.Contract(CONTRACT_ADDRESS_1, contract.abi, signer),
+  new ethers.Contract(CONTRACT_ADDRESS_2, contract.abi, signer),
 ];
 const listOfCIDs = [CID_0, CID_1, CID_2];
 
@@ -50,10 +52,12 @@ export const States = {
 
 
 const EventDetails = () => {
-  const [showPopup, setShowPopup] = useState(false)
-  const [state, setState] = useState(States)
-  const [mintPrice, setMintPrice] = useState(null)
-  const [numberOfTickets, setNumberOfTickets] = useState(1)
+  const [showPopup, setShowPopup] = useState(false);
+  const [state, setState] = useState(States);
+  const [mintPrice, setMintPrice] = useState(null);
+  const [maxSupply, setMaxSupply] = useState(0);
+  const [curSupply, setCurSupply] = useState(0);
+  const [numberOfTickets, setNumberOfTickets] = useState(1);
 
   const openPopUp = () => {
     setShowPopup(!showPopup)
@@ -72,8 +76,19 @@ const EventDetails = () => {
       const price = await nft_contract.mintPrice()
       setMintPrice(price.toString())
     }
-    fetchMintPrice()
-  }, [])
+
+    async function fetchMaxSupply() {
+      const supply = await nft_contract.maxSupply();
+      setMaxSupply(supply.toString());
+    }
+    async function fetchCurSupply() {
+      const supply = await nft_contract.totalSupply();
+      setCurSupply(supply.toString());
+    }
+    fetchMintPrice();
+    fetchMaxSupply();
+    fetchCurSupply();
+  }, []);
 
   const handleNumberChange = (e) => {
     setNumberOfTickets(e.target.value)
@@ -139,7 +154,16 @@ const EventDetails = () => {
             color: "#ffffff",
           }}
         >
-          {mintPrice} Eth / Ticket
+          {mintPrice/Math.pow(10,18)} Eth / Ticket
+        </p>
+        <p
+          style={{
+            paddingLeft: "10px",
+            paddingRight: "10px",
+            color: "#ffffff",
+          }}
+        >
+          {curSupply}/{maxSupply} Tickets Minted
         </p>
         <p
           style={{

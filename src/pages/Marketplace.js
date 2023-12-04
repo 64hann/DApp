@@ -126,7 +126,7 @@ const Marketplace = () => {
                         </Card.Title>
                         <Card.Text>
                           <Row style={{ marginTop: "15px" }}>
-                            <Col>{eventsJSON[i].date}</Col>
+                            <Col>{eventsJSON.date}</Col>
                             <Col
                               style={{
                                 textAlign: "center",

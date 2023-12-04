@@ -7,8 +7,8 @@ require("dotenv").config();
 // const { ethers } = require("hardhat");
 // const ethers = require("ethers");
 // require("@nomiclabs/hardhat-ethers");
-const maxSupply = 200;
-const mintPrice = "10000000000000000"
+const maxSupply = 50;
+const mintPrice = "50000000000000000"
 const USER_ADDRESS = process.env.USER_ADDRESS;
 
 async function main() {

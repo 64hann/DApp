@@ -86,6 +86,12 @@ const TicketsOwned = () => {
       ticketCounter += tickets.length;
       ownedTickets[1] = tickets;
 
+      //3rd event
+      tickets = await listOfContracts[2].getTicketsOwned(address);
+      tickets = await tickets.map((ticket) => ticket.toNumber());
+      ticketCounter += tickets.length;
+      ownedTickets[2] = tickets;
+
       setTotalTickets(ticketCounter);
       // console.log(ownedTickets)
       // tickets = listOfContracts.forEach((nft_contract, index) => async () =>{

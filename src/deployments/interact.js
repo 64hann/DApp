@@ -41,7 +41,7 @@ const signer = new ethers.Wallet(PRIVATE_KEY, alchemyProvider);
 //   signer
 // );
 const nft_contract = new ethers.Contract(
-  "0x36d21481403f11d0b70a2fda6fb6a30c9363f8cf",
+  "0x306d30811E98ADa96ef2C8C4147b776DbCe013e2",
   contract.abi,
   signer
 );
