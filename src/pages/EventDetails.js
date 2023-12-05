@@ -14,59 +14,22 @@ import {
   CID_2,
   CONTRACT_ADDRESS_2,
 } from "../constants/constants.js"
+import { States, listOfContracts } from "../utils/services.js"
 
 import {
   EVENTS_JSON_0,
   EVENTS_JSON_1,
   EVENTS_JSON_2,
 } from "../constants/constants"
-
 const eventsJSON = [
   ...EVENTS_JSON_0["events"],
   ...EVENTS_JSON_1["events"],
   ...EVENTS_JSON_2["events"],
 ]
-const listOfCIDs = [CID_0, CID_1, CID_2]
+
 const ethers = require("ethers")
-const contract = require("../artifacts/contracts/Nfticket.sol/Nfticket.json")
 
-// const provider = new ethers.providers.Web3Provider(ethereum)
-// const signer = provider.getSigner()
-
-export const listOfContracts = [
-  new ethers.Contract(CONTRACT_ADDRESS_0, contract.abi, signer),
-  new ethers.Contract(CONTRACT_ADDRESS_1, contract.abi, signer),
-  new ethers.Contract(CONTRACT_ADDRESS_2, contract.abi, signer),
-]
-
-export const listOfOptions = [
-  {
-    value: ethers.utils.parseUnits(
-      (await listOfContracts[0].mintPrice()).toString(),
-      0
-    ),
-    gasLimit: 500000,
-  },
-  {
-    value: ethers.utils.parseUnits(
-      (await listOfContracts[1].mintPrice()).toString(),
-      0
-    ),
-    gasLimit: 500000,
-  },
-  {
-    value: ethers.utils.parseUnits(
-      (await listOfContracts[2].mintPrice()).toString(),
-      0
-    ),
-    gasLimit: 500000,
-  },
-]
-
-export const States = {
-  Loading: false,
-  isError: false,
-}
+const listOfCIDs = [CID_0, CID_1, CID_2]
 
 const EventDetails = () => {
   const [showPopup, setShowPopup] = useState(false)
@@ -87,7 +50,7 @@ const EventDetails = () => {
   const { address } = user
   const nft_contract = listOfContracts[index]
   const CID = listOfCIDs[index]
-  var tokenId = null
+
   useEffect(() => {
     async function fetchMintPrice() {
       const price = await nft_contract.mintPrice()

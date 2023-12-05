@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react"
 import { ViewContext } from "../context/ViewProvider"
-import { listOfContracts } from "../pages/EventDetails"
+import { listOfContracts } from "../utils/services"
 import { Col, Accordion } from "react-bootstrap"
 import { TicketCard, Heading } from "./TicketCard"
 import { PageBreak, SectionDescription, SectionTitle } from "./Titles"
