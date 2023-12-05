@@ -101,6 +101,12 @@ const Marketplace = () => {
         <SectionTitle text="Marketplace" />
         <SectionDescription text="Explore our user-listed NFT ticket marketplace where each purchase is worry-free, backed by the assurance of blockchain verification." />
 
+        {!address ? (
+          <SectionDescription text="Please connect your MetaMask wallet to buy tickets on sale." />
+        ) : (
+          <></>
+        )}
+
         {ticketsForSale.length > 0 ? (
           <>
             {ticketsForSale.map((t, i) => (
@@ -159,7 +165,9 @@ const Marketplace = () => {
                             }}
                           >
                             {tickets.includes(t.tokenID) ? (
-                              t.address == address ? (
+                              !address ? (
+                                <></>
+                              ) : t.address == address ? (
                                 <Button
                                   disabled
                                   style={{
@@ -196,11 +204,7 @@ const Marketplace = () => {
             ))}
           </>
         ) : (
-          <>
-            <div style={{ color: "white" }}>
-              You have no tickets! Go buy some!
-            </div>
-          </>
+          <SectionDescription text="There are no tickets for sale." />
         )}
       </div>
     </div>
