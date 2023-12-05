@@ -6,14 +6,7 @@ import { useState, useContext, useEffect } from "react"
 import { ViewContext } from "../context/ViewProvider"
 import Popup from "../components/Popup.js"
 import { MintButton } from "../components/InteractiveElements.js"
-import {
-  CONTRACT_ADDRESS_0,
-  CONTRACT_ADDRESS_1,
-  CID_0,
-  CID_1,
-  CID_2,
-  CONTRACT_ADDRESS_2,
-} from "../constants/constants.js"
+import { CID_0, CID_1, CID_2 } from "../constants/constants.js"
 import { States, GetContracts } from "../utils/services.js"
 import {
   EVENTS_JSON_0,

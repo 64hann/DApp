@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import loadingGIF from "./assets/Bean Eater-1s-200px.gif"
 import successPNG from "./assets/checked.png"
 import failPNG from "./assets/cancel.png"

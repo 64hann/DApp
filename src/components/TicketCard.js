@@ -1,15 +1,8 @@
-import { Col, Row, Button, Accordion, Image } from "react-bootstrap"
+import { Col, Row, Button, Accordion } from "react-bootstrap"
 import Card from "react-bootstrap/Card"
 import { useContext } from "react"
 import "./components.css"
 import { ViewContext } from "../context/ViewProvider"
-
-
-// const cardImageStyle = {
-//   width: "50%",
-//   height: "14rem",
-//   objectFit: "cover",
-// }
 
 export const Heading = ({ title }) => {
   return (

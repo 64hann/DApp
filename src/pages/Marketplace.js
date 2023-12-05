@@ -11,7 +11,6 @@ import {
   EVENTS_JSON_1,
   EVENTS_JSON_2,
 } from "../constants/constants"
-const ethers = require("ethers")
 
 const eventsJSON = [
   ...EVENTS_JSON_0["events"],

@@ -1,5 +1,3 @@
-import { useContext, useState } from "react"
-import { ViewContext, ViewProvider } from "../context/ViewProvider.js"
 import {
   CONTRACT_ADDRESS_0,
   CONTRACT_ADDRESS_1,
