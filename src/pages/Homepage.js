@@ -3,17 +3,9 @@ import { EventCarousell } from "../components/InteractiveElements"
 import { PageBreak } from "../components/Titles"
 import { Col } from "react-bootstrap"
 import { EventCard } from "../components/EventCard"
-import {
-  EVENTS_JSON_0,
-  EVENTS_JSON_1,
-  EVENTS_JSON_2,
-} from "../constants/constants";
+import { fetchIPFSData } from "../deployments/upload.js"
 
-const eventsJSON = [
-  ...EVENTS_JSON_0["events"],
-  ...EVENTS_JSON_1["events"],
-  ...EVENTS_JSON_2["events"],
-];
+const eventsJSON = await fetchIPFSData()
 const Homepage = () => {
   return (
     <div>
@@ -35,7 +27,7 @@ const Homepage = () => {
           >
             New Events
           </h3>
-          {eventsJSON.map((e) => (
+          {eventsJSON.events.map((e) => (
             <Col className="cardcol" key={`event-${e.id}`}>
               <EventCard
                 title={e.title}

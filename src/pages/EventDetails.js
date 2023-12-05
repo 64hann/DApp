@@ -1,113 +1,61 @@
-import { Header } from "../components/Header";
-import { PageBreak } from "../components/Titles.js";
-import { useParams } from "react-router-dom";
-import { Image, Form } from "react-bootstrap";
-import { useState, useContext, useEffect } from "react";
-import { ViewContext } from "../context/ViewProvider";
-import Popup from "../components/Popup.js";
-import { MintButton } from "../components/InteractiveElements.js";
-import {
-  CONTRACT_ADDRESS_0,
-  CONTRACT_ADDRESS_1,
-  CID_0,
-  CID_1,
-  CID_2,
-  CONTRACT_ADDRESS_2,
-} from "../constants/constants.js";
+import { Header } from "../components/Header"
+import { PageBreak } from "../components/Titles.js"
+import { useParams } from "react-router-dom"
+import { Image, Form } from "react-bootstrap"
 
-import {
-  EVENTS_JSON_0,
-  EVENTS_JSON_1,
-  EVENTS_JSON_2,
-} from "../constants/constants";
+import { fetchIPFSData } from "../deployments/upload.js"
+import { useState, useContext, useEffect } from "react"
+import { ViewContext } from "../context/ViewProvider"
+import Popup from "../components/Popup.js"
+import { MintButton } from "../components/InteractiveElements.js"
 
-const eventsJSON = [
-  ...EVENTS_JSON_0["events"],
-  ...EVENTS_JSON_1["events"],
-  ...EVENTS_JSON_2["events"],
-];
+const eventsJSON = await fetchIPFSData()
 
-const ethers = require("ethers");
-const contract = require("../artifacts/contracts/Nfticket.sol/Nfticket.json");
-// const CONTRACT_ADDRESS = "0x37D6f533B19bB53683bDA0696476dF0043428075";
-// const CID = "ipfs://QmYfTFjZ5RCi8fzGEBxudrgNRVsDNN9uTN7dXwZzkYL5E1";
-const { ethereum } = window;
-const provider = new ethers.providers.Web3Provider(ethereum);
-const signer = provider.getSigner();
-export const listOfContracts = [
-  new ethers.Contract(CONTRACT_ADDRESS_0, contract.abi, signer),
-  new ethers.Contract(CONTRACT_ADDRESS_1, contract.abi, signer),
-  new ethers.Contract(CONTRACT_ADDRESS_2, contract.abi, signer),
-];
-const listOfCIDs = [CID_0, CID_1, CID_2];
+const ethers = require("ethers")
+const contract = require("../artifacts/contracts/Nfticket.sol/Nfticket.json")
+const CONTRACT_ADDRESS = "0x37D6f533B19bB53683bDA0696476dF0043428075"
+const CID = "ipfs://QmYfTFjZ5RCi8fzGEBxudrgNRVsDNN9uTN7dXwZzkYL5E1"
+const { ethereum } = window
+const provider = new ethers.providers.Web3Provider(ethereum)
+const signer = provider.getSigner()
 
-export const listOfOptions = [
-  {
-    value: ethers.utils.parseUnits(
-      (await listOfContracts[0].mintPrice()).toString(),
-      0
-    ),
-    gasLimit: 500000,
-  },
-  {
-    value: ethers.utils.parseUnits(
-      (await listOfContracts[1].mintPrice()).toString(),
-      0
-    ),
-    gasLimit: 500000,
-  },
-  {
-    value: ethers.utils.parseUnits(
-      (await listOfContracts[2].mintPrice()).toString(),
-      0
-    ),
-    gasLimit: 500000,
-  },
-];
+export const nft_contract = new ethers.Contract(
+  CONTRACT_ADDRESS,
+  contract.abi,
+  signer
+)
 
+export const options = {
+  value: ethers.utils.parseEther("0.0000000000000005"),
+  gasLimit: 500000,
+}
 export const States = {
   Loading: false,
   isError: false,
-};
+}
 
 const EventDetails = () => {
-  const [showPopup, setShowPopup] = useState(false);
-  const [state, setState] = useState(States);
-  const [mintPrice, setMintPrice] = useState(null);
-  const [maxSupply, setMaxSupply] = useState(0);
-  const [curSupply, setCurSupply] = useState(0);
-  const [numberOfTickets, setNumberOfTickets] = useState(1);
+  const [showPopup, setShowPopup] = useState(false)
+  const [state, setState] = useState(States)
+  const [mintPrice, setMintPrice] = useState(null)
+  const [numberOfTickets, setNumberOfTickets] = useState(1)
 
   const openPopUp = () => {
     setShowPopup(!showPopup)
   }
 
-  const params = useParams();
-  const event = eventsJSON[params.id];
-  const index = event.id;
-  const { user } = useContext(ViewContext);
-  const { address } = user;
-  const nft_contract = listOfContracts[index];
-  const CID = listOfCIDs[index];
-  var tokenId = null;
+  const params = useParams()
+  const event = eventsJSON.events[params.id]
+  const { user } = useContext(ViewContext)
+  const { address } = user
+  var tokenId = null
   useEffect(() => {
     async function fetchMintPrice() {
       const price = await nft_contract.mintPrice()
       setMintPrice(price.toString())
     }
-
-    async function fetchMaxSupply() {
-      const supply = await nft_contract.maxSupply();
-      setMaxSupply(supply.toString());
-    }
-    async function fetchCurSupply() {
-      const supply = await nft_contract.totalSupply();
-      setCurSupply(supply.toString());
-    }
-    fetchMintPrice();
-    fetchMaxSupply();
-    fetchCurSupply();
-  }, []);
+    fetchMintPrice()
+  }, [])
 
   const handleNumberChange = (e) => {
     setNumberOfTickets(e.target.value)
@@ -173,16 +121,7 @@ const EventDetails = () => {
             color: "#ffffff",
           }}
         >
-          {mintPrice / Math.pow(10, 18)} Eth / Ticket
-        </p>
-        <p
-          style={{
-            paddingLeft: "10px",
-            paddingRight: "10px",
-            color: "#ffffff",
-          }}
-        >
-          {curSupply}/{maxSupply} Tickets Minted
+          {mintPrice} Eth / Ticket
         </p>
         <p
           style={{
