@@ -51,4 +51,29 @@ const NotFoundPage = () => {
   )
 }
 
-export { MobileError, NotFoundPage }
+const NoMetaMask = () => {
+  const navigate = useNavigate()
+
+  return (
+    <div
+      style={{
+        padding: "20px",
+        textAlign: "center",
+        alignContent: "center",
+        color: "white",
+        fontFamily: "sohne-buch",
+      }}
+    >
+      <img
+        style={{ maxWidth: "100%", height: "auto" }}
+        src={require("../components/assets/nfticket.png")}
+        alt="nfticket"
+      ></img>
+      <h1>Please Install MetaMask</h1>
+      <p>MetaMask Wallet is required to use NFTickets</p>
+      <NFTButton onClick={() => navigate("/")} text="I've Installed MetaMask" />
+    </div>
+  )
+}
+
+export { MobileError, NotFoundPage, NoMetaMask }

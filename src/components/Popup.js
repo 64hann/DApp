@@ -1,6 +1,4 @@
 import React, { useState } from "react"
-import "./components.css"
-// You can define your styles in Popup.css
 import loadingGIF from "./assets/Bean Eater-1s-200px.gif"
 import successPNG from "./assets/checked.png"
 import failPNG from "./assets/cancel.png"

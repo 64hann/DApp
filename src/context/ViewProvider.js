@@ -60,6 +60,7 @@ export const ViewProvider = ({ children }) => {
       }
     } catch (e) {
       console.error(e)
+      console.log("provider error")
     }
   }, [])
 

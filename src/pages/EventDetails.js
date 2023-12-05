@@ -1,11 +1,11 @@
-import { Header } from "../components/Header";
-import { PageBreak } from "../components/Titles.js";
-import { useParams } from "react-router-dom";
-import { Image, Form } from "react-bootstrap";
-import { useState, useContext, useEffect } from "react";
-import { ViewContext } from "../context/ViewProvider";
-import Popup from "../components/Popup.js";
-import { MintButton } from "../components/InteractiveElements.js";
+import { Header } from "../components/Header"
+import { PageBreak } from "../components/Titles.js"
+import { useParams } from "react-router-dom"
+import { Image, Form } from "react-bootstrap"
+import { useState, useContext, useEffect } from "react"
+import { ViewContext } from "../context/ViewProvider"
+import Popup from "../components/Popup.js"
+import { MintButton } from "../components/InteractiveElements.js"
 import {
   CONTRACT_ADDRESS_0,
   CONTRACT_ADDRESS_1,
@@ -13,33 +13,31 @@ import {
   CID_1,
   CID_2,
   CONTRACT_ADDRESS_2,
-} from "../constants/constants.js";
+} from "../constants/constants.js"
 
 import {
   EVENTS_JSON_0,
   EVENTS_JSON_1,
   EVENTS_JSON_2,
-} from "../constants/constants";
+} from "../constants/constants"
 
 const eventsJSON = [
   ...EVENTS_JSON_0["events"],
   ...EVENTS_JSON_1["events"],
   ...EVENTS_JSON_2["events"],
-];
+]
+const listOfCIDs = [CID_0, CID_1, CID_2]
+const ethers = require("ethers")
+const contract = require("../artifacts/contracts/Nfticket.sol/Nfticket.json")
 
-const ethers = require("ethers");
-const contract = require("../artifacts/contracts/Nfticket.sol/Nfticket.json");
-// const CONTRACT_ADDRESS = "0x37D6f533B19bB53683bDA0696476dF0043428075";
-// const CID = "ipfs://QmYfTFjZ5RCi8fzGEBxudrgNRVsDNN9uTN7dXwZzkYL5E1";
-const { ethereum } = window;
-const provider = new ethers.providers.Web3Provider(ethereum);
-const signer = provider.getSigner();
+// const provider = new ethers.providers.Web3Provider(ethereum)
+// const signer = provider.getSigner()
+
 export const listOfContracts = [
   new ethers.Contract(CONTRACT_ADDRESS_0, contract.abi, signer),
   new ethers.Contract(CONTRACT_ADDRESS_1, contract.abi, signer),
   new ethers.Contract(CONTRACT_ADDRESS_2, contract.abi, signer),
-];
-const listOfCIDs = [CID_0, CID_1, CID_2];
+]
 
 export const listOfOptions = [
   {
@@ -63,33 +61,33 @@ export const listOfOptions = [
     ),
     gasLimit: 500000,
   },
-];
+]
 
 export const States = {
   Loading: false,
   isError: false,
-};
+}
 
 const EventDetails = () => {
-  const [showPopup, setShowPopup] = useState(false);
-  const [state, setState] = useState(States);
-  const [mintPrice, setMintPrice] = useState(null);
-  const [maxSupply, setMaxSupply] = useState(0);
-  const [curSupply, setCurSupply] = useState(0);
-  const [numberOfTickets, setNumberOfTickets] = useState(1);
+  const [showPopup, setShowPopup] = useState(false)
+  const [state, setState] = useState(States)
+  const [mintPrice, setMintPrice] = useState(null)
+  const [maxSupply, setMaxSupply] = useState(0)
+  const [curSupply, setCurSupply] = useState(0)
+  const [numberOfTickets, setNumberOfTickets] = useState(1)
 
   const openPopUp = () => {
     setShowPopup(!showPopup)
   }
 
-  const params = useParams();
-  const event = eventsJSON[params.id];
-  const index = event.id;
-  const { user } = useContext(ViewContext);
-  const { address } = user;
-  const nft_contract = listOfContracts[index];
-  const CID = listOfCIDs[index];
-  var tokenId = null;
+  const params = useParams()
+  const event = eventsJSON[params.id]
+  const index = event.id
+  const { user } = useContext(ViewContext)
+  const { address } = user
+  const nft_contract = listOfContracts[index]
+  const CID = listOfCIDs[index]
+  var tokenId = null
   useEffect(() => {
     async function fetchMintPrice() {
       const price = await nft_contract.mintPrice()
@@ -97,19 +95,19 @@ const EventDetails = () => {
     }
 
     async function fetchMaxSupply() {
-      const supply = await nft_contract.maxSupply();
-      setMaxSupply(supply.toString());
+      const supply = await nft_contract.maxSupply()
+      setMaxSupply(supply.toString())
     }
     async function fetchCurSupply() {
-      const supply = await nft_contract.totalSupply();
-      setCurSupply(supply.toString());
+      const supply = await nft_contract.totalSupply()
+      setCurSupply(supply.toString())
     }
-    fetchMintPrice();
-    fetchMaxSupply();
-    fetchCurSupply();
-  }, []);
+    fetchMintPrice()
+    fetchMaxSupply()
+    fetchCurSupply()
+  }, [])
 
-  const handleNumberChange = (e) => {
+  function handleNumberChange(e) {
     setNumberOfTickets(e.target.value)
   }
 
