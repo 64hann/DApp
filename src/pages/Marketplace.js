@@ -16,7 +16,7 @@ const eventsJSON = [
   ...EVENTS_JSON_0["events"],
   ...EVENTS_JSON_1["events"],
   ...EVENTS_JSON_2["events"],
-]
+
 
 const cardImageStyle = {
   borderTopLeftRadius: "5px",
@@ -51,6 +51,7 @@ const Marketplace = () => {
       setTickets(
         await ticketsList.map((ticket) => (ticket.title, ticket.tokenID))
       )
+
       var addedIn = false
       for (var i = 0; i < ticketsList.length; i++) {
         if (address !== ticketsList[i].address) {
@@ -73,11 +74,10 @@ const Marketplace = () => {
     try {
       setShowPopup(true)
       setState({ ...States, Loading: true })
-      const index = eventsJSON.findIndex((e) => e.title === t.title)
-      const tx = await listOfContracts[index].transferToken(
+      const tx = await nft_contract.transferToken(
         t.address,
         t.ticketno,
-        listOfOptions[index]
+        options
       )
       await tx.wait()
       await removeFromSale(t)
@@ -131,6 +131,7 @@ const Marketplace = () => {
                         <Card.Title>
                           <b>{t.title}</b>
                         </Card.Title>
+
                         <Row style={{ marginTop: "15px" }}>
                           <Col>{t.date}</Col>
                           <Col

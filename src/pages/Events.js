@@ -5,6 +5,7 @@ import { EventList } from "../components/EventList"
 import { SectionTitle } from "../components/Titles"
 import { Col, Row } from "react-bootstrap"
 import { FilterSearchBar } from "../components/InteractiveElements"
+
 import {
   EVENTS_JSON_0,
   EVENTS_JSON_1,
@@ -17,8 +18,8 @@ const eventsJSON = [
   ...EVENTS_JSON_2["events"],
 ]
 const Events = () => {
-  const [data, setData] = useState(eventsJSON)
-  const [filteredData, setFilteredData] = useState(eventsJSON)
+  const [data, setData] = useState(eventsJSON.events)
+  const [filteredData, setFilteredData] = useState(eventsJSON.events)
 
   function handleFilter(searchTerm) {
     const filtered = data.filter((item) => {
