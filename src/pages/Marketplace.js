@@ -128,14 +128,14 @@ const Marketplace = () => {
                         </Card.Title>
                         <Card.Text>
                           <Row style={{ marginTop: "15px" }}>
-                            <Col>{eventsJSON.date}</Col>
+                            <Col>{t.date}</Col>
                             <Col
                               style={{
                                 textAlign: "center",
                                 display: "inline-block",
                               }}
                             >
-                              {eventsJSON.venue}
+                              {t.venue}
                             </Col>
                             <Col
                               style={{
