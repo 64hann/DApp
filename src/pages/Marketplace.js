@@ -101,6 +101,7 @@ const Marketplace = () => {
       >
         <SectionTitle text="Marketplace" />
         <SectionDescription text="Explore our user-listed NFT ticket marketplace where each purchase is worry-free, backed by the assurance of blockchain verification." />
+
         {ticketsForSale.length > 0 ? (
           <>
             {ticketsForSale.map((t, i) => (
@@ -123,33 +124,27 @@ const Marketplace = () => {
                     <Col>
                       <Card.Body>
                         <Card.Title>
-                          <Row>
-                            <Col>
-                              <b>{t.title}</b>
-                            </Col>
-                          </Row>
+                          <b>{t.title}</b>
                         </Card.Title>
-                        <Card.Text>
-                          <Row style={{ marginTop: "15px" }}>
-                            <Col>{t.date}</Col>
-                            <Col
-                              style={{
-                                textAlign: "center",
-                                display: "inline-block",
-                              }}
-                            >
-                              {t.venue}
-                            </Col>
-                            <Col
-                              style={{
-                                textAlign: "right",
-                                marginRight: "10px",
-                              }}
-                            >
-                              <b>Ticket ID:</b> {t.ticketno}
-                            </Col>
-                          </Row>
-                        </Card.Text>
+                        <Row style={{ marginTop: "15px" }}>
+                          <Col>{t.date}</Col>
+                          <Col
+                            style={{
+                              textAlign: "center",
+                              display: "inline-block",
+                            }}
+                          >
+                            {t.venue}
+                          </Col>
+                          <Col
+                            style={{
+                              textAlign: "right",
+                              marginRight: "10px",
+                            }}
+                          >
+                            <b>Ticket ID:</b> {t.ticketno}
+                          </Col>
+                        </Row>
                         <Row style={{ marginTop: "25px" }}>
                           <Col
                             style={{
@@ -165,17 +160,29 @@ const Marketplace = () => {
                             }}
                           >
                             {tickets.includes(t.tokenID) ? (
-                              <Button
-                                style={{
-                                  backgroundColor: "black",
-                                  marginRight: "20px",
-                                }}
-                                onClick={() => {
-                                  sellTicket(t)
-                                }}
-                              >
-                                Buy
-                              </Button>
+                              t.address == address ? (
+                                <Button
+                                  disabled
+                                  style={{
+                                    backgroundColor: "black",
+                                    marginRight: "20px",
+                                  }}
+                                >
+                                  Your ticket
+                                </Button>
+                              ) : (
+                                <Button
+                                  style={{
+                                    backgroundColor: "black",
+                                    marginRight: "20px",
+                                  }}
+                                  onClick={() => {
+                                    sellTicket(t)
+                                  }}
+                                >
+                                  Buy
+                                </Button>
+                              )
                             ) : (
                               <Button>Sold</Button>
                             )}
