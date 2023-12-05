@@ -18,12 +18,9 @@ const CID = process.env.CID;
 
 // const { ethers } = require("hardhat");
 const ethers = require("ethers");
-// const { listOfContracts } = require("../pages/EventDetails");
 // console.log(PRIVATE_KEY);
 // console.log(API_URL);
-// const constants = require("../constants/constants.js");
-// const CONTRACT_ADDRESS_0 = constants.CONTRACT_ADDRESS_0;
-// const CONTRACT_ADDRESS_1 = constants.CONTRACT_ADDRESS_1;
+
 //Provider - node provider
 const alchemyProvider = new ethers.providers.JsonRpcProvider(API_URL);
 
@@ -35,16 +32,12 @@ const alchemyProvider = new ethers.providers.JsonRpcProvider(API_URL);
 const signer = new ethers.Wallet(PRIVATE_KEY, alchemyProvider);
 
 //Contract -> deployed contact
-// const nft_contract = new ethers.Contract(
-//   CONTRACT_ADDRESS,
-//   contract.abi,
-//   signer
-// );
 const nft_contract = new ethers.Contract(
-  "0x306d30811E98ADa96ef2C8C4147b776DbCe013e2",
+  CONTRACT_ADDRESS,
   contract.abi,
   signer
 );
+
 // Call functions inside nftcontract
 async function main() {
   // var isMintEnabled = await nft_contract.isMintEnabled()
@@ -53,10 +46,10 @@ async function main() {
   await enableMint();
   var isMintEnabledAfter = await nft_contract.isMintEnabled();
   console.log(`IsMintEnabled: ${isMintEnabledAfter}`);
-  // await setMaxSupply(100);
-  // var supply = await nft_contract.MAX_SUPPLY();
-  // console.log(`TotalSupply: ${supply}`);
-  // await setMintPrice(500);
+  await setMaxSupply(100);
+  var supply = await nft_contract.MAX_SUPPLY();
+  console.log(`TotalSupply: ${supply}`);
+  await setMintPrice(500);
   var mintPrice = await nft_contract.mintPrice();
   console.log(`MintPrice: ${mintPrice}`);
 }
