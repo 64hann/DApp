@@ -65,7 +65,6 @@ export const listOfOptions = [
   },
 ];
 
-
 export const States = {
   Loading: false,
   isError: false,
