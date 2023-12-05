@@ -3,7 +3,7 @@ import { Button, Row, Col, Card } from "react-bootstrap"
 import { Header } from "../components/Header"
 import { SectionDescription, SectionTitle } from "../components/Titles"
 import { getForSale, removeFromSale } from "../database/dynamo/aws.js"
-import { listOfContracts, listOfOptions, States } from "../utils/services.js"
+import { GetContracts, GetOptions, States } from "../utils/services.js"
 import { ViewContext } from "../context/ViewProvider"
 import Popup from "../components/Popup.js"
 import {
@@ -11,6 +11,7 @@ import {
   EVENTS_JSON_1,
   EVENTS_JSON_2,
 } from "../constants/constants"
+const ethers = require("ethers")
 
 const eventsJSON = [
   ...EVENTS_JSON_0["events"],
@@ -27,6 +28,10 @@ const cardImageStyle = {
   height: "9.8rem",
   objectFit: "cover",
 }
+
+const listOfContracts = GetContracts()
+
+const listOfOptions = GetOptions()
 
 const Marketplace = () => {
   const { user } = useContext(ViewContext)

@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react"
 import { ViewContext } from "../context/ViewProvider"
-import { listOfContracts } from "../utils/services"
+import { GetContracts } from "../utils/services"
 import { Col, Accordion } from "react-bootstrap"
 import { TicketCard, Heading } from "./TicketCard"
 import { PageBreak, SectionDescription, SectionTitle } from "./Titles"
@@ -12,6 +12,8 @@ import {
   EVENTS_JSON_1,
   EVENTS_JSON_2,
 } from "../constants/constants"
+
+const listOfContracts = GetContracts()
 
 const eventsJSON = [
   ...EVENTS_JSON_0["events"],

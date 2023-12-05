@@ -14,8 +14,7 @@ import {
   CID_2,
   CONTRACT_ADDRESS_2,
 } from "../constants/constants.js"
-import { States, listOfContracts } from "../utils/services.js"
-
+import { States, GetContracts } from "../utils/services.js"
 import {
   EVENTS_JSON_0,
   EVENTS_JSON_1,
@@ -28,6 +27,7 @@ const eventsJSON = [
 ]
 
 const ethers = require("ethers")
+const listOfContracts = GetContracts()
 
 const listOfCIDs = [CID_0, CID_1, CID_2]
 
@@ -53,17 +53,29 @@ const EventDetails = () => {
 
   useEffect(() => {
     async function fetchMintPrice() {
-      const price = await nft_contract.mintPrice()
-      setMintPrice(price.toString())
+      try {
+        const price = await nft_contract.mintPrice()
+        setMintPrice(price.toString())
+      } catch (err) {
+        console.log("User not logged in")
+      }
     }
 
     async function fetchMaxSupply() {
-      const supply = await nft_contract.maxSupply()
-      setMaxSupply(supply.toString())
+      try {
+        const supply = await nft_contract.maxSupply()
+        setMaxSupply(supply.toString())
+      } catch (err) {
+        console.log("User not logged in")
+      }
     }
     async function fetchCurSupply() {
-      const supply = await nft_contract.totalSupply()
-      setCurSupply(supply.toString())
+      try {
+        const supply = await nft_contract.totalSupply()
+        setCurSupply(supply.toString())
+      } catch (err) {
+        console.log("User not logged in")
+      }
     }
     fetchMintPrice()
     fetchMaxSupply()
