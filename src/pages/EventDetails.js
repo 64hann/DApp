@@ -27,7 +27,7 @@ const eventsJSON = [
 ]
 
 const ethers = require("ethers")
-const listOfContracts = GetContracts()
+const listOfContracts = await GetContracts()
 
 const listOfCIDs = [CID_0, CID_1, CID_2]
 

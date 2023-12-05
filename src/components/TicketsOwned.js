@@ -13,7 +13,7 @@ import {
   EVENTS_JSON_2,
 } from "../constants/constants"
 
-const listOfContracts = GetContracts()
+const listOfContracts = await GetContracts()
 
 const eventsJSON = [
   ...EVENTS_JSON_0["events"],

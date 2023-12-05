@@ -29,7 +29,7 @@ const cardImageStyle = {
   objectFit: "cover",
 }
 
-const listOfContracts = GetContracts()
+const listOfContracts = await GetContracts()
 
 const listOfOptions = GetOptions()
 
