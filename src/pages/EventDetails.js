@@ -43,23 +43,29 @@ const listOfCIDs = [CID_0, CID_1, CID_2];
 
 export const listOfOptions = [
   {
-    value: ethers.utils.parseUnits((await listOfContracts[0].mintPrice()).toString(), 0),
+    value: ethers.utils.parseUnits(
+      (await listOfContracts[0].mintPrice()).toString(),
+      0
+    ),
     gasLimit: 500000,
   },
   {
-    value: ethers.utils.parseEther("0.0000000000000005"),
+    value: ethers.utils.parseUnits(
+      (await listOfContracts[1].mintPrice()).toString(),
+      0
+    ),
     gasLimit: 500000,
   },
   {
-    value: ethers.utils.parseEther("0.0000000000000005"),
+    value: ethers.utils.parseUnits(
+      (await listOfContracts[2].mintPrice()).toString(),
+      0
+    ),
     gasLimit: 500000,
   },
 ];
 
-export const options = {
-  value: ethers.utils.parseEther("0.0000000000000005"),
-  gasLimit: 500000,
-}
+
 export const States = {
   Loading: false,
   isError: false,

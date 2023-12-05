@@ -98,6 +98,7 @@ const TicketsOwned = () => {
         eventsJSON[2].title,
         ticket.toNumber(),
       ]);
+      console.log(tickets);
       ticketCounter += tickets.length;
       ownedTickets[2] = tickets;
 
@@ -164,7 +165,13 @@ const TicketsOwned = () => {
                             id={eventsJSON[id].id}
                             artist={eventsJSON[id].artist}
                             venue={eventsJSON[id].venue}
-                            isListed={ticketsForSale.some(e => e.length == ticket.length && e.every((value, index) => value === ticket[index]))}
+                            isListed={ticketsForSale.some(
+                              (e) =>
+                                e.length == ticket.length &&
+                                e.every(
+                                  (value, index) => value === ticket[index]
+                                )
+                            )}
                             handleList={handleList}
                             handleUnlist={handleUnlist}
                           />

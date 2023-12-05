@@ -70,10 +70,11 @@ const Marketplace = () => {
       console.log(t)
       setShowPopup(true)
       setState({ ...States, Loading: true })
-      const tx = await listOfContracts[0].transferToken(
+      const index = eventsJSON.findIndex((e) => e.title === t.title)
+      const tx = await listOfContracts[index].transferToken(
         t.address,
         t.ticketno,
-        listOfOptions[0]
+        listOfOptions[index]
       )
       await tx.wait()
       await removeFromSale(t)
