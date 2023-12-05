@@ -135,7 +135,7 @@ const Marketplace = () => {
                                 display: "inline-block",
                               }}
                             >
-                              {eventsJSON[i].venue}
+                              {eventsJSON.venue}
                             </Col>
                             <Col
                               style={{
