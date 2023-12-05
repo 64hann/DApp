@@ -31,7 +31,7 @@ const cardImageStyle = {
 
 const listOfContracts = await GetContracts()
 
-const listOfOptions = GetOptions()
+const listOfOptions = await GetOptions()
 
 const Marketplace = () => {
   const { user } = useContext(ViewContext)
