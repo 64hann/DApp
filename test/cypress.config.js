@@ -13,7 +13,14 @@ module.exports = defineConfig({
 
   e2e: {
     setupNodeEvents(on, config) {
-      // implement node event listeners here
+      on("before:browser:launch", (browser = {}, launchOptions) => {
+        launchOptions.extensions.push(
+          // ENTER THE PATH TO METAMASK EXTENSION HERE
+          "/Users/weiguanghan/Library/Application Support/Google/Chrome/Default/Extensions/nkbihfbeogaeaoehlefnkodbefgpgknn/11.5.1_0"
+        );
+        return launchOptions;
+        // implement node event listeners here
+      });
     },
   },
 });

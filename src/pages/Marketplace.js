@@ -2,14 +2,22 @@ import { useState, useEffect, useContext } from "react"
 import { Button, Row, Col, Card } from "react-bootstrap"
 import { Header } from "../components/Header"
 import { SectionDescription, SectionTitle } from "../components/Titles"
-import { getForSale, removeFromSale } from "../database/aws"
-import { nft_contract, options } from "./EventDetails"
+import { getForSale, removeFromSale } from "../database/dynamo/aws.js"
+import { listOfContracts, listOfOptions, nft_contract, options } from "./EventDetails"
 import { States } from "./EventDetails"
 import { ViewContext } from "../context/ViewProvider"
 import Popup from "../components/Popup.js"
-import { fetchIPFSData } from "../deployments/upload"
+import {
+  EVENTS_JSON_0,
+  EVENTS_JSON_1,
+  EVENTS_JSON_2,
+} from "../constants/constants";
 
-const eventsJSON = await fetchIPFSData()
+const eventsJSON = [
+  ...EVENTS_JSON_0["events"],
+  ...EVENTS_JSON_1["events"],
+  ...EVENTS_JSON_2["events"],
+];
 
 const cardImageStyle = {
   borderTopLeftRadius: "5px",
@@ -37,7 +45,7 @@ const Marketplace = () => {
   useEffect(() => {
     async function fetchTicketsForSale() {
       var ticketsList = await getForSale()
-      setTickets(await ticketsList.map((ticket) => ticket.tokenID))
+      setTickets(await ticketsList.map((ticket) => (ticket.title,ticket.tokenID)));
       var addedIn = false
       for (var i = 0; i < ticketsList.length; i++) {
         if (address !== ticketsList[i].address) {
@@ -59,12 +67,14 @@ const Marketplace = () => {
 
   async function sellTicket(t) {
     try {
+      console.log(t)
       setShowPopup(true)
       setState({ ...States, Loading: true })
-      const tx = await nft_contract.transferToken(
+      const index = eventsJSON.findIndex((e) => e.title === t.title)
+      const tx = await listOfContracts[index].transferToken(
         t.address,
         t.ticketno,
-        options
+        listOfOptions[index]
       )
       await tx.wait()
       await removeFromSale(t)
@@ -118,14 +128,14 @@ const Marketplace = () => {
                         </Card.Title>
                         <Card.Text>
                           <Row style={{ marginTop: "15px" }}>
-                            <Col>{eventsJSON.events[i].date}</Col>
+                            <Col>{t.date}</Col>
                             <Col
                               style={{
                                 textAlign: "center",
                                 display: "inline-block",
                               }}
                             >
-                              {eventsJSON.events[i].venue}
+                              {t.venue}
                             </Col>
                             <Col
                               style={{

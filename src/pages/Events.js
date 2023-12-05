@@ -7,12 +7,13 @@ import { SectionTitle } from "../components/Titles"
 import { Col, Row } from "react-bootstrap"
 import { FilterSearchBar } from "../components/InteractiveElements"
 // import eventsJSON from "../testEvents.json"
-import { fetchIPFSData } from "../deployments/upload.js"
+import { EVENTS_JSON_0, EVENTS_JSON_1, EVENTS_JSON_2  } from "../constants/constants"
 
-const eventsJSON = await fetchIPFSData()
+const eventsJSON =[...EVENTS_JSON_0['events'],...EVENTS_JSON_1['events'],...EVENTS_JSON_2['events']]
+// console.log(eventsJSON)
 const Events = () => {
-  const [data, setData] = useState(eventsJSON.events)
-  const [filteredData, setFilteredData] = useState(eventsJSON.events)
+  const [data, setData] = useState(eventsJSON)
+  const [filteredData, setFilteredData] = useState(eventsJSON)
 
   function handleFilter(searchTerm) {
     const filtered = data.filter((item) => {

@@ -13,9 +13,9 @@ contract Nfticket is
     Ownable,
     ReentrancyGuard
 {
-    uint256 public mintPrice;
+    uint256 immutable public mintPrice;
+    uint256 immutable public maxSupply;
     uint256 private _nextTokenId;
-    uint256 public MAX_SUPPLY;
     bool public isMintEnabled;
 
     // New tokens will be automatically assigned an incremental id.
@@ -25,17 +25,24 @@ contract Nfticket is
     This implements an optional extension of ERC721 defined in the EIP
      that adds enumerability of all the token ids in the contract as well as all token ids owned by each account.
     */
-    constructor(address initialOwner)
+    constructor(address initialOwner, uint256 _maxSupply, uint256 _mintPrice)
         ERC721("Taylor Swift", "TS")
-        Ownable(initialOwner)
-    {}
+        Ownable(initialOwner) 
+    {
+        mintPrice = _mintPrice;
+        maxSupply = _maxSupply;
+    }
+    modifier gasThrottle(uint numOfTickets) {
+        require(tx.gasprice < (500000000000*numOfTickets), "Exceeded gas price Limit");
+        _;
+    }
 
     receive() external payable {}
 
     fallback() external payable {}
 
     function transferAll() external onlyOwner {
-        payable(this.owner()).transfer(payable(address(this)).balance);
+        payable(owner()).transfer(payable(address(this)).balance);
     }
 
     function getTicketsOwned(address addr)
@@ -54,31 +61,23 @@ contract Nfticket is
         isMintEnabled = !isMintEnabled;
     }
 
-    function setmintPrice(uint256 mint_price) external onlyOwner {
-        mintPrice = mint_price;
-    }
-
-    function setMaxSupply(uint256 max_supply) external onlyOwner {
-        MAX_SUPPLY = max_supply;
-    }
-
     function safeMint(
         address to,
         string calldata uri,
         uint256 noOfTickets
-    ) public payable nonReentrant {
+    ) public payable gasThrottle(noOfTickets) nonReentrant {
+        require(msg.value >= (noOfTickets * mintPrice), "Not enough ether");
         for (uint256 i; i < noOfTickets; i++) {
             uint256 tokenId = _nextTokenId++;
-            require(isMintEnabled == true, "Minting has not been enabled!");
+            require(isMintEnabled, "Minting has not been enabled!");
             require(
-                tokenId < MAX_SUPPLY,
+                tokenId < maxSupply,
                 "All available tickets have been minted"
             );
             require(balanceOf(to) < 6, "Maximum tickets reached for user");
-            require(msg.value == ( noOfTickets * mintPrice), "Not enough ether");
-
-            _safeMint(to, tokenId);
             _setTokenURI(tokenId, uri);
+            _safeMint(to, tokenId);
+
         }
     }
 

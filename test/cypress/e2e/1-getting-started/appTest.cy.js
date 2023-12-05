@@ -11,35 +11,99 @@
 // please read our getting started guide:
 // https://on.cypress.io/introduction-to-cypress
 
-describe('example to-do app', () => {
+describe("example to-do app", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000");
+    // connect to metamask before all tests
+    cy.contains("Connect Wallet").click();
+    cy.clearCookies();
+    // cy.wait(50000);
+    // Enter your  credentials and go through the metamask process
+  });
+  // var isListed = null;
+  // var ticketNo = null;
+  // it("User tries to list his Taylor Swift ticket", () => {
+  //   cy.contains("My Tickets").click();
+  //   cy.contains("Taylor Swift The Eras Tour").click();
+  //   // cy.wrap(first_ticket).find("card-text")
+  //   cy.get(".acc-body")
+  //     .first()
+  //     .find("button.btn.btn-primary")
+  //     .then((first_ticket_owned_button) => {
+  //       cy.wrap(first_ticket_owned_button)
+  //         .invoke("text")
+  //         .then((text) => {
+  //           console.log(text);
+  //           if (text == "Unlist Ticket") {
+  //             cy.wrap(first_ticket_owned_button).click();
+  //             cy.wait(1000);
+  //             cy.on("window:alert", (text) => {
+  //               expect(text).to.eq("Ticket unlisted successfully");
+  //             });
+  //             isListed = false;
+  //           } else {
+  //             cy.wrap(first_ticket_owned_button).click();
+  //             cy.wait(1000);
+  //             cy.on("window:alert", (text) => {
+  //               expect(text).to.eq("Ticket listed successfully");
+  //             });
+  //             isListed = true;
+  //           }
+  //         });
+  //       cy.get(".acc-body")
+  //         .first()
+  //         .find("p.card-text")
+  //         .invoke("text")
+  //         .then((text) => {
+  //           console.log(text);
+  //           var arr = text.split(":");
+  //           ticketNo = arr[arr.length - 1].trim();
+  //           console.log(ticketNo);
+  //         });
+  //     })
+  //     .then(() => {
+  //       cy.contains("Marketplace").click();
+  //       if (isListed) {
+  //         cy.contains("Ticket ID: " + ticketNo).should("exist");
+  //       } else {
+  //         cy.contains("Ticket ID: " + ticketNo).should("not.exist");
+  //       }
+  //     });
+  // });
+
+  it("User tries to buy a Taylor Swift ticket from the MarketPlace", () => {
+
   })
 
-  it('See whether Events work', () => {
-    // We use the `cy.get()` command to get all elements that match the selector.
-    // Then, we use `should` to assert that there are two matched items,
-    // which are the two default items.
-    cy.contains("Events").should("exist");
-    cy.contains('Events').click()
-    cy.url().should('include',"/events")
-    cy.contains("Upcoming Events").should("be.visible");
-    cy.get("div.event-list.card").should('have.descendants','img').and('have.descendants','div.card-body')
-    cy.get("div.event-list.card").first().click();
-    cy.contains("BUY TICKETS").should("be.visible").click();
-    // cy.get("img");
-    // cy.contains("Taylor Swift").should("be.visible").click();
-    //.should("exist").should("be.visible").click(); 
+  it("User tries to mint a Taylor Swift ticket", () => {})
 
-    // We can go even further and check that the default todos each contain
-    // the correct text. We use the `first` and `last` functions
-    // to get just the first and last matched elements individually,
-    // and then perform an assertion with `should`.
-    // cy.get('.todo-list li').first().should('have.text', 'Pay electric bill')
-    // cy.get('.todo-list li').last().should('have.text', 'Walk the dog')
-  })
-})
 
+  // it("User tries to buy a Taylor Swift ticket", () => {  
+});
+// cy.contains("List Ticket").click();
+// "btn btn-primary"
+// We use the `cy.get()` command to get all elements that match the selector.
+// Then, we use `should` to assert that there are two matched items,
+// which are the two default items.
+// cy.contains("Events").should("exist");
+// cy.contains('Events').click()
+// cy.url().should('include',"/events")
+// cy.contains("Upcoming Events").should("be.visible");
+// cy.get("div.event-list.card").should('have.descendants','img').and('have.descendants','div.card-body')
+// cy.get("div.event-list.card").first().click();
+// cy.contains("BUY TICKETS").should("be.visible").click();
+// cy.get("img");
+// cy.contains("Taylor Swift").should("be.visible").click();
+//.should("exist").should("be.visible").click();
+
+// We can go even further and check that the default todos each contain
+// the correct text. We use the `first` and `last` functions
+// to get just the first and last matched elements individually,
+// and then perform an assertion with `should`.
+// cy.get('.todo-list li').first().should('have.text', 'Pay electric bill')
+// cy.get('.todo-list li').last().should('have.text', 'Walk the dog')
+//   })
+// })
 
 //   it('can add new todo items', () => {
 //     // We'll store our item text in a variable so we can reuse it
