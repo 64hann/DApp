@@ -36,6 +36,7 @@ const putForSale = async function (req, res) {
   var params = {
     TableName: TABLE_NAME,
     Item: {
+      eventID: req["eventID"],
       tokenID: req["id"],
       title: req["title"],
       ticketno: req["ticketno"],
@@ -77,5 +78,6 @@ const removeFromSale = function (req, res) {
     })
   })
 }
+
 
 module.exports = { getForSale, putForSale, removeFromSale }

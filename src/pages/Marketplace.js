@@ -3,7 +3,7 @@ import { Button, Row, Col, Card } from "react-bootstrap"
 import { Header } from "../components/Header"
 import { SectionDescription, SectionTitle } from "../components/Titles"
 import { getForSale, removeFromSale } from "../database/dynamo/aws.js"
-import { nft_contract, options } from "./EventDetails"
+import { listOfContracts, listOfOptions, nft_contract, options } from "./EventDetails"
 import { States } from "./EventDetails"
 import { ViewContext } from "../context/ViewProvider"
 import Popup from "../components/Popup.js"
@@ -45,7 +45,7 @@ const Marketplace = () => {
   useEffect(() => {
     async function fetchTicketsForSale() {
       var ticketsList = await getForSale()
-      setTickets(await ticketsList.map((ticket) => ticket.tokenID))
+      setTickets(await ticketsList.map((ticket) => (ticket.title,ticket.tokenID)));
       var addedIn = false
       for (var i = 0; i < ticketsList.length; i++) {
         if (address !== ticketsList[i].address) {
@@ -67,12 +67,13 @@ const Marketplace = () => {
 
   async function sellTicket(t) {
     try {
+      console.log(t)
       setShowPopup(true)
       setState({ ...States, Loading: true })
-      const tx = await nft_contract.transferToken(
+      const tx = await listOfContracts[0].transferToken(
         t.address,
         t.ticketno,
-        options
+        listOfOptions[0]
       )
       await tx.wait()
       await removeFromSale(t)
@@ -133,7 +134,7 @@ const Marketplace = () => {
                                 display: "inline-block",
                               }}
                             >
-                              {eventsJSON[i].venue}
+                              {eventsJSON.venue}
                             </Col>
                             <Col
                               style={{
