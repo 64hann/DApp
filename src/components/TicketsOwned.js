@@ -147,7 +147,7 @@ const TicketsOwned = () => {
           <Accordion className="accordion" style={{ fontWeight: "bold" }}>
             {ownedTickets.map((event, id) => (
               <>
-                {event[id] ? (
+                {event ? (
                   <>
                     <PageBreak height="30px" />
                     <Accordion.Item
