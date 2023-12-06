@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/DApp/static/css/main.c86b17d1.css",
+    "main.js": "/DApp/static/js/main.be3e92dd.js",
+    "static/js/787.e8add12d.chunk.js": "/DApp/static/js/787.e8add12d.chunk.js",
+    "static/media/tabelaSoft-Light.ttf": "/DApp/static/media/tabelaSoft-Light.8370fd74d5797df825f8.ttf",
+    "static/media/tabelaSoft-Regular.ttf": "/DApp/static/media/tabelaSoft-Regular.6fe5940fa04ed89c79f2.ttf",
+    "static/media/tabelaSoft-Bold.ttf": "/DApp/static/media/tabelaSoft-Bold.f38ab5a9d79bd8d96cdf.ttf",
+    "static/media/Bean Eater-1s-200px.gif": "/DApp/static/media/Bean Eater-1s-200px.109da382faf912507b91.gif",
+    "static/media/block.jpeg": "/DApp/static/media/block.f870a55c82b9de995cf2.jpeg",
+    "static/media/axios.cjs": "/DApp/static/media/axios.41e4fd9e0e3281c1577b.cjs",
+    "static/media/qr-code.png": "/DApp/static/media/qr-code.03cb21b38ac6a142f84e.png",
+    "static/media/cancel.png": "/DApp/static/media/cancel.1583723861a66fb05605.png",
+    "static/media/checked.png": "/DApp/static/media/checked.6f298cca57a5a8b36055.png",
+    "static/media/Söhne-Dreiviertelfett.otf": "/DApp/static/media/Söhne-Dreiviertelfett.684eba8dafffedf949f0.otf",
+    "static/media/Söhne-Extraleicht.otf": "/DApp/static/media/Söhne-Extraleicht.877176c82289adf9f61d.otf",
+    "static/media/Söhne-Buch.otf": "/DApp/static/media/Söhne-Buch.7545d9ee48524b72b6ab.otf",
+    "static/media/nfticket.png": "/DApp/static/media/nfticket.7b2c3d5d8a7fed559bab.png",
+    "index.html": "/DApp/index.html",
+    "main.c86b17d1.css.map": "/DApp/static/css/main.c86b17d1.css.map",
+    "main.be3e92dd.js.map": "/DApp/static/js/main.be3e92dd.js.map",
+    "787.e8add12d.chunk.js.map": "/DApp/static/js/787.e8add12d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c86b17d1.css",
+    "static/js/main.be3e92dd.js"
+  ]
+}
