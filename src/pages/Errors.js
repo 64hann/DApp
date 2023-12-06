@@ -71,7 +71,10 @@ const NoMetaMask = () => {
       ></img>
       <h1>Please Install MetaMask</h1>
       <p>MetaMask Wallet is required to use NFTickets</p>
-      <NFTButton onClick={() => navigate("/")} text="I've Installed MetaMask" />
+      <NFTButton
+        onClick={() => window.open("https://metamask.io/download/", "_blank")}
+        text="Install MetaMask"
+      />
     </div>
   )
 }
