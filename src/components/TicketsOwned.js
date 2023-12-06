@@ -4,7 +4,6 @@ import { GetContracts } from "../utils/services"
 import { Col, Accordion } from "react-bootstrap"
 import { TicketCard, Heading } from "./TicketCard"
 import { PageBreak, SectionDescription, SectionTitle } from "./Titles"
-import { getForSale, removeFromSale, putForSale } from "../database/dynamo/aws"
 import "./components.css"
 
 import {
@@ -12,6 +11,12 @@ import {
   EVENTS_JSON_1,
   EVENTS_JSON_2,
 } from "../constants/constants"
+
+const {
+  getForSale,
+  removeFromSale,
+  putForSale,
+} = require("../database/dynamo/aws")
 
 const listOfContracts = await GetContracts()
 

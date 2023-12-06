@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from "react"
 import { Button, Row, Col, Card } from "react-bootstrap"
 import { Header } from "../components/Header"
 import { SectionDescription, SectionTitle } from "../components/Titles"
-import { getForSale, removeFromSale } from "../database/dynamo/aws.js"
 import { GetContracts, GetOptions, States } from "../utils/services.js"
 import { ViewContext } from "../context/ViewProvider"
 import Popup from "../components/Popup.js"
@@ -11,6 +10,8 @@ import {
   EVENTS_JSON_1,
   EVENTS_JSON_2,
 } from "../constants/constants"
+
+const { getForSale, removeFromSale } = require("../database/dynamo/aws.js")
 
 const eventsJSON = [
   ...EVENTS_JSON_0["events"],
