@@ -47,8 +47,8 @@ const TicketsOwned = () => {
     setUpdate(!update)
   }
 
-  function handleUnlist(title, ticketno, address) {
-    removeFromSale({ tokenID: ticketno + address + title })
+  async function handleUnlist(title, ticketno, address) {
+    await removeFromSale({ tokenID: ticketno + address + title })
     setUpdate(!update)
   }
 
