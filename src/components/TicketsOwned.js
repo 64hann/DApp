@@ -62,6 +62,7 @@ const TicketsOwned = () => {
         eventsJSON[0].title,
         ticket.toNumber(),
       ])
+
       console.log(tickets)
       ticketCounter += tickets.length
 
@@ -89,6 +90,7 @@ const TicketsOwned = () => {
       ownedTickets[2] = tickets
 
       setTotalTickets(ticketCounter)
+
     }
 
     fetchTickets()
@@ -99,6 +101,7 @@ const TicketsOwned = () => {
         tickets.map((ticket) => [ticket.title, ticket.ticketno])
       )
       console.log("Tickets for Sale", ticketsForSale)
+
     }
 
     fetchTicketsForSale()
@@ -117,31 +120,25 @@ const TicketsOwned = () => {
           <Accordion className="accordion" style={{ fontWeight: "bold" }}>
             {ownedTickets.map((event, id) => (
               <>
-                {event ? (
+                {event[0] ? (
                   <>
                     <PageBreak height="30px" />
                     <Accordion.Item
                       eventKey={id}
                       style={{ backgroundColor: "black" }}
                     >
-                      <Heading title={eventsJSON[id].title} />
+                      <Heading title={eventsJSON.events[id].title} />
                       {event.map((ticket, idx) => (
                         <Col className="acc-body" eventkey={idx}>
                           <TicketCard
-                            ticketno={ticket[1]}
-                            title={eventsJSON[id].title}
-                            date={eventsJSON[id].date}
-                            imageURL={eventsJSON[id].imageURL}
-                            id={eventsJSON[id].id}
-                            artist={eventsJSON[id].artist}
-                            venue={eventsJSON[id].venue}
-                            isListed={ticketsForSale.some(
-                              (e) =>
-                                e.length == ticket.length &&
-                                e.every(
-                                  (value, index) => value === ticket[index]
-                                )
-                            )}
+                            ticketno={ticket}
+                            title={eventsJSON.events[id].title}
+                            date={eventsJSON.events[id].date}
+                            imageURL={eventsJSON.events[id].imageURL}
+                            id={eventsJSON.events[id].id}
+                            artist={eventsJSON.events[id].artist}
+                            venue={eventsJSON.events[id].venue}
+                            isListed={ticketsForSale.includes(ticket)}
                             handleList={handleList}
                             handleUnlist={handleUnlist}
                           />

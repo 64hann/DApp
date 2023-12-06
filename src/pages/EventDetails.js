@@ -2,10 +2,12 @@ import { Header } from "../components/Header"
 import { PageBreak } from "../components/Titles.js"
 import { useParams } from "react-router-dom"
 import { Image, Form } from "react-bootstrap"
+
 import { useState, useContext, useEffect } from "react"
 import { ViewContext } from "../context/ViewProvider"
 import Popup from "../components/Popup.js"
 import { MintButton } from "../components/InteractiveElements.js"
+
 import { CID_0, CID_1, CID_2 } from "../constants/constants.js"
 import { States, GetContracts } from "../utils/services.js"
 import {
@@ -28,8 +30,10 @@ const EventDetails = () => {
   const [showPopup, setShowPopup] = useState(false)
   const [state, setState] = useState(States)
   const [mintPrice, setMintPrice] = useState(null)
+
   const [maxSupply, setMaxSupply] = useState(0)
   const [curSupply, setCurSupply] = useState(0)
+
   const [numberOfTickets, setNumberOfTickets] = useState(1)
 
   const openPopUp = () => {
@@ -37,6 +41,7 @@ const EventDetails = () => {
   }
 
   const params = useParams()
+
   const event = eventsJSON[params.id]
   const index = event.id
   const { user } = useContext(ViewContext)
@@ -73,6 +78,7 @@ const EventDetails = () => {
     fetchMintPrice()
     fetchMaxSupply()
     fetchCurSupply()
+
   }, [])
 
   function handleNumberChange(e) {
@@ -139,16 +145,7 @@ const EventDetails = () => {
             color: "#ffffff",
           }}
         >
-          {mintPrice / Math.pow(10, 18)} Eth / Ticket
-        </p>
-        <p
-          style={{
-            paddingLeft: "10px",
-            paddingRight: "10px",
-            color: "#ffffff",
-          }}
-        >
-          {curSupply}/{maxSupply} Tickets Minted
+          {mintPrice} Eth / Ticket
         </p>
         <p
           style={{
