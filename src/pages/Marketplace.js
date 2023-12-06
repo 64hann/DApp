@@ -2,14 +2,21 @@ import { useState, useEffect, useContext } from "react"
 import { Button, Row, Col, Card } from "react-bootstrap"
 import { Header } from "../components/Header"
 import { SectionDescription, SectionTitle } from "../components/Titles"
-import { getForSale, removeFromSale } from "../database/aws"
-import { nft_contract, options } from "./EventDetails"
-import { States } from "./EventDetails"
+import { getForSale, removeFromSale } from "../database/dynamo/aws.js"
+import { GetContracts, GetOptions, States } from "../utils/services.js"
 import { ViewContext } from "../context/ViewProvider"
 import Popup from "../components/Popup.js"
-import { fetchIPFSData } from "../deployments/upload"
+import {
+  EVENTS_JSON_0,
+  EVENTS_JSON_1,
+  EVENTS_JSON_2,
+} from "../constants/constants"
 
-const eventsJSON = await fetchIPFSData()
+const eventsJSON = [
+  ...EVENTS_JSON_0["events"],
+  ...EVENTS_JSON_1["events"],
+  ...EVENTS_JSON_2["events"],
+
 
 const cardImageStyle = {
   borderTopLeftRadius: "5px",
@@ -20,6 +27,10 @@ const cardImageStyle = {
   height: "9.8rem",
   objectFit: "cover",
 }
+
+const listOfContracts = await GetContracts()
+
+const listOfOptions = await GetOptions()
 
 const Marketplace = () => {
   const { user } = useContext(ViewContext)
@@ -37,7 +48,10 @@ const Marketplace = () => {
   useEffect(() => {
     async function fetchTicketsForSale() {
       var ticketsList = await getForSale()
-      setTickets(await ticketsList.map((ticket) => ticket.tokenID))
+      setTickets(
+        await ticketsList.map((ticket) => (ticket.title, ticket.tokenID))
+      )
+
       var addedIn = false
       for (var i = 0; i < ticketsList.length; i++) {
         if (address !== ticketsList[i].address) {
@@ -52,7 +66,6 @@ const Marketplace = () => {
           addedIn = false
         }
       }
-      console.log(ticketsForSale)
     }
     fetchTicketsForSale()
   }, [sold, address])
@@ -70,7 +83,6 @@ const Marketplace = () => {
       await removeFromSale(t)
       setSold(true)
       setState({ ...States, Loading: false, isError: false })
-      // return alert("Transaction successful!");
     } catch (err) {
       console.log(err)
       setState({ ...States, Loading: false, isError: true })
@@ -88,6 +100,13 @@ const Marketplace = () => {
       >
         <SectionTitle text="Marketplace" />
         <SectionDescription text="Explore our user-listed NFT ticket marketplace where each purchase is worry-free, backed by the assurance of blockchain verification." />
+
+        {!address ? (
+          <SectionDescription text="Please connect your MetaMask wallet to buy tickets on sale." />
+        ) : (
+          <></>
+        )}
+
         {ticketsForSale.length > 0 ? (
           <>
             {ticketsForSale.map((t, i) => (
@@ -110,33 +129,28 @@ const Marketplace = () => {
                     <Col>
                       <Card.Body>
                         <Card.Title>
-                          <Row>
-                            <Col>
-                              <b>{t.title}</b>
-                            </Col>
-                          </Row>
+                          <b>{t.title}</b>
                         </Card.Title>
-                        <Card.Text>
-                          <Row style={{ marginTop: "15px" }}>
-                            <Col>{eventsJSON.events[i].date}</Col>
-                            <Col
-                              style={{
-                                textAlign: "center",
-                                display: "inline-block",
-                              }}
-                            >
-                              {eventsJSON.events[i].venue}
-                            </Col>
-                            <Col
-                              style={{
-                                textAlign: "right",
-                                marginRight: "10px",
-                              }}
-                            >
-                              <b>Ticket ID:</b> {t.ticketno}
-                            </Col>
-                          </Row>
-                        </Card.Text>
+
+                        <Row style={{ marginTop: "15px" }}>
+                          <Col>{t.date}</Col>
+                          <Col
+                            style={{
+                              textAlign: "center",
+                              display: "inline-block",
+                            }}
+                          >
+                            {t.venue}
+                          </Col>
+                          <Col
+                            style={{
+                              textAlign: "right",
+                              marginRight: "10px",
+                            }}
+                          >
+                            <b>Ticket ID:</b> {t.ticketno}
+                          </Col>
+                        </Row>
                         <Row style={{ marginTop: "25px" }}>
                           <Col
                             style={{
@@ -152,17 +166,31 @@ const Marketplace = () => {
                             }}
                           >
                             {tickets.includes(t.tokenID) ? (
-                              <Button
-                                style={{
-                                  backgroundColor: "black",
-                                  marginRight: "20px",
-                                }}
-                                onClick={() => {
-                                  sellTicket(t)
-                                }}
-                              >
-                                Buy
-                              </Button>
+                              !address ? (
+                                <></>
+                              ) : t.address == address ? (
+                                <Button
+                                  disabled
+                                  style={{
+                                    backgroundColor: "black",
+                                    marginRight: "20px",
+                                  }}
+                                >
+                                  Your ticket
+                                </Button>
+                              ) : (
+                                <Button
+                                  style={{
+                                    backgroundColor: "black",
+                                    marginRight: "20px",
+                                  }}
+                                  onClick={() => {
+                                    sellTicket(t)
+                                  }}
+                                >
+                                  Buy
+                                </Button>
+                              )
                             ) : (
                               <Button>Sold</Button>
                             )}
@@ -177,11 +205,7 @@ const Marketplace = () => {
             ))}
           </>
         ) : (
-          <>
-            <div style={{ color: "white" }}>
-              You have no tickets! Go buy some!
-            </div>
-          </>
+          <SectionDescription text="There are no tickets for sale." />
         )}
       </div>
     </div>

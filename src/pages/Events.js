@@ -1,15 +1,22 @@
 import { Header } from "../components/Header"
 import React, { useState } from "react"
-
 import "./event.css"
 import { EventList } from "../components/EventList"
 import { SectionTitle } from "../components/Titles"
 import { Col, Row } from "react-bootstrap"
 import { FilterSearchBar } from "../components/InteractiveElements"
-// import eventsJSON from "../testEvents.json"
-import { fetchIPFSData } from "../deployments/upload.js"
 
-const eventsJSON = await fetchIPFSData()
+import {
+  EVENTS_JSON_0,
+  EVENTS_JSON_1,
+  EVENTS_JSON_2,
+} from "../constants/constants"
+
+const eventsJSON = [
+  ...EVENTS_JSON_0["events"],
+  ...EVENTS_JSON_1["events"],
+  ...EVENTS_JSON_2["events"],
+]
 const Events = () => {
   const [data, setData] = useState(eventsJSON.events)
   const [filteredData, setFilteredData] = useState(eventsJSON.events)

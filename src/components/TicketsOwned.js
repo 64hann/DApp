@@ -1,16 +1,26 @@
 import { useState, useEffect, useContext } from "react"
 import { ViewContext } from "../context/ViewProvider"
-import { nft_contract } from "../pages/EventDetails"
-import { fetchIPFSData } from "../deployments/upload"
+import { GetContracts } from "../utils/services"
 import { Col, Accordion } from "react-bootstrap"
 import { TicketCard, Heading } from "./TicketCard"
 import { PageBreak, SectionDescription, SectionTitle } from "./Titles"
-import { getForSale, removeFromSale, putForSale } from "../database/aws"
-
+import { getForSale, removeFromSale, putForSale } from "../database/dynamo/aws"
 import "./components.css"
 
-const eventsJSON = await fetchIPFSData()
-const numberOfEvents = await eventsJSON.events.length
+import {
+  EVENTS_JSON_0,
+  EVENTS_JSON_1,
+  EVENTS_JSON_2,
+} from "../constants/constants"
+
+const listOfContracts = await GetContracts()
+
+const eventsJSON = [
+  ...EVENTS_JSON_0["events"],
+  ...EVENTS_JSON_1["events"],
+  ...EVENTS_JSON_2["events"],
+]
+const numberOfEvents = await eventsJSON.length
 
 const TicketsOwned = () => {
   const [ownedTickets, setOwnedTickets] = useState(
@@ -37,42 +47,61 @@ const TicketsOwned = () => {
     setUpdate(!update)
   }
 
-  function handleUnlist(title, ticketno, address) {
-    removeFromSale({ tokenID: ticketno + address + title })
+  async function handleUnlist(title, ticketno, address) {
+    await removeFromSale({ tokenID: ticketno + address + title })
     setUpdate(!update)
   }
 
   useEffect(() => {
     async function fetchTickets() {
-      //   for (var i = 0; i < eventsJSON.events.length; i++) {
-      //     var tickets = await nft_contract.getAddressInfo(address)
-      //     tickets = await tickets.map((ticket) => ticket.toNumber())
-      //     ticketCounter += tickets.length
-      //     ownedTickets[i] = tickets
-      //   }
-
       var ticketCounter = 0
-      var tickets = await nft_contract.getTicketsOwned(address)
+      var tickets
+      var tickets = await listOfContracts[0].getTicketsOwned(address)
 
-      tickets = await tickets.map((ticket) => ticket.toNumber())
+      tickets = await tickets.map((ticket) => [
+        eventsJSON[0].title,
+        ticket.toNumber(),
+      ])
+
       console.log(tickets)
       ticketCounter += tickets.length
 
       // Hard code just one event first
       ownedTickets[0] = tickets
-      // console.log(ownedTickets)
+
+      //2nd event
+      tickets = await listOfContracts[1].getTicketsOwned(address)
+      tickets = await tickets.map((ticket) => [
+        eventsJSON[1].title,
+        ticket.toNumber(),
+      ])
+      console.log(tickets)
+      ticketCounter += tickets.length
+      ownedTickets[1] = tickets
+
+      //3rd event
+      tickets = await listOfContracts[2].getTicketsOwned(address)
+      tickets = await tickets.map((ticket) => [
+        eventsJSON[2].title,
+        ticket.toNumber(),
+      ])
+      console.log(tickets)
+      ticketCounter += tickets.length
+      ownedTickets[2] = tickets
 
       setTotalTickets(ticketCounter)
-      // setOwnedTickets(tickets)
-      // console.log(ownedTickets)
+
     }
 
     fetchTickets()
 
     async function fetchTicketsForSale() {
       var tickets = await getForSale()
-      setTicketsForSale(tickets.map((ticket) => ticket.ticketno))
-      // console.log(tickets.map((ticket) => ticket.ticketno))
+      setTicketsForSale(
+        tickets.map((ticket) => [ticket.title, ticket.ticketno])
+      )
+      console.log("Tickets for Sale", ticketsForSale)
+
     }
 
     fetchTicketsForSale()

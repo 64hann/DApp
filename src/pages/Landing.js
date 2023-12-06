@@ -3,7 +3,7 @@ import { HomepageTitle, PageBreak } from "../components/Titles"
 import { Col, Container, Row, Image } from "react-bootstrap"
 import { NFTButton } from "../components/InteractiveElements"
 import { useNavigate } from "react-router-dom"
-import InstallAlert from "../components/InstallAlert"
+import { NoMetaMask } from "./Errors"
 
 const Landing = () => {
   const navigate = useNavigate()
@@ -43,7 +43,7 @@ const Landing = () => {
           </div>
         </div>
       ) : (
-        <InstallAlert />
+        <NoMetaMask />
       )}
     </div>
   )

@@ -1,6 +1,4 @@
-import React, { useState } from "react"
-import "./components.css"
-// You can define your styles in Popup.css
+import React from "react"
 import loadingGIF from "./assets/Bean Eater-1s-200px.gif"
 import successPNG from "./assets/checked.png"
 import failPNG from "./assets/cancel.png"
@@ -22,6 +20,8 @@ const Popup = ({ handleClose, show, state }) => {
       content = (
         <div className="content">
           <img src={failPNG} alt="Fail PNG" style={style} />
+          <br></br>
+
           <p>Transaction failed. Please try again. </p>
         </div>
       )
@@ -29,6 +29,8 @@ const Popup = ({ handleClose, show, state }) => {
       content = (
         <div className="content">
           <img src={successPNG} alt="Success PNG" style={style} />
+          <br></br>
+
           <p>Transaction success! </p>
         </div>
       )

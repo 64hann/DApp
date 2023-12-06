@@ -3,41 +3,37 @@ import { PageBreak } from "../components/Titles.js"
 import { useParams } from "react-router-dom"
 import { Image, Form } from "react-bootstrap"
 
-import { fetchIPFSData } from "../deployments/upload.js"
 import { useState, useContext, useEffect } from "react"
 import { ViewContext } from "../context/ViewProvider"
 import Popup from "../components/Popup.js"
 import { MintButton } from "../components/InteractiveElements.js"
 
-const eventsJSON = await fetchIPFSData()
+import { CID_0, CID_1, CID_2 } from "../constants/constants.js"
+import { States, GetContracts } from "../utils/services.js"
+import {
+  EVENTS_JSON_0,
+  EVENTS_JSON_1,
+  EVENTS_JSON_2,
+} from "../constants/constants"
+const eventsJSON = [
+  ...EVENTS_JSON_0["events"],
+  ...EVENTS_JSON_1["events"],
+  ...EVENTS_JSON_2["events"],
+]
 
 const ethers = require("ethers")
-const contract = require("../artifacts/contracts/Nfticket.sol/Nfticket.json")
-const CONTRACT_ADDRESS = "0x37D6f533B19bB53683bDA0696476dF0043428075"
-const CID = "ipfs://QmYfTFjZ5RCi8fzGEBxudrgNRVsDNN9uTN7dXwZzkYL5E1"
-const { ethereum } = window
-const provider = new ethers.providers.Web3Provider(ethereum)
-const signer = provider.getSigner()
+const listOfContracts = await GetContracts()
 
-export const nft_contract = new ethers.Contract(
-  CONTRACT_ADDRESS,
-  contract.abi,
-  signer
-)
-
-export const options = {
-  value: ethers.utils.parseEther("0.0000000000000005"),
-  gasLimit: 500000,
-}
-export const States = {
-  Loading: false,
-  isError: false,
-}
+const listOfCIDs = [CID_0, CID_1, CID_2]
 
 const EventDetails = () => {
   const [showPopup, setShowPopup] = useState(false)
   const [state, setState] = useState(States)
   const [mintPrice, setMintPrice] = useState(null)
+
+  const [maxSupply, setMaxSupply] = useState(0)
+  const [curSupply, setCurSupply] = useState(0)
+
   const [numberOfTickets, setNumberOfTickets] = useState(1)
 
   const openPopUp = () => {
@@ -45,19 +41,47 @@ const EventDetails = () => {
   }
 
   const params = useParams()
-  const event = eventsJSON.events[params.id]
+
+  const event = eventsJSON[params.id]
+  const index = event.id
   const { user } = useContext(ViewContext)
   const { address } = user
-  var tokenId = null
+  const nft_contract = listOfContracts[index]
+  const CID = listOfCIDs[index]
+
   useEffect(() => {
     async function fetchMintPrice() {
-      const price = await nft_contract.mintPrice()
-      setMintPrice(price.toString())
+      try {
+        const price = await nft_contract.mintPrice()
+        setMintPrice(price.toString())
+      } catch (err) {
+        console.log("User not logged in")
+      }
+    }
+
+    async function fetchMaxSupply() {
+      try {
+        const supply = await nft_contract.maxSupply()
+        setMaxSupply(supply.toString())
+      } catch (err) {
+        console.log("User not logged in")
+      }
+    }
+    async function fetchCurSupply() {
+      try {
+        const supply = await nft_contract.totalSupply()
+        setCurSupply(supply.toString())
+      } catch (err) {
+        console.log("User not logged in")
+      }
     }
     fetchMintPrice()
+    fetchMaxSupply()
+    fetchCurSupply()
+
   }, [])
 
-  const handleNumberChange = (e) => {
+  function handleNumberChange(e) {
     setNumberOfTickets(e.target.value)
   }
 

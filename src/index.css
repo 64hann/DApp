@@ -17,34 +17,39 @@ code {
 @font-face {
   font-family: "tabela-bold";
   src: local("Tabela"),
-    url(./fonts/Tabela/tabelaSoft-Medium.ttf) format("truetype");
+    url(./components/assets/fonts/Tabela/tabelaSoft-Bold.ttf) format("truetype");
 }
 
 @font-face {
   font-family: "tabela-regular";
   src: local("Tabela"),
-    url(./fonts/Tabela/tabelaSoft-Regular.ttf) format("truetype");
+    url(./components/assets/fonts/Tabela/tabelaSoft-Regular.ttf)
+      format("truetype");
 }
 
 @font-face {
   font-family: "tabela-light";
   src: local("Tabela"),
-    url(./fonts/Tabela/tabelaSoft-Light.ttf) format("truetype");
+    url(./components/assets/fonts/Tabela/tabelaSoft-Light.ttf)
+      format("truetype");
 }
 
 @font-face {
   font-family: "sohne-buch";
-  src: local("Sohne"), url(./fonts/Sohne/Söhne-Buch.otf) format("truetype");
+  src: local("Sohne"),
+    url(./components/assets/fonts/Sohne/Söhne-Buch.otf) format("truetype");
 }
 
 @font-face {
   font-family: "sohne-buch-bold";
   src: local("Sohne"),
-    url(./fonts/Sohne/Söhne-Dreiviertelfett.otf) format("truetype");
+    url(./components/assets/fonts/Sohne/Söhne-Dreiviertelfett.otf)
+      format("truetype");
 }
 
 @font-face {
   font-family: "sohne-buch-light";
   src: local("Sohne"),
-    url(./fonts/Sohne/Söhne-Extraleicht.otf) format("truetype");
+    url(./components/assets/fonts/Sohne/Söhne-Extraleicht.otf)
+      format("truetype");
 }

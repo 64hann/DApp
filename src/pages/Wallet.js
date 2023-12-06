@@ -1,6 +1,6 @@
 import { Header } from "../components/Header"
 
-import { useContext, useEffect, useState } from "react"
+import { useContext } from "react"
 import { ViewContext } from "../context/ViewProvider"
 
 import TicketsOwned from "../components/TicketsOwned"
