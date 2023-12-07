@@ -1,4 +1,10 @@
-# DApp - NFTickets
+<h1 align="center">
+  <br>
+  <img src="src/components/assets/nfticket-transparent.png" alt="NFTicket">
+  <br>
+   NFTicket
+  <br>
+</h1>
 
 ## About The Project
 
@@ -46,8 +52,3 @@ Our project uses the following frameworks and services:
 - [Alchemy](https://www.alchemy.com/)
 - [Pinata](https://www.pinata.cloud/)
 - [Amazon DynamoDB](https://aws.amazon.com/dynamodb/)
-
-
-  ### License
-  MIT
-
