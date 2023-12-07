@@ -1,65 +1,134 @@
-# DApp
+# DApp - NFTickets
 
 ## Running the Frontend
-
-The React App is saved within the `nfticket-frontend` directory.
 
 ### Dependencies
 
 Ensure you have `npm` installed.
 
-Install node packages `npm install`
+Install node packages
+
+```
+npm install
+```
+
+The app also requires [MetaMask](https://metamask.io/download/) to be installed on the Browser.
+
+The app was developed using Chrome.
 
 ### Running
 
-`npm start`
+```
+npm start
+```
+
 Runs the app in the development mode.
 
 ### Routing
 
-Homepage: [http://localhost:3000](http://localhost:3000)
+Landing Page: [http://localhost:3000](http://localhost:3000)
+
 - landing page for new users
 
+Landing Page: [http://localhost:3000/homepage](http://localhost:3000/homepage)
+
+- home page contains events and promotions
+
 Events: [http://localhost:3000/events](http://localhost:3000/events)
+
 - to view all events
 
-Events Details (for each event) http://localhost:3000/events/:title/:id 
+Events Details (for each event) http://localhost:3000/events/:title/:id
+
 - takes in the event `title` and event `id` as url params
 - uses the `id` to fetch event data
 
+Marketplace: [http://localhost:3000/marketplace](http://localhost:3000/marketplace)
+
+- buy user listed nftickets
+
 My Tickets: [http://localhost:3000/tickets](http://localhost:3000/tickets)
+
 - metamask integration
+- view tickets of a user
+- list owned ticket on the marketplace
 
 ### Resource
-A temporary json file has been set up to store event details. Currently, event details are being obtained from `testEvents.json` in the src folder.
+
+A temporary json file has been set up to store event details. Currently, event details are being obtained from `eventData[id].json` in the src folder.
 
 schema for each event:
 
 ```
 {
-    "title": "",
-    "artist": "",
-    "description": "",
-    "imageURL": "",
-    "bannerURL": "",
-    "date": "",
-    "venue": "",
-    "ticketCategories": {
-    "cat1": {
-        "price": "",
-        "count": ""
-    },
-    "cat2": {
-        "price": "",
-        "count": ""
+  "events": [
+    {
+      "id": int,
+      "title": str,
+      "artist": str,
+      "description": str,
+      "imageURL": url,
+      "bannerURL": url,
+      "date": str,
+      "venue": str
     }
-    }
+  ]
 }
+
 ```
+
+### Database Calls
+
+`getForSale` gets a list of tickets that are put up for sale.
+
+- requires params:
+
+```
+params = {TableName: TABLE_NAME}
+```
+
+`putForSale`puts a new ticket for sale
+
+- requires params:
+
+```
+params = {
+        {TableName: TABLE_NAME},
+        Item: {
+            eventID: req["eventID"],
+            tokenID: req["id"],
+            title: req["title"],
+            ticketno: req["ticketno"],
+            address: req["address"],
+            date: req["date"],
+            venue: req["venue"],
+            }
+    }
+
+```
+
+`removeFromSale`deletes the ticket from the database
+
+- requires params:
+
+```
+params = {
+      TableName: TABLE_NAME,
+      Key: {
+        tokenID: req["tokenID"],
+      },
+    }
+```
+
+#### IPFS
+
+`fetchIPFSData()` fetches data from IPFS.
+
+#### Dynamo DB
 
 ## Smart Contract
 
-The smart contract is named sample_nft_ticket.sol
+The smart contract is named `Nfticket.sol` and is found in the path `src/contracts/Nfticket.sol` relative to root.
 
 Firstly, call the `setMintPrice(uint256 mint_price)` to set a minting price, in gwei.
 
@@ -75,9 +144,6 @@ In order for the function to be called successfully, the caller must input the c
 To transfer the token from one to another, the `transferToken(address payable  from, uint256 tokenId)` can be called, which transfers the NFT from from to the caller of the function. In order for this function to execute properly,
 the caller must input the correct amount of gwei. The token will be transferred from from to the caller of the function, and from receives the payment.
 
-
-
-
 ## Compiling and deploying smart contract
 
 In order to run the following, create a .env file in `/src` directory
@@ -92,18 +158,19 @@ CID=ipfs://YOUR_CID
 ```
 
 To compile the smart contract, run (Make sure that node modules and hardhat.config.js are in the same directory)
+
 ```
 npx hardhat compile
 ```
 
+To deploy the smart contract, run
 
-To deploy the smart contract, run 
 ```
 npx hardhat run deployments/deploy.js --network sepolia
 
 ```
 
-To enable mint, set mintPrice and set MaxSupply of tickets, run 
+To enable mint, set mintPrice and set MaxSupply of tickets, run
 
 ```
 node deployments/interact.js
