@@ -1,5 +1,16 @@
 # DApp - NFTickets
 
+## About The Project
+
+Scams for event tickets, such as concert tickets, have been on the rise in Singapore. According to the Singapore Police Force, victims of concert ticket scams lost more than $480,000 to scammers (Koh, 2023). Scammers would list fraudulent concert tickets on platforms such as Carousell, Facebook, Telegram and Twitter. Victims would then approach the scammers via the application’s in-built chat function to purchase the listed ticket. Once the victims had paid the scammers for the ticket, the scammers would either delay sending the ticket to the victims or the victims would realise that the ticket is invalid on the concert day. 
+
+Blockchain technologies offer an effective solution to this problem due to several factors. Here's why:
+
+* The distributed ledger in blockchain records all the transactions made in the system, including the minting of new tickets. This prevents the creation of fraudulent tickets that can be resold to victims.
+* Frauds are not only unable to create fraudulent tickets, but due to the immutable nature of blockchain, they are also unable to modify existing tickets in their favour. Frauds are unable to tamper with any of the records on the blockchain without their changes being noticed.
+* Ticket buyers will be interacting directly with the blockchain through smart contracts when purchasing their tickets, which means that they would not have to trust third-party sellers for this transaction.
+
+
 ## Running the Frontend
 
 ### Dependencies
