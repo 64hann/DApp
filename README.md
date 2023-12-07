@@ -9,7 +9,7 @@
 
 ## About The Project
 
-Scams for event tickets, such as concert tickets, have been on the rise in Singapore. According to the Singapore Police Force, victims of concert ticket scams lost more than $480,000 to scammers (Koh, 2023). Scammers would list fraudulent concert tickets on platforms such as Carousell, Facebook, Telegram and Twitter. Victims would then approach the scammers via the application’s in-built chat function to purchase the listed ticket. Once the victims had paid the scammers for the ticket, the scammers would either delay sending the ticket to the victims or the victims would realise that the ticket is invalid on the concert day. 
+Scams for event tickets, such as concert tickets, have been on the rise in Singapore. According to the Singapore Police Force, victims of concert ticket scams lost more than $480,000 to scammers. Scammers would list fraudulent concert tickets on platforms such as Carousell, Facebook, Telegram and Twitter. Victims would then approach the scammers via the application’s in-built chat function to purchase the listed ticket. Once the victims had paid the scammers for the ticket, the scammers would either delay sending the ticket to the victims or the victims would realise that the ticket is invalid on the concert day. 
 
 Blockchain technologies offer an effective solution to this problem due to several factors. Here's why:
 
