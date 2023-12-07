@@ -43,7 +43,7 @@ npm start
 A video demonstration of the web app can be found [here](https://www.youtube.com/watch?v=xb_zHWj_wR8&t=1s)
 
 
-### Built with
+### Credits
 Our project uses the following frameworks and services:
 
 - [React](https://react.dev/)
