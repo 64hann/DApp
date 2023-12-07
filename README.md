@@ -46,11 +46,24 @@ A video demonstration of the web app can be found [here](https://www.youtube.com
 ### Credits
 Our project uses the following frameworks and services:
 
-- [React](https://react.dev/)
-- [Node.js](https://nodejs.org/)
+- [![React][React.js]][React-url]
+- [![Node.js][Node.js]][Node-url]
+- [![OpenZeppelin][OpenZeppelin]][OpenZeppelin-url]
+- [![Amazon DynamoDB][DynamoDB]][DynamoDB-url]
+- [Hardhat](https://hardhat.org/)
 - [Ethers.js](https://docs.ethers.org/v6/)
 - [MetaMask](https://docs.metamask.io/)
-- [HardHat](https://hardhat.org/)
 - [Alchemy](https://www.alchemy.com/)
 - [Pinata](https://www.pinata.cloud/)
-- [Amazon DynamoDB](https://aws.amazon.com/dynamodb/)
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
+[Node.js]: 	https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white
+[Node-url]: (https://nodejs.org/)
+[OpenZeppelin]: https://img.shields.io/badge/OpenZeppelin-4E5EE4?logo=openzeppelin&logoColor=fff&style=for-the-badge
+[OpenZeppelin-url]: https://www.openzeppelin.com/
+[DynamoDB]: https://img.shields.io/badge/Amazon%20DynamoDB-4053D6?style=for-the-badge&logo=Amazon%20DynamoDB&logoColor=white
+[DynamoDB-url]: https://aws.amazon.com/dynamodb/
