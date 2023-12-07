@@ -2,7 +2,8 @@
   <br>
   <img src="src/components/assets/nfticket-transparent.png" alt="NFTicket">
   <br>
-   NFTicket
+  <br> 
+        NFTicket 
   <br>
 </h1>
 
@@ -39,6 +40,7 @@ npm install
 npm start
 
 ```
+A video demonstration of the web app can be found [here](https://www.youtube.com/watch?v=xb_zHWj_wR8&t=1s)
 
 
 ### Built with
