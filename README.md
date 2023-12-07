@@ -186,3 +186,18 @@ To enable mint, set mintPrice and set MaxSupply of tickets, run
 ```
 node deployments/interact.js
 ```
+
+
+### Built with
+Our project uses the following frameworks and services:
+
+- [React](https://react.dev/)
+- [Node.js](https://nodejs.org/)
+- [Ethers.js](https://docs.ethers.org/v6/)
+- [MetaMask](https://docs.metamask.io/)
+- [HardHat](https://hardhat.org/)
+- [Alchemy](https://www.alchemy.com/)
+- [Pinata](https://www.pinata.cloud/)
+- [Amazon DynamoDB](https://aws.amazon.com/dynamodb/)
+  
+
