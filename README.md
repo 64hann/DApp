@@ -47,7 +47,7 @@ A video demonstration of the web app can be found [here](https://www.youtube.com
 Our project uses the following frameworks and services:
 
 - [![React][React.js]][React-url]
-- [![Node.js][Node.js]][Node-url]
+- [![Node.js][node.js]][Node-url]
 - [![OpenZeppelin][OpenZeppelin]][OpenZeppelin-url]
 - [![Amazon DynamoDB][DynamoDB]][DynamoDB-url]
 - [Hardhat](https://hardhat.org/)
@@ -61,7 +61,7 @@ Our project uses the following frameworks and services:
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
-[Node.js]: 	https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white
+[node.js]: 	https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white
 [Node-url]: (https://nodejs.org/)
 [OpenZeppelin]: https://img.shields.io/badge/OpenZeppelin-4E5EE4?logo=openzeppelin&logoColor=fff&style=for-the-badge
 [OpenZeppelin-url]: https://www.openzeppelin.com/
