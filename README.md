@@ -62,7 +62,7 @@ Our project uses the following frameworks and services:
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
 [node.js]: 	https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white
-[Node-url]: (https://nodejs.org/)
+[Node-url]: https://nodejs.org/
 [OpenZeppelin]: https://img.shields.io/badge/OpenZeppelin-4E5EE4?logo=openzeppelin&logoColor=fff&style=for-the-badge
 [OpenZeppelin-url]: https://www.openzeppelin.com/
 [DynamoDB]: https://img.shields.io/badge/Amazon%20DynamoDB-4053D6?style=for-the-badge&logo=Amazon%20DynamoDB&logoColor=white
