@@ -3,7 +3,7 @@ const AWS = require("aws-sdk")
 const TABLE_NAME = "forSale"
 
 const GUEST_USER_CREDS = new AWS.CognitoIdentityCredentials({
-  IdentityPoolId: "ap-southeast-2:ed87b1b6-1beb-4218-b806-5eb7f74affd3",
+  IdentityPoolId: "YOUR CREDENTIALS HERE",
   region: "ap-southeast-2",
 })
 
